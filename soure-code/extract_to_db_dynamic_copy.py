@@ -74,7 +74,7 @@ def fetch_and_store_data(in_engine):
 
 def main():
     USER = "root"
-    PASSWORD = "656692"
+    PASSWORD = ""
     PORT = "3306"
     DB = "dublinbikesystem"
     URI = "localhost"
