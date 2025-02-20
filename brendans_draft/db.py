@@ -1,5 +1,3 @@
-# db.py
-
 from sqlalchemy import create_engine, text
 from config import DB_CONFIG
 
@@ -24,18 +22,19 @@ def create_tables():
 
         connection.execute(text("""
             CREATE TABLE IF NOT EXISTS station_status (
-                station_id INT PRIMARY KEY,
+                station_id INT,
                 available_bikes INT,
                 available_bike_stands INT,
                 status VARCHAR(20),
                 last_update DATETIME,
+                PRIMARY KEY (station_id, last_update),
                 FOREIGN KEY (station_id) REFERENCES stations(station_id) ON DELETE CASCADE
             )
         """))
 
         connection.execute(text("""
             CREATE TABLE IF NOT EXISTS weather (
-                timestamp DATETIME PRIMARY KEY,
+                timestamp DATETIME PRIMARY KEY DEFAULT CURRENT_TIMESTAMP,
                 temp FLOAT,
                 feels_like FLOAT,
                 temp_min FLOAT,
@@ -46,12 +45,12 @@ def create_tables():
                 wind_gust FLOAT NULL,
                 visibility INT NULL,
                 clouds INT NULL,
-                sunrise DATETIME,
-                sunset DATETIME
+                sunrise INT,   -- Store Unix timestamp
+                sunset INT     -- Store Unix timestamp
             )
         """))
 
-    print(" Database tables checked/created successfully!")
+    print("Database tables checked/created successfully!")
 
 # Ensure tables are created when db.py is imported
 create_tables()
