@@ -15296,3 +15296,2194 @@
 2025-02-20 01:31:20,908 - INFO - COMMIT
 2025-02-20 01:31:20,925 - INFO - Weather data updated successfully.
 2025-02-20 01:31:20,986 - INFO - Waiting for the next bike update in 5 minutes...
+2025-02-20 02:47:16,673 - INFO - Fetched 114 stations from JCDecaux API.
+2025-02-20 02:47:17,047 - INFO - SELECT DATABASE()
+2025-02-20 02:47:17,049 - INFO - [raw sql] ()
+2025-02-20 02:47:17,175 - INFO - SELECT @@sql_mode
+2025-02-20 02:47:17,176 - INFO - [raw sql] ()
+2025-02-20 02:47:17,238 - INFO - SELECT @@lower_case_table_names
+2025-02-20 02:47:17,239 - INFO - [raw sql] ()
+2025-02-20 02:47:17,360 - INFO - BEGIN (implicit)
+2025-02-20 02:47:17,364 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:17,365 - INFO - [generated in 0.00156s] (42, 'dublin', 'SMITHFIELD NORTH', 'Smithfield North', 53.349562, -6.278198, 30)
+2025-02-20 02:47:17,439 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:17,440 - INFO - [generated in 0.00091s] (42, 7, 23, 'OPEN', '2025-02-20 02:41:35')
+2025-02-20 02:47:17,458 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:17,459 - INFO - [cached since 0.09586s ago] (30, 'dublin', 'PARNELL SQUARE NORTH', 'Parnell Square North', 53.3537415547453, -6.26530144781526, 20)
+2025-02-20 02:47:17,478 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:17,478 - INFO - [cached since 0.03929s ago] (30, 2, 18, 'OPEN', '2025-02-20 02:43:04')
+2025-02-20 02:47:17,493 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:17,494 - INFO - [cached since 0.1303s ago] (54, 'dublin', 'CLONMEL STREET', 'Clonmel Street', 53.336021, -6.26298, 33)
+2025-02-20 02:47:17,510 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:17,511 - INFO - [cached since 0.07215s ago] (54, 0, 33, 'OPEN', '2025-02-20 02:41:58')
+2025-02-20 02:47:17,529 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:17,530 - INFO - [cached since 0.1665s ago] (108, 'dublin', 'AVONDALE ROAD', 'Avondale Road', 53.359405, -6.276142, 35)
+2025-02-20 02:47:17,545 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:17,546 - INFO - [cached since 0.1066s ago] (108, 6, 29, 'OPEN', '2025-02-20 02:40:02')
+2025-02-20 02:47:17,561 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:17,561 - INFO - [cached since 0.1982s ago] (20, 'dublin', 'JAMES STREET EAST', 'James Street East', 53.336597, -6.248109, 30)
+2025-02-20 02:47:17,578 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:17,578 - INFO - [cached since 0.1393s ago] (20, 0, 30, 'OPEN', '2025-02-20 02:41:38')
+2025-02-20 02:47:17,596 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:17,597 - INFO - [cached since 0.2337s ago] (56, 'dublin', 'MOUNT STREET LOWER', 'Mount Street Lower', 53.33796, -6.24153, 40)
+2025-02-20 02:47:17,612 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:17,613 - INFO - [cached since 0.1741s ago] (56, 6, 34, 'OPEN', '2025-02-20 02:45:48')
+2025-02-20 02:47:17,630 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:17,631 - INFO - [cached since 0.2682s ago] (6, 'dublin', 'CHRISTCHURCH PLACE', 'Christchurch Place', 53.343368, -6.27012, 20)
+2025-02-20 02:47:17,649 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:17,650 - INFO - [cached since 0.2108s ago] (6, 6, 14, 'OPEN', '2025-02-20 02:38:27')
+2025-02-20 02:47:17,665 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:17,666 - INFO - [cached since 0.3028s ago] (18, 'dublin', 'GRANTHAM STREET', 'Grantham Street', 53.334123, -6.265436, 30)
+2025-02-20 02:47:17,681 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:17,682 - INFO - [cached since 0.2427s ago] (18, 11, 19, 'OPEN', '2025-02-20 02:44:08')
+2025-02-20 02:47:17,698 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:17,699 - INFO - [cached since 0.3355s ago] (32, 'dublin', 'PEARSE STREET', 'Pearse Street', 53.344304, -6.250427, 30)
+2025-02-20 02:47:17,715 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:17,715 - INFO - [cached since 0.2762s ago] (32, 10, 20, 'OPEN', '2025-02-20 02:40:15')
+2025-02-20 02:47:17,729 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:17,730 - INFO - [cached since 0.3663s ago] (52, 'dublin', 'YORK STREET EAST', 'York Street East', 53.338755, -6.262003, 32)
+2025-02-20 02:47:17,744 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:17,745 - INFO - [cached since 0.3057s ago] (52, 0, 32, 'OPEN', '2025-02-20 02:38:37')
+2025-02-20 02:47:17,758 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:17,759 - INFO - [cached since 0.3959s ago] (48, 'dublin', 'EXCISE WALK', 'Excise Walk', 53.347777, -6.244239, 40)
+2025-02-20 02:47:17,783 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:17,784 - INFO - [cached since 0.3447s ago] (48, 30, 10, 'OPEN', '2025-02-20 02:37:20')
+2025-02-20 02:47:17,801 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:17,802 - INFO - [cached since 0.4386s ago] (13, 'dublin', 'FITZWILLIAM SQUARE WEST', 'Fitzwilliam Square West', 53.336074, -6.252825, 30)
+2025-02-20 02:47:17,815 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:17,816 - INFO - [cached since 0.3767s ago] (13, 1, 29, 'OPEN', '2025-02-20 02:37:36')
+2025-02-20 02:47:17,830 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:17,831 - INFO - [cached since 0.4678s ago] (43, 'dublin', 'PORTOBELLO ROAD', 'Portobello Road', 53.330091, -6.268044, 30)
+2025-02-20 02:47:17,848 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:17,848 - INFO - [cached since 0.4091s ago] (43, 24, 6, 'OPEN', '2025-02-20 02:39:11')
+2025-02-20 02:47:17,867 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:17,867 - INFO - [cached since 0.5038s ago] (31, 'dublin', 'PARNELL STREET', 'Parnell Street', 53.350929, -6.265125, 20)
+2025-02-20 02:47:17,881 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:17,882 - INFO - [cached since 0.443s ago] (31, 16, 4, 'OPEN', '2025-02-20 02:38:33')
+2025-02-20 02:47:17,897 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:17,898 - INFO - [cached since 0.5348s ago] (98, 'dublin', 'FREDERICK STREET SOUTH', 'Frederick Street South', 53.341515, -6.256853, 40)
+2025-02-20 02:47:17,913 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:17,914 - INFO - [cached since 0.4746s ago] (98, 0, 40, 'OPEN', '2025-02-20 02:36:46')
+2025-02-20 02:47:17,927 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:17,928 - INFO - [cached since 0.5646s ago] (14, 'dublin', 'FOWNES STREET UPPER', 'Fownes Street Upper', 53.344603, -6.263371, 30)
+2025-02-20 02:47:17,945 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:17,946 - INFO - [cached since 0.5069s ago] (14, 13, 17, 'OPEN', '2025-02-20 02:41:58')
+2025-02-20 02:47:17,964 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:17,965 - INFO - [cached since 0.6014s ago] (1, 'dublin', 'CLARENDON ROW', 'Clarendon Row', 53.340927, -6.262501, 31)
+2025-02-20 02:47:17,979 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:17,979 - INFO - [cached since 0.5402s ago] (1, 1, 30, 'OPEN', '2025-02-20 02:45:08')
+2025-02-20 02:47:17,995 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:17,995 - INFO - [cached since 0.6322s ago] (23, 'dublin', 'CUSTOM HOUSE', 'Custom House', 53.348279, -6.254662, 30)
+2025-02-20 02:47:18,009 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,011 - INFO - [cached since 0.5709s ago] (23, 23, 7, 'OPEN', '2025-02-20 02:43:21')
+2025-02-20 02:47:18,027 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,028 - INFO - [cached since 0.665s ago] (106, 'dublin', 'RATHDOWN ROAD', 'Rathdown Road', 53.35893, -6.280337, 40)
+2025-02-20 02:47:18,043 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,044 - INFO - [cached since 0.6045s ago] (106, 18, 22, 'OPEN', '2025-02-20 02:39:51')
+2025-02-20 02:47:18,060 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,061 - INFO - [cached since 0.6974s ago] (112, 'dublin', "NORTH CIRCULAR ROAD (O'CONNELL'S)", "North Circular Road (O'Connell's)", 53.357841, -6.251557, 30)
+2025-02-20 02:47:18,075 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,076 - INFO - [cached since 0.6372s ago] (112, 29, 1, 'OPEN', '2025-02-20 02:43:12')
+2025-02-20 02:47:18,091 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,092 - INFO - [cached since 0.7291s ago] (68, 'dublin', 'HANOVER QUAY', 'Hanover Quay', 53.344115, -6.237153, 40)
+2025-02-20 02:47:18,107 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,107 - INFO - [cached since 0.6683s ago] (68, 2, 38, 'OPEN', '2025-02-20 02:42:38')
+2025-02-20 02:47:18,123 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,123 - INFO - [cached since 0.7602s ago] (74, 'dublin', 'OLIVER BOND STREET', 'Oliver Bond Street', 53.343893, -6.280531, 30)
+2025-02-20 02:47:18,137 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,137 - INFO - [cached since 0.698s ago] (74, 28, 2, 'OPEN', '2025-02-20 02:38:42')
+2025-02-20 02:47:18,153 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,154 - INFO - [cached since 0.7905s ago] (87, 'dublin', 'COLLINS BARRACKS MUSEUM', 'Collins Barracks Museum', 53.347477, -6.28525, 38)
+2025-02-20 02:47:18,167 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,168 - INFO - [cached since 0.7286s ago] (87, 9, 29, 'OPEN', '2025-02-20 02:46:35')
+2025-02-20 02:47:18,183 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,184 - INFO - [cached since 0.8203s ago] (84, 'dublin', 'BROOKFIELD ROAD', 'Brookfield Road', 53.339005, -6.300217, 30)
+2025-02-20 02:47:18,198 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,198 - INFO - [cached since 0.7591s ago] (84, 30, 0, 'OPEN', '2025-02-20 02:38:36')
+2025-02-20 02:47:18,223 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,223 - INFO - [cached since 0.8602s ago] (90, 'dublin', 'BENSON STREET', 'Benson Street', 53.344153, -6.233451, 40)
+2025-02-20 02:47:18,237 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,237 - INFO - [cached since 0.798s ago] (90, 1, 39, 'OPEN', '2025-02-20 02:38:03')
+2025-02-20 02:47:18,251 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,252 - INFO - [cached since 0.889s ago] (11, 'dublin', 'EARLSFORT TERRACE', 'Earlsfort Terrace', 53.334295, -6.258503, 30)
+2025-02-20 02:47:18,268 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,269 - INFO - [cached since 0.8295s ago] (11, 0, 30, 'OPEN', '2025-02-20 02:36:46')
+2025-02-20 02:47:18,288 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,289 - INFO - [cached since 0.9259s ago] (17, 'dublin', 'GOLDEN LANE', 'Golden Lane', 53.340803, -6.267732, 20)
+2025-02-20 02:47:18,306 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,306 - INFO - [cached since 0.8669s ago] (17, 2, 18, 'OPEN', '2025-02-20 02:43:16')
+2025-02-20 02:47:18,321 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,322 - INFO - [cached since 0.9586s ago] (45, 'dublin', 'DEVERELL PLACE', 'Deverell Place', 53.351464, -6.255265, 30)
+2025-02-20 02:47:18,335 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,336 - INFO - [cached since 0.8968s ago] (45, 29, 1, 'OPEN', '2025-02-20 02:39:33')
+2025-02-20 02:47:18,351 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,351 - INFO - [cached since 0.9882s ago] (114, 'dublin', 'WILTON TERRACE (PARK)', 'Wilton Terrace (Park)', 53.333653, -6.248345, 40)
+2025-02-20 02:47:18,367 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,369 - INFO - [cached since 0.9297s ago] (114, 5, 35, 'OPEN', '2025-02-20 02:43:04')
+2025-02-20 02:47:18,386 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,386 - INFO - [cached since 1.023s ago] (72, 'dublin', 'JOHN STREET WEST', 'John Street West', 53.343105, -6.277167, 31)
+2025-02-20 02:47:18,401 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,402 - INFO - [cached since 0.9624s ago] (72, 16, 15, 'OPEN', '2025-02-20 02:44:49')
+2025-02-20 02:47:18,417 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,418 - INFO - [cached since 1.055s ago] (63, 'dublin', 'FENIAN STREET', 'Fenian Street', 53.341428, -6.24672, 35)
+2025-02-20 02:47:18,432 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,433 - INFO - [cached since 0.994s ago] (63, 0, 35, 'OPEN', '2025-02-20 02:40:38')
+2025-02-20 02:47:18,449 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,450 - INFO - [cached since 1.086s ago] (113, 'dublin', 'MERRION SQUARE SOUTH', 'Merrion Square South', 53.338614, -6.248606, 40)
+2025-02-20 02:47:18,465 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,466 - INFO - [cached since 1.027s ago] (113, 0, 29, 'OPEN', '2025-02-20 02:40:47')
+2025-02-20 02:47:18,480 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,480 - INFO - [cached since 1.117s ago] (91, 'dublin', 'SOUTH DOCK ROAD', 'South Dock Road', 53.341833, -6.231291, 30)
+2025-02-20 02:47:18,508 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,509 - INFO - [cached since 1.07s ago] (91, 9, 21, 'OPEN', '2025-02-20 02:42:46')
+2025-02-20 02:47:18,527 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,528 - INFO - [cached since 1.165s ago] (99, 'dublin', 'CITY QUAY', 'City Quay', 53.346637, -6.246154, 30)
+2025-02-20 02:47:18,544 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,545 - INFO - [cached since 1.106s ago] (99, 19, 11, 'OPEN', '2025-02-20 02:44:47')
+2025-02-20 02:47:18,563 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,564 - INFO - [cached since 1.201s ago] (9, 'dublin', 'EXCHEQUER STREET', 'Exchequer Street', 53.343034, -6.263578, 24)
+2025-02-20 02:47:18,577 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,579 - INFO - [cached since 1.14s ago] (9, 2, 22, 'OPEN', '2025-02-20 02:42:45')
+2025-02-20 02:47:18,593 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,594 - INFO - [cached since 1.231s ago] (67, 'dublin', 'THE POINT', 'The Point', 53.346867, -6.230852, 40)
+2025-02-20 02:47:18,609 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,610 - INFO - [cached since 1.171s ago] (67, 11, 29, 'OPEN', '2025-02-20 02:44:14')
+2025-02-20 02:47:18,627 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,627 - INFO - [cached since 1.264s ago] (116, 'dublin', 'BROADSTONE', 'Broadstone', 53.3547, -6.272314, 30)
+2025-02-20 02:47:18,641 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,641 - INFO - [cached since 1.202s ago] (116, 16, 14, 'OPEN', '2025-02-20 02:45:52')
+2025-02-20 02:47:18,657 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,658 - INFO - [cached since 1.295s ago] (55, 'dublin', 'HATCH STREET', 'Hatch Street', 53.33403, -6.260714, 36)
+2025-02-20 02:47:18,673 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,674 - INFO - [cached since 1.235s ago] (55, 0, 36, 'OPEN', '2025-02-20 02:44:00')
+2025-02-20 02:47:18,688 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,688 - INFO - [cached since 1.325s ago] (62, 'dublin', 'LIME STREET', 'Lime Street', 53.346026, -6.243576, 40)
+2025-02-20 02:47:18,703 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,703 - INFO - [cached since 1.264s ago] (62, 14, 26, 'OPEN', '2025-02-20 02:39:21')
+2025-02-20 02:47:18,719 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,720 - INFO - [cached since 1.356s ago] (5, 'dublin', 'CHARLEMONT PLACE', 'Charlemont Street', 53.330662, -6.260177, 40)
+2025-02-20 02:47:18,733 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,733 - INFO - [cached since 1.294s ago] (5, 39, 1, 'OPEN', '2025-02-20 02:41:04')
+2025-02-20 02:47:18,746 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,747 - INFO - [cached since 1.384s ago] (97, 'dublin', 'KILMAINHAM GAOL', 'Kilmainham Gaol', 53.342113, -6.310015, 40)
+2025-02-20 02:47:18,764 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,765 - INFO - [cached since 1.325s ago] (97, 32, 8, 'OPEN', '2025-02-20 02:42:55')
+2025-02-20 02:47:18,780 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,780 - INFO - [cached since 1.417s ago] (61, 'dublin', 'HARDWICKE PLACE', 'Hardwicke Place', 53.357043, -6.263232, 25)
+2025-02-20 02:47:18,795 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,797 - INFO - [cached since 1.357s ago] (61, 4, 21, 'OPEN', '2025-02-20 02:46:22')
+2025-02-20 02:47:18,811 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,812 - INFO - [cached since 1.449s ago] (77, 'dublin', 'WOLFE TONE STREET', 'Wolfe Tone Street', 53.348875, -6.267459, 29)
+2025-02-20 02:47:18,827 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,828 - INFO - [cached since 1.389s ago] (77, 18, 11, 'OPEN', '2025-02-20 02:41:33')
+2025-02-20 02:47:18,844 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,845 - INFO - [cached since 1.481s ago] (73, 'dublin', 'FRANCIS STREET', 'Francis Street', 53.342081, -6.275233, 30)
+2025-02-20 02:47:18,862 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,863 - INFO - [cached since 1.424s ago] (73, 14, 16, 'OPEN', '2025-02-20 02:41:58')
+2025-02-20 02:47:18,879 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,880 - INFO - [cached since 1.517s ago] (4, 'dublin', 'GREEK STREET', 'Greek Street', 53.346874, -6.272976, 20)
+2025-02-20 02:47:18,895 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,896 - INFO - [cached since 1.457s ago] (4, 3, 17, 'OPEN', '2025-02-20 02:42:39')
+2025-02-20 02:47:18,917 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,918 - INFO - [cached since 1.554s ago] (49, 'dublin', 'GUILD STREET', 'Guild Street', 53.347932, -6.240928, 40)
+2025-02-20 02:47:18,937 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,938 - INFO - [cached since 1.498s ago] (49, 6, 34, 'OPEN', '2025-02-20 02:46:06')
+2025-02-20 02:47:18,957 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,957 - INFO - [cached since 1.594s ago] (19, 'dublin', 'HERBERT PLACE', 'Herbert Place', 53.334432, -6.245575, 30)
+2025-02-20 02:47:18,973 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:18,974 - INFO - [cached since 1.534s ago] (19, 0, 30, 'OPEN', '2025-02-20 02:39:57')
+2025-02-20 02:47:18,989 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:18,989 - INFO - [cached since 1.626s ago] (7, 'dublin', 'HIGH STREET', 'High Street', 53.343565, -6.275071, 29)
+2025-02-20 02:47:19,005 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,006 - INFO - [cached since 1.567s ago] (7, 12, 17, 'OPEN', '2025-02-20 02:36:39')
+2025-02-20 02:47:19,019 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,020 - INFO - [cached since 1.657s ago] (60, 'dublin', 'NORTH CIRCULAR ROAD', 'North Circular Road', 53.359624, -6.260348, 30)
+2025-02-20 02:47:19,037 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,038 - INFO - [cached since 1.598s ago] (60, 30, 0, 'OPEN', '2025-02-20 02:44:08')
+2025-02-20 02:47:19,060 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,061 - INFO - [cached since 1.698s ago] (102, 'dublin', 'WESTERN WAY', 'Western Way', 53.354929, -6.269425, 40)
+2025-02-20 02:47:19,075 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,076 - INFO - [cached since 1.637s ago] (102, 7, 33, 'OPEN', '2025-02-20 02:40:23')
+2025-02-20 02:47:19,090 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,090 - INFO - [cached since 1.727s ago] (38, 'dublin', 'TALBOT STREET', 'Talbot Street', 53.350974, -6.25294, 40)
+2025-02-20 02:47:19,105 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,105 - INFO - [cached since 1.666s ago] (38, 29, 10, 'OPEN', '2025-02-20 02:45:55')
+2025-02-20 02:47:19,119 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,119 - INFO - [cached since 1.756s ago] (53, 'dublin', 'NEWMAN HOUSE', 'Newman House', 53.337132, -6.26059, 40)
+2025-02-20 02:47:19,132 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,133 - INFO - [cached since 1.694s ago] (53, 1, 39, 'OPEN', '2025-02-20 02:39:10')
+2025-02-20 02:47:19,151 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,151 - INFO - [cached since 1.788s ago] (58, 'dublin', "SIR PATRICK DUN'S", "Sir Patrick's Dun", 53.339218, -6.240642, 40)
+2025-02-20 02:47:19,165 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,165 - INFO - [cached since 1.726s ago] (58, 4, 36, 'OPEN', '2025-02-20 02:43:28')
+2025-02-20 02:47:19,181 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,182 - INFO - [cached since 1.819s ago] (66, 'dublin', 'NEW CENTRAL BANK', 'New Central Bank', 53.347122, -6.234749, 40)
+2025-02-20 02:47:19,197 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,197 - INFO - [cached since 1.758s ago] (66, 7, 33, 'OPEN', '2025-02-20 02:41:52')
+2025-02-20 02:47:19,213 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,214 - INFO - [cached since 1.851s ago] (104, 'dublin', 'GRANGEGORMAN LOWER (CENTRAL)', 'Grangegorman Lower (Central)', 53.355173, -6.278424, 40)
+2025-02-20 02:47:19,230 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,231 - INFO - [cached since 1.792s ago] (104, 6, 34, 'OPEN', '2025-02-20 02:41:40')
+2025-02-20 02:47:19,245 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,246 - INFO - [cached since 1.882s ago] (101, 'dublin', 'KING STREET NORTH', 'King Street North', 53.350291, -6.273507, 30)
+2025-02-20 02:47:19,263 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,264 - INFO - [cached since 1.825s ago] (101, 1, 29, 'OPEN', '2025-02-20 02:40:19')
+2025-02-20 02:47:19,280 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,281 - INFO - [cached since 1.918s ago] (115, 'dublin', 'KILLARNEY STREET', 'Killarney Street', 53.354845, -6.247579, 30)
+2025-02-20 02:47:19,295 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,296 - INFO - [cached since 1.857s ago] (115, 29, 0, 'OPEN', '2025-02-20 02:40:47')
+2025-02-20 02:47:19,311 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,312 - INFO - [cached since 1.948s ago] (47, 'dublin', 'HERBERT STREET', 'Herbert Street', 53.335742, -6.24551, 40)
+2025-02-20 02:47:19,327 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,328 - INFO - [cached since 1.888s ago] (47, 0, 40, 'OPEN', '2025-02-20 02:39:39')
+2025-02-20 02:47:19,344 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,345 - INFO - [cached since 1.982s ago] (117, 'dublin', 'HANOVER QUAY EAST', 'Hanover Quay East', 53.343653, -6.231755, 40)
+2025-02-20 02:47:19,359 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,360 - INFO - [cached since 1.921s ago] (117, 1, 39, 'OPEN', '2025-02-20 02:43:32')
+2025-02-20 02:47:19,375 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,376 - INFO - [cached since 2.013s ago] (8, 'dublin', 'CUSTOM HOUSE QUAY', 'Custom House Quay', 53.347884, -6.248048, 30)
+2025-02-20 02:47:19,391 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,391 - INFO - [cached since 1.952s ago] (8, 25, 5, 'OPEN', '2025-02-20 02:45:39')
+2025-02-20 02:47:19,411 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,412 - INFO - [cached since 2.049s ago] (27, 'dublin', 'MOLESWORTH STREET', 'Molesworth Street', 53.341288, -6.258117, 20)
+2025-02-20 02:47:19,432 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,433 - INFO - [cached since 1.994s ago] (27, 0, 20, 'OPEN', '2025-02-20 02:46:35')
+2025-02-20 02:47:19,448 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,448 - INFO - [cached since 2.085s ago] (16, 'dublin', 'GEORGES QUAY', 'Georges Quay', 53.347508, -6.252192, 20)
+2025-02-20 02:47:19,460 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,462 - INFO - [cached since 2.023s ago] (16, 15, 5, 'OPEN', '2025-02-20 02:37:26')
+2025-02-20 02:47:19,474 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,475 - INFO - [cached since 2.112s ago] (96, 'dublin', 'KILMAINHAM LANE', 'Kilmainham Lane', 53.341805, -6.305085, 30)
+2025-02-20 02:47:19,490 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,491 - INFO - [cached since 2.051s ago] (96, 20, 10, 'OPEN', '2025-02-20 02:38:26')
+2025-02-20 02:47:19,505 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,506 - INFO - [cached since 2.143s ago] (82, 'dublin', 'MOUNT BROWN', 'Mount Brown', 53.341645, -6.29719, 22)
+2025-02-20 02:47:19,521 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,521 - INFO - [cached since 2.082s ago] (82, 12, 10, 'OPEN', '2025-02-20 02:38:19')
+2025-02-20 02:47:19,536 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,537 - INFO - [cached since 2.174s ago] (76, 'dublin', 'MARKET STREET SOUTH', 'Market Street South', 53.342296, -6.287661, 38)
+2025-02-20 02:47:19,551 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,551 - INFO - [cached since 2.112s ago] (76, 28, 10, 'OPEN', '2025-02-20 02:45:42')
+2025-02-20 02:47:19,565 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,565 - INFO - [cached since 2.202s ago] (71, 'dublin', 'KEVIN STREET', 'Kevin Street', 53.337757, -6.267699, 40)
+2025-02-20 02:47:19,581 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,582 - INFO - [cached since 2.143s ago] (71, 10, 30, 'OPEN', '2025-02-20 02:37:51')
+2025-02-20 02:47:19,596 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,597 - INFO - [cached since 2.233s ago] (79, 'dublin', 'ECCLES STREET EAST', 'Eccles Street East', 53.358115, -6.265601, 27)
+2025-02-20 02:47:19,612 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,612 - INFO - [cached since 2.173s ago] (79, 8, 19, 'OPEN', '2025-02-20 02:38:14')
+2025-02-20 02:47:19,629 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,630 - INFO - [cached since 2.266s ago] (69, 'dublin', 'GRAND CANAL DOCK', 'Grand Canal Dock', 53.342638, -6.238695, 40)
+2025-02-20 02:47:19,642 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,643 - INFO - [cached since 2.204s ago] (69, 0, 40, 'OPEN', '2025-02-20 02:38:10')
+2025-02-20 02:47:19,657 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,658 - INFO - [cached since 2.294s ago] (25, 'dublin', 'MERRION SQUARE EAST', 'Merrion Square East', 53.339434, -6.246548, 30)
+2025-02-20 02:47:19,672 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,673 - INFO - [cached since 2.234s ago] (25, 0, 30, 'OPEN', '2025-02-20 02:38:40')
+2025-02-20 02:47:19,687 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,687 - INFO - [cached since 2.324s ago] (51, 'dublin', 'YORK STREET WEST', 'York Street West', 53.339334, -6.264699, 40)
+2025-02-20 02:47:19,702 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,702 - INFO - [cached since 2.263s ago] (51, 0, 0, 'OPEN', '2025-02-20 02:39:45')
+2025-02-20 02:47:19,718 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,718 - INFO - [cached since 2.355s ago] (37, 'dublin', "ST. STEPHEN'S GREEN SOUTH", "St. Stephen's Green South", 53.337494, -6.26199, 30)
+2025-02-20 02:47:19,734 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,734 - INFO - [cached since 2.295s ago] (37, 0, 30, 'OPEN', '2025-02-20 02:45:16')
+2025-02-20 02:47:19,751 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,751 - INFO - [cached since 2.388s ago] (59, 'dublin', 'DENMARK STREET GREAT', 'Denmark Street Great', 53.35561, -6.261397, 20)
+2025-02-20 02:47:19,767 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,768 - INFO - [cached since 2.329s ago] (59, 11, 9, 'OPEN', '2025-02-20 02:42:21')
+2025-02-20 02:47:19,781 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,781 - INFO - [cached since 2.418s ago] (95, 'dublin', 'ROYAL HOSPITAL', 'Royal Hospital', 53.343897, -6.29706, 40)
+2025-02-20 02:47:19,796 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,797 - INFO - [cached since 2.357s ago] (95, 30, 10, 'OPEN', '2025-02-20 02:45:37')
+2025-02-20 02:47:19,813 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,814 - INFO - [cached since 2.451s ago] (94, 'dublin', 'HEUSTON STATION (CAR PARK)', 'Heuston Station (Car Park)', 53.346985, -6.297804, 40)
+2025-02-20 02:47:19,830 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,831 - INFO - [cached since 2.391s ago] (94, 9, 31, 'OPEN', '2025-02-20 02:38:28')
+2025-02-20 02:47:19,847 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,847 - INFO - [cached since 2.484s ago] (105, 'dublin', 'GRANGEGORMAN LOWER (NORTH)', 'Grangegorman Lower (North)', 53.355954, -6.278378, 36)
+2025-02-20 02:47:19,861 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,861 - INFO - [cached since 2.422s ago] (105, 8, 28, 'OPEN', '2025-02-20 02:41:22')
+2025-02-20 02:47:19,875 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,875 - INFO - [cached since 2.512s ago] (36, 'dublin', "ST. STEPHEN'S GREEN EAST", "St. Stephen's Green East", 53.337824, -6.256035, 40)
+2025-02-20 02:47:19,889 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,890 - INFO - [cached since 2.45s ago] (36, 0, 40, 'OPEN', '2025-02-20 02:40:01')
+2025-02-20 02:47:19,906 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,906 - INFO - [cached since 2.543s ago] (93, 'dublin', 'HEUSTON STATION (CENTRAL)', 'Heuston Station (Central)', 53.346603, -6.296924, 40)
+2025-02-20 02:47:19,924 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,925 - INFO - [cached since 2.486s ago] (93, 37, 3, 'OPEN', '2025-02-20 02:41:53')
+2025-02-20 02:47:19,939 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,939 - INFO - [cached since 2.576s ago] (22, 'dublin', 'TOWNSEND STREET', 'Townsend Street', 53.345922, -6.254614, 20)
+2025-02-20 02:47:19,952 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,953 - INFO - [cached since 2.514s ago] (22, 4, 16, 'OPEN', '2025-02-20 02:38:31')
+2025-02-20 02:47:19,966 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:19,967 - INFO - [cached since 2.604s ago] (50, 'dublin', 'GEORGES LANE', "George's Lane", 53.35023, -6.279696, 40)
+2025-02-20 02:47:19,983 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:19,983 - INFO - [cached since 2.544s ago] (50, 16, 24, 'OPEN', '2025-02-20 02:39:51')
+2025-02-20 02:47:20,000 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,000 - INFO - [cached since 2.637s ago] (110, 'dublin', 'PHIBSBOROUGH ROAD', 'Phibsborough Road', 53.356307, -6.273717, 40)
+2025-02-20 02:47:20,017 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,018 - INFO - [cached since 2.578s ago] (110, 14, 26, 'OPEN', '2025-02-20 02:41:53')
+2025-02-20 02:47:20,032 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,033 - INFO - [cached since 2.67s ago] (12, 'dublin', 'ECCLES STREET', 'Eccles Street', 53.359246, -6.269779, 20)
+2025-02-20 02:47:20,047 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,048 - INFO - [cached since 2.608s ago] (12, 10, 10, 'OPEN', '2025-02-20 02:38:58')
+2025-02-20 02:47:20,064 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,065 - INFO - [cached since 2.702s ago] (34, 'dublin', 'PORTOBELLO HARBOUR', 'Portobello Harbour', 53.330362, -6.265163, 30)
+2025-02-20 02:47:20,080 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,081 - INFO - [cached since 2.642s ago] (34, 25, 5, 'OPEN', '2025-02-20 02:43:32')
+2025-02-20 02:47:20,097 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,098 - INFO - [cached since 2.734s ago] (78, 'dublin', 'MATER HOSPITAL', 'Mater Hospital', 53.359967, -6.264828, 40)
+2025-02-20 02:47:20,111 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,112 - INFO - [cached since 2.673s ago] (78, 14, 26, 'OPEN', '2025-02-20 02:41:46')
+2025-02-20 02:47:20,129 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,129 - INFO - [cached since 2.766s ago] (2, 'dublin', 'BLESSINGTON STREET', 'Blessington Street', 53.356769, -6.26814, 20)
+2025-02-20 02:47:20,148 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,148 - INFO - [cached since 2.709s ago] (2, 14, 6, 'OPEN', '2025-02-20 02:41:12')
+2025-02-20 02:47:20,169 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,169 - INFO - [cached since 2.806s ago] (75, 'dublin', 'JAMES STREET', 'James Street', 53.343456, -6.287409, 40)
+2025-02-20 02:47:20,182 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,183 - INFO - [cached since 2.744s ago] (75, 36, 4, 'OPEN', '2025-02-20 02:38:25')
+2025-02-20 02:47:20,199 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,199 - INFO - [cached since 2.836s ago] (111, 'dublin', 'MOUNTJOY SQUARE EAST', 'Mountjoy Square East', 53.356717, -6.256359, 40)
+2025-02-20 02:47:20,215 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,216 - INFO - [cached since 2.777s ago] (111, 14, 26, 'OPEN', '2025-02-20 02:46:21')
+2025-02-20 02:47:20,236 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,236 - INFO - [cached since 2.873s ago] (26, 'dublin', 'MERRION SQUARE WEST', 'Merrion Square West', 53.339764, -6.251988, 20)
+2025-02-20 02:47:20,252 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,253 - INFO - [cached since 2.814s ago] (26, 0, 20, 'OPEN', '2025-02-20 02:39:53')
+2025-02-20 02:47:20,268 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,269 - INFO - [cached since 2.905s ago] (65, 'dublin', 'CONVENTION CENTRE', 'Convention Centre', 53.34744, -6.238523, 40)
+2025-02-20 02:47:20,282 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,282 - INFO - [cached since 2.843s ago] (65, 2, 38, 'OPEN', '2025-02-20 02:37:51')
+2025-02-20 02:47:20,300 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,301 - INFO - [cached since 2.937s ago] (15, 'dublin', 'HARDWICKE STREET', 'Hardwicke Street', 53.355473, -6.264423, 16)
+2025-02-20 02:47:20,315 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,316 - INFO - [cached since 2.877s ago] (15, 13, 3, 'OPEN', '2025-02-20 02:38:21')
+2025-02-20 02:47:20,328 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,329 - INFO - [cached since 2.966s ago] (86, 'dublin', 'PARKGATE STREET', 'Parkgate Street', 53.347972, -6.291804, 38)
+2025-02-20 02:47:20,343 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,344 - INFO - [cached since 2.905s ago] (86, 34, 4, 'OPEN', '2025-02-20 02:36:55')
+2025-02-20 02:47:20,358 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,358 - INFO - [cached since 2.995s ago] (35, 'dublin', 'SMITHFIELD', 'Smithfield', 53.347692, -6.278214, 30)
+2025-02-20 02:47:20,371 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,371 - INFO - [cached since 2.932s ago] (35, 22, 8, 'OPEN', '2025-02-20 02:41:42')
+2025-02-20 02:47:20,385 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,385 - INFO - [cached since 3.022s ago] (10, 'dublin', 'DAME STREET', 'Dame Street', 53.344007, -6.266802, 16)
+2025-02-20 02:47:20,404 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,405 - INFO - [cached since 2.965s ago] (10, 7, 9, 'OPEN', '2025-02-20 02:44:02')
+2025-02-20 02:47:20,421 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,421 - INFO - [cached since 3.058s ago] (100, 'dublin', 'HEUSTON BRIDGE (SOUTH)', 'Heuston Bridge (South)', 53.347106, -6.292041, 25)
+2025-02-20 02:47:20,434 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,435 - INFO - [cached since 2.996s ago] (100, 20, 5, 'OPEN', '2025-02-20 02:38:33')
+2025-02-20 02:47:20,451 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,452 - INFO - [cached since 3.089s ago] (24, 'dublin', 'CATHAL BRUGHA STREET', 'Cathal Brugha Street', 53.352149, -6.260533, 20)
+2025-02-20 02:47:20,465 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,465 - INFO - [cached since 3.026s ago] (24, 20, 0, 'OPEN', '2025-02-20 02:43:03')
+2025-02-20 02:47:20,479 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,480 - INFO - [cached since 3.117s ago] (64, 'dublin', 'SANDWITH STREET', 'Sandwith Street', 53.345203, -6.247163, 40)
+2025-02-20 02:47:20,496 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,496 - INFO - [cached since 3.057s ago] (64, 30, 10, 'OPEN', '2025-02-20 02:40:52')
+2025-02-20 02:47:20,511 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,512 - INFO - [cached since 3.149s ago] (109, 'dublin', 'BUCKINGHAM STREET LOWER', 'Buckingham Street Lower', 53.353331, -6.249319, 29)
+2025-02-20 02:47:20,526 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,527 - INFO - [cached since 3.088s ago] (109, 22, 7, 'OPEN', '2025-02-20 02:45:59')
+2025-02-20 02:47:20,540 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,541 - INFO - [cached since 3.178s ago] (85, 'dublin', 'ROTHE ABBEY', 'Rothe Abbey', 53.338776, -6.30395, 35)
+2025-02-20 02:47:20,557 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,558 - INFO - [cached since 3.119s ago] (85, 23, 12, 'OPEN', '2025-02-20 02:39:45')
+2025-02-20 02:47:20,575 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,576 - INFO - [cached since 3.213s ago] (107, 'dublin', 'CHARLEVILLE ROAD', 'Charleville Road', 53.359157, -6.281866, 40)
+2025-02-20 02:47:20,591 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,592 - INFO - [cached since 3.153s ago] (107, 20, 20, 'OPEN', '2025-02-20 02:43:46')
+2025-02-20 02:47:20,607 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,607 - INFO - [cached since 3.244s ago] (33, 'dublin', "PRINCES STREET / O'CONNELL STREET", "Princes Street / O'Connell Street", 53.349013, -6.260311, 23)
+2025-02-20 02:47:20,621 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,622 - INFO - [cached since 3.182s ago] (33, 18, 5, 'OPEN', '2025-02-20 02:40:22')
+2025-02-20 02:47:20,634 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,635 - INFO - [cached since 3.271s ago] (44, 'dublin', 'UPPER SHERRARD STREET', 'Upper Sherrard Street', 53.358437, -6.260641, 30)
+2025-02-20 02:47:20,648 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,649 - INFO - [cached since 3.21s ago] (44, 15, 15, 'OPEN', '2025-02-20 02:42:17')
+2025-02-20 02:47:20,666 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,666 - INFO - [cached since 3.303s ago] (89, 'dublin', 'FITZWILLIAM SQUARE EAST', 'Fitzwilliam Square East', 53.335211, -6.2509, 40)
+2025-02-20 02:47:20,681 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,682 - INFO - [cached since 3.243s ago] (89, 0, 40, 'OPEN', '2025-02-20 02:44:39')
+2025-02-20 02:47:20,758 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,758 - INFO - [cached since 3.395s ago] (57, 'dublin', 'GRATTAN STREET', 'Grattan Street', 53.339629, -6.243778, 23)
+2025-02-20 02:47:20,773 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,774 - INFO - [cached since 3.335s ago] (57, 13, 10, 'OPEN', '2025-02-20 02:46:40')
+2025-02-20 02:47:20,786 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,787 - INFO - [cached since 3.424s ago] (80, 'dublin', 'ST JAMES HOSPITAL (LUAS)', 'St James Hospital (Luas)', 53.341359, -6.292951, 40)
+2025-02-20 02:47:20,802 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,802 - INFO - [cached since 3.363s ago] (80, 27, 13, 'OPEN', '2025-02-20 02:44:52')
+2025-02-20 02:47:20,818 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,818 - INFO - [cached since 3.455s ago] (41, 'dublin', 'HARCOURT TERRACE', 'Harcourt Terrace', 53.332763, -6.257942, 20)
+2025-02-20 02:47:20,831 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,831 - INFO - [cached since 3.392s ago] (41, 9, 11, 'OPEN', '2025-02-20 02:38:35')
+2025-02-20 02:47:20,845 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,846 - INFO - [cached since 3.483s ago] (3, 'dublin', 'BOLTON STREET', 'Bolton Street', 53.351182, -6.269859, 20)
+2025-02-20 02:47:20,862 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,863 - INFO - [cached since 3.424s ago] (3, 11, 9, 'OPEN', '2025-02-20 02:38:09')
+2025-02-20 02:47:20,877 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,880 - INFO - [cached since 3.516s ago] (40, 'dublin', 'JERVIS STREET', 'Jervis Street', 53.3483, -6.266651, 21)
+2025-02-20 02:47:20,896 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,897 - INFO - [cached since 3.458s ago] (40, 13, 8, 'OPEN', '2025-02-20 02:41:36')
+2025-02-20 02:47:20,914 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,914 - INFO - [cached since 3.551s ago] (29, 'dublin', 'ORMOND QUAY UPPER', 'Ormond Quay Upper', 53.346057, -6.268001, 29)
+2025-02-20 02:47:20,931 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,932 - INFO - [cached since 3.492s ago] (29, 21, 8, 'OPEN', '2025-02-20 02:43:27')
+2025-02-20 02:47:20,947 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,948 - INFO - [cached since 3.585s ago] (103, 'dublin', 'GRANGEGORMAN LOWER (SOUTH)', 'Grangegorman Lower (South)', 53.354663, -6.278681, 40)
+2025-02-20 02:47:20,972 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:20,973 - INFO - [cached since 3.534s ago] (103, 2, 38, 'OPEN', '2025-02-20 02:39:54')
+2025-02-20 02:47:20,989 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:20,990 - INFO - [cached since 3.627s ago] (28, 'dublin', 'MOUNTJOY SQUARE WEST', 'Mountjoy Square West', 53.356299, -6.258586, 30)
+2025-02-20 02:47:21,004 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:21,005 - INFO - [cached since 3.566s ago] (28, 5, 25, 'OPEN', '2025-02-20 02:44:01')
+2025-02-20 02:47:21,021 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:21,022 - INFO - [cached since 3.659s ago] (39, 'dublin', 'WILTON TERRACE', 'Wilton Terrace', 53.332383, -6.252717, 20)
+2025-02-20 02:47:21,040 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:21,041 - INFO - [cached since 3.602s ago] (39, 3, 17, 'OPEN', '2025-02-20 02:40:57')
+2025-02-20 02:47:21,055 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:21,056 - INFO - [cached since 3.692s ago] (83, 'dublin', 'EMMET ROAD', 'Emmet Road', 53.340714, -6.308191, 40)
+2025-02-20 02:47:21,069 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:21,069 - INFO - [cached since 3.63s ago] (83, 40, 0, 'OPEN', '2025-02-20 02:40:33')
+2025-02-20 02:47:21,085 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:21,086 - INFO - [cached since 3.723s ago] (92, 'dublin', 'HEUSTON BRIDGE (NORTH)', 'Heuston Bridge (North)', 53.347802, -6.292432, 40)
+2025-02-20 02:47:21,101 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:21,101 - INFO - [cached since 3.662s ago] (92, 40, 0, 'OPEN', '2025-02-20 02:37:35')
+2025-02-20 02:47:21,117 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:21,117 - INFO - [cached since 3.754s ago] (21, 'dublin', 'LEINSTER STREET SOUTH', 'Leinster Street South', 53.34218, -6.254485, 30)
+2025-02-20 02:47:21,130 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:21,131 - INFO - [cached since 3.692s ago] (21, 3, 27, 'OPEN', '2025-02-20 02:42:50')
+2025-02-20 02:47:21,147 - INFO - 
+                    INSERT INTO stations (station_id, contract_name, name, address, latitude, longitude, total_bike_stands)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        name=VALUES(name), 
+                        address=VALUES(address), 
+                        total_bike_stands=VALUES(total_bike_stands)
+                
+2025-02-20 02:47:21,148 - INFO - [cached since 3.785s ago] (88, 'dublin', 'BLACKHALL PLACE', 'Blackhall Place', 53.3488, -6.281637, 30)
+2025-02-20 02:47:21,164 - INFO - 
+                    INSERT INTO station_status (station_id, available_bikes, available_bike_stands, status, last_update)
+                    VALUES (%s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE 
+                        available_bikes=VALUES(available_bikes), 
+                        available_bike_stands=VALUES(available_bike_stands), 
+                        status=VALUES(status), 
+                        last_update=VALUES(last_update)
+                
+2025-02-20 02:47:21,164 - INFO - [cached since 3.725s ago] (88, 15, 15, 'OPEN', '2025-02-20 02:43:45')
+2025-02-20 02:47:21,182 - INFO - COMMIT
+2025-02-20 02:47:21,235 - INFO - Bike data updated successfully.
+2025-02-20 02:47:21,399 - INFO - Fetched weather data: {'coord': {'lon': -6.2662, 'lat': 53.3501}, 'weather': [{'id': 803, 'main': 'Clouds', 'description': 'broken clouds', 'icon': '04n'}], 'base': 'stations', 'main': {'temp': 13.13, 'feels_like': 12.72, 'temp_min': 12.35, 'temp_max': 13.81, 'pressure': 999, 'humidity': 85, 'sea_level': 999, 'grnd_level': 985}, 'visibility': 10000, 'wind': {'speed': 10.29, 'deg': 200}, 'clouds': {'all': 75}, 'dt': 1740019641, 'sys': {'type': 2, 'id': 2091862, 'country': 'IE', 'sunrise': 1740036768, 'sunset': 1740073506}, 'timezone': 0, 'id': 2964574, 'name': 'Dublin', 'cod': 200}
+2025-02-20 02:47:21,400 - INFO - BEGIN (implicit)
+2025-02-20 02:47:21,401 - INFO - 
+            INSERT INTO weather (timestamp, temp, feels_like, temp_min, temp_max, pressure, humidity, wind_speed, wind_gust, visibility, clouds, sunrise, sunset)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            ON DUPLICATE KEY UPDATE 
+                temp=VALUES(temp), 
+                feels_like=VALUES(feels_like), 
+                humidity=VALUES(humidity), 
+                wind_speed=VALUES(wind_speed)
+        
+2025-02-20 02:47:21,402 - INFO - [generated in 0.00138s] (datetime.datetime(2025, 2, 20, 2, 47, 21, 400310), 13.13, 12.72, 12.35, 13.81, 999, 85, 10.29, None, 10000, 75, '2025-02-20 07:32:48', '2025-02-20 17:45:06')
+2025-02-20 02:47:21,470 - INFO - ROLLBACK
+2025-02-20 02:47:21,487 - INFO - Weather data updated successfully.
+2025-02-20 02:47:21,487 - INFO - Waiting for the next bike update in 5 minutes...

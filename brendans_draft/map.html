@@ -4,45 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dublin Bike Stations</title>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <style>
-        #map {
-            height: 600px;
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <h1>Dublin Bike Stations</h1>
-    <div id="map"></div>
-
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script>
-        // Initialize the map
-        var map = L.map('map').setView([53.349805, -6.26031], 13); // Dublin coordinates
-
-        // Add OpenStreetMap tile layer
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
-
-        // Fetch station data from Flask API
-        fetch("http://127.0.0.1:5000/api/stations")
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(station => {
-                    L.marker([station.latitude, station.longitude])
-                      .addTo(map)
-                      .bindPopup(`<b>${station.name}</b><br>Total Stands: ${station.total_bike_stands}`);
-                });
-            })
-            .catch(error => console.error("Error fetching data:", error));
-    </script>
-=======
-=======
->>>>>>> 0f2c544 (Updated bike app in brendans_draft)
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 </head>
@@ -62,45 +23,5 @@
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="script.js"></script>
-<<<<<<< HEAD
->>>>>>> c120b37 (logging + added weather stats to basic html)
-=======
-=======
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <style>
-        #map {
-            height: 600px;
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <h1>Dublin Bike Stations</h1>
-    <div id="map"></div>
-
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script>
-        // Initialize the map
-        var map = L.map('map').setView([53.349805, -6.26031], 13); // Dublin coordinates
-
-        // Add OpenStreetMap tile layer
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
-
-        // Fetch station data from Flask API
-        fetch("http://127.0.0.1:5000/api/stations")
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(station => {
-                    L.marker([station.latitude, station.longitude])
-                      .addTo(map)
-                      .bindPopup(`<b>${station.name}</b><br>Total Stands: ${station.total_bike_stands}`);
-                });
-            })
-            .catch(error => console.error("Error fetching data:", error));
-    </script>
->>>>>>> origin/main
->>>>>>> 0f2c544 (Updated bike app in brendans_draft)
 </body>
 </html>
