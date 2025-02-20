@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dublin Bike Stations</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <h1>Dublin Bike Stations</h1>
+    
+    <div id="weather">
+        <h2>Current Weather</h2>
+        <p><strong>Temperature:</strong> <span id="temp">Loading...</span>°C</p>
+        <p><strong>Feels Like:</strong> <span id="feels_like">Loading...</span>°C</p>
+        <p><strong>Humidity:</strong> <span id="humidity">Loading...</span>%</p>
+        <p><strong>Wind Speed:</strong> <span id="wind_speed">Loading...</span> km/h</p>
+        <p><strong>Cloud Cover:</strong> <span id="clouds">Loading...</span>%</p>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
