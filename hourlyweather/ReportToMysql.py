@@ -178,14 +178,9 @@ def save_to_mysql(table, data):
         conn.close()
         print(f"Data inserted into {table} table successfully!")
 
-
 def get_weather():
     """Fetch weather data and store it in MySQL."""
     response = requests.get(URL)
-
-    #if response.status_code != 200:
-        #print("Failed to retrieve weather data:", response.text)
-        #return
 
     data = response.json()
     lat, lon, timezone, timezone_offset = data["lat"], data["lon"], data["timezone"], data["timezone_offset"]
@@ -241,9 +236,6 @@ def get_weather():
             hourly["pop"]
         )
         save_to_mysql("hourly", hourly_data)
-        
-    #else:
-        #print("Failed to retrieve weather data:", data)
 
 if __name__ == "__main__":
     create_database()
