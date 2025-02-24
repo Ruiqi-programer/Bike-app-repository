@@ -1,0 +1,11 @@
+#map {
+    height: 600px;
+    width: 100%;
+}
+#weather {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    max-width: 500px;
+}
