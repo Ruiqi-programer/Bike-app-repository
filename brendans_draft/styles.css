@@ -1,11 +1,87 @@
-#map {
-    height: 600px;
-    width: 100%;
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
 }
-#weather {
+
+/* Header */
+h1 {
+    font-size: 24px;
     margin-bottom: 20px;
+}
+
+/* Centered container */
+.container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Input fields */
+input {
+    width: 90%;
     padding: 10px;
-    background-color: #f3f3f3;
+    margin: 10px 0;
+    border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Logout button */
+#logout-button {
+    background: #dc3545;
+}
+
+#logout-button:hover {
+    background: #b52b3a;
+}
+
+/* Weather section */
+#weather {
+    margin: 20px auto;
+    padding: 15px;
     max-width: 500px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Map container */
+#map {
+    height: 500px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #map {
+        height: 400px;
+    }
+
+    .container {
+        max-width: 90%;
+    }
 }

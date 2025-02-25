@@ -1,27 +1,30 @@
 from sqlalchemy import create_engine, text
+from config import DB_CONFIG
 from sqlalchemy.exc import OperationalError
-from config import DB_CONFIG  
 
-# Create base engine without specifying a database
+# Create engine without specifying the database
 base_connection_string = f"mysql+mysqldb://{DB_CONFIG['user']}:{DB_CONFIG['password']}@{DB_CONFIG['host']}:{DB_CONFIG['port']}"
 base_engine = create_engine(base_connection_string, echo=True)
 
 def create_database():
-    """Ensure the database exists before proceeding."""
+    """Check if the database exists and create it if necessary."""
     db_name = DB_CONFIG['database']
-    
+
     try:
         with base_engine.connect() as connection:
-            connection.execute(text(f"CREATE DATABASE IF NOT EXISTS {db_name};"))
-            print(f" Database '{db_name}' is ready.")
+            result = connection.execute(text(f"SHOW DATABASES LIKE '{db_name}';")).fetchone()
+            if not result:
+                print(f" Database '{db_name}' does not exist. Creating...")
+                connection.execute(text(f"CREATE DATABASE {db_name};"))
+                print(f" Database '{db_name}' created successfully.")
     except OperationalError as e:
         print(f" Error connecting to MySQL: {e}")
         exit(1)
 
-# Create the database if it doesn't exist
+# Create database if it doesn't exist
 create_database()
 
-# Connect to the actual database
+# connect using the actual database
 connection_string = f"{base_connection_string}/{DB_CONFIG['database']}"
 engine = create_engine(connection_string, echo=True)
 

@@ -4,13 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dublin Bike Stations</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script> <!-- Link JavaScript file -->
 </head>
 <body>
     <h1>Dublin Bike Stations</h1>
-    
-    <div id="weather">
+
+    <!-- Login Form -->
+    <div id="login-section">
+        <h2>Login</h2>
+        <form id="login-form">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p id="login-error" style="color: red;"></p>
+    </div>
+
+    <!-- Logout Button  -->
+    <div id="logout-section" style="display: none;">
+        <button id="logout">Logout</button>
+    </div>
+
+    <!-- Weather Data -->
+    <div id="weather-section" style="display: none;">
         <h2>Current Weather</h2>
         <p><strong>Temperature:</strong> <span id="temp">Loading...</span>°C</p>
         <p><strong>Feels Like:</strong> <span id="feels_like">Loading...</span>°C</p>
@@ -19,9 +37,9 @@
         <p><strong>Cloud Cover:</strong> <span id="clouds">Loading...</span>%</p>
     </div>
 
-    <div id="map"></div>
+    <!-- Bike Station Map -->
+    <div id="map" style="height: 600px; width: 100%; display: none;"></div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="script.js"></script>
 </body>
 </html>
