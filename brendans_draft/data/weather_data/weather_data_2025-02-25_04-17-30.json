@@ -1,0 +1,45 @@
+{
+    "coord": {
+        "lon": -6.2662,
+        "lat": 53.3501
+    },
+    "weather": [
+        {
+            "id": 803,
+            "main": "Clouds",
+            "description": "broken clouds",
+            "icon": "04n"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 5.44,
+        "feels_like": 0.52,
+        "temp_min": 4.35,
+        "temp_max": 6.24,
+        "pressure": 1009,
+        "humidity": 82,
+        "sea_level": 1009,
+        "grnd_level": 994
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 8.75,
+        "deg": 230
+    },
+    "clouds": {
+        "all": 75
+    },
+    "dt": 1740457050,
+    "sys": {
+        "type": 2,
+        "id": 2091862,
+        "country": "IE",
+        "sunrise": 1740468107,
+        "sunset": 1740506087
+    },
+    "timezone": 0,
+    "id": 2964574,
+    "name": "Dublin",
+    "cod": 200
+}
