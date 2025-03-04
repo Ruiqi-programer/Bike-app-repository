@@ -24,13 +24,14 @@ def create_database():
 # Create database if it doesn't exist
 create_database()
 
-# connect using the actual database
+# Connect using the actual database
 connection_string = f"{base_connection_string}/{DB_CONFIG['database']}"
 engine = create_engine(connection_string, echo=True)
 
 def create_tables():
     """Create required database tables for bikes and weather."""
     with engine.connect() as connection:
+        # Create bike station tables
         connection.execute(text(""" 
             CREATE TABLE IF NOT EXISTS stations (
                 station_id INT PRIMARY KEY,
@@ -55,21 +56,102 @@ def create_tables():
             )
         """))
 
-        connection.execute(text(""" 
-            CREATE TABLE IF NOT EXISTS weather (
-                timestamp DATETIME PRIMARY KEY DEFAULT CURRENT_TIMESTAMP,
-                temp FLOAT,
-                feels_like FLOAT,
-                temp_min FLOAT,
-                temp_max FLOAT,
-                pressure INT,
-                humidity INT,
-                wind_speed FLOAT,
-                wind_gust FLOAT NULL,
-                visibility INT NULL,
-                clouds INT NULL,
-                sunrise INT,  -- Store Unix timestamp
-                sunset INT    -- Store Unix timestamp
+        # Create `current` weather table
+        connection.execute(text("""
+            CREATE TABLE IF NOT EXISTS current (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                lat FLOAT NOT NULL,
+                lon FLOAT NOT NULL,
+                timezone VARCHAR(50),
+                timezone_offset INT,
+                dt DATETIME NOT NULL,
+                sunrise DATETIME NOT NULL,
+                sunset DATETIME NOT NULL,
+                temp FLOAT NOT NULL,
+                feels_like FLOAT NOT NULL,
+                pressure INT NOT NULL,
+                humidity INT NOT NULL,
+                dew_point FLOAT NOT NULL,
+                uvi FLOAT DEFAULT 0.0,
+                clouds INT NOT NULL,
+                visibility INT DEFAULT 10000,
+                wind_speed FLOAT NOT NULL,
+                wind_deg INT NOT NULL,
+                wind_gust FLOAT DEFAULT NULL,
+                weather_id INT NOT NULL,
+                weather_main VARCHAR(50),
+                weather_desc VARCHAR(100),
+                weather_icon VARCHAR(10)
+            )
+        """))
+
+        # Create `hourly` weather table
+        connection.execute(text("""
+            CREATE TABLE IF NOT EXISTS hourly (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                lat FLOAT NOT NULL,
+                lon FLOAT NOT NULL,
+                timezone VARCHAR(50),
+                timezone_offset INT,
+                dt DATETIME NOT NULL,
+                temp FLOAT NOT NULL,
+                feels_like FLOAT NOT NULL,
+                pressure INT NOT NULL,
+                humidity INT NOT NULL,
+                dew_point FLOAT NOT NULL,
+                uvi FLOAT DEFAULT 0.0,
+                clouds INT NOT NULL,
+                visibility INT DEFAULT 10000,
+                wind_speed FLOAT NOT NULL,
+                wind_deg INT NOT NULL,
+                wind_gust FLOAT DEFAULT NULL,
+                weather_id INT NOT NULL,
+                weather_main VARCHAR(50),
+                weather_desc VARCHAR(100),
+                weather_icon VARCHAR(10),
+                pop FLOAT NOT NULL
+            )
+        """))
+
+        # Create `daily` weather table
+        connection.execute(text("""
+            CREATE TABLE IF NOT EXISTS daily (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                lat FLOAT NOT NULL,
+                lon FLOAT NOT NULL,
+                timezone VARCHAR(50),
+                timezone_offset INT,
+                dt DATETIME NOT NULL,
+                sunrise DATETIME NOT NULL,
+                sunset DATETIME NOT NULL,
+                moonrise DATETIME NOT NULL,
+                moonset DATETIME NOT NULL,
+                moon_phase FLOAT NOT NULL,
+                summary TEXT,
+                temp_day FLOAT NOT NULL,
+                temp_min FLOAT NOT NULL,
+                temp_max FLOAT NOT NULL,
+                temp_night FLOAT NOT NULL,
+                temp_eve FLOAT NOT NULL,
+                temp_morn FLOAT NOT NULL,
+                feels_like_day FLOAT NOT NULL,
+                feels_like_night FLOAT NOT NULL,
+                feels_like_eve FLOAT NOT NULL,
+                feels_like_morn FLOAT NOT NULL,
+                pressure INT NOT NULL,
+                humidity INT NOT NULL,
+                dew_point FLOAT NOT NULL,
+                wind_speed FLOAT NOT NULL,
+                wind_deg INT NOT NULL,
+                wind_gust FLOAT DEFAULT NULL,
+                clouds INT NOT NULL,
+                uvi FLOAT DEFAULT 0.0,
+                pop FLOAT NOT NULL,
+                rain FLOAT DEFAULT 0.0,
+                weather_id INT NOT NULL,
+                weather_main VARCHAR(50),
+                weather_desc VARCHAR(100),
+                weather_icon VARCHAR(10)
             )
         """))
 

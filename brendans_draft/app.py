@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from sqlalchemy import create_engine, text
@@ -19,7 +19,13 @@ jwt = JWTManager(app)
 connection_string = f"mysql+mysqldb://{DB_CONFIG['user']}:{DB_CONFIG['password']}@{DB_CONFIG['host']}:{DB_CONFIG['port']}/{DB_CONFIG['database']}"
 engine = create_engine(connection_string, echo=True)
 
-### USER AUTHENTICATION ###
+### Serve HTML Page (Fix 404 Error) ###
+@app.route("/")
+def index():
+    """Render the main page with Google Maps."""
+    return render_template("index.html", google_maps_api_key=os.getenv("GOOGLE_MAPS_API_KEY"))
+
+###  User Authentication Routes ###
 @app.route('/api/register', methods=['POST'])
 def register():
     """Register a new user."""
@@ -54,7 +60,6 @@ def register():
         print(f"Database error: {e}")
         return jsonify({"error": f"Database error: {e}"}), 500
 
-
 @app.route('/api/login', methods=['POST'])
 def login():
     """Authenticate user and return JWT token."""
@@ -80,15 +85,13 @@ def login():
             if not check_password_hash(stored_hash, password):
                 return jsonify({"error": "Invalid credentials"}), 401
 
-            #  Convert user_id to string
-            access_token = create_access_token(identity=str(user_id))  
+            access_token = create_access_token(identity=str(user_id))
             return jsonify({"message": "Login successful!", "token": access_token}), 200
 
     except SQLAlchemyError as e:
         return jsonify({"error": f"Database error: {e}"}), 500
 
-
-### DATA RETRIEVAL FUNCTIONS ###
+### Data Retrieval Functions ###
 def get_stations():
     """Fetch bike station data including availability from MySQL."""
     try:
@@ -106,51 +109,60 @@ def get_stations():
         print(f"Database Error: {e}")
         return []
 
-
 def get_weather():
     """Fetch latest weather data from MySQL."""
     try:
         with engine.connect() as connection:
-            result = connection.execute(text("""
-                SELECT timestamp, temp, feels_like, humidity, wind_speed, clouds
-                FROM weather
-                ORDER BY timestamp DESC
+            # Fetch latest `current` weather data
+            current_result = connection.execute(text("""
+                SELECT dt, temp, feels_like, humidity, wind_speed, clouds
+                FROM current
+                ORDER BY dt DESC
                 LIMIT 1;
             """)).mappings().first()
 
-        return dict(result) if result else {}
+            # Fetch next 5 hours of `hourly` forecast
+            hourly_result = connection.execute(text("""
+                 SELECT dt, temp, feels_like, humidity, wind_speed, clouds, pop
+                 FROM hourly
+                 WHERE DATE(dt) = CURDATE()  -- Only today's data
+                 ORDER BY dt DESC  -- Get most recent data first
+                 LIMIT 5;
+            """)).mappings().all()
+
+            # Fetch next 3 days of `daily` forecast
+            daily_result = connection.execute(text("""
+                SELECT dt, temp_day, temp_min, temp_max, humidity, wind_speed, clouds, pop
+                FROM daily
+                ORDER BY dt ASC
+                LIMIT 3;
+            """)).mappings().all()
+
+        return {
+            "current": dict(current_result) if current_result else {},
+            "hourly": [dict(row) for row in hourly_result] if hourly_result else [],
+            "daily": [dict(row) for row in daily_result] if daily_result else []
+        }
+
 
     except SQLAlchemyError as e:
         print(f"Database Error: {e}")
         return {}
 
-
-### PROTECTED API ENDPOINTS ###
+### **4️ Protected API Endpoints ###
 @app.route('/api/stations', methods=['GET'])
 @jwt_required()
 def stations():
     """Protected API endpoint to get station data."""
-    user_id = get_jwt_identity()
-    print(f"🛑 DEBUG: User ID from JWT: {user_id} (Type: {type(user_id)})")
-
-    if not isinstance(user_id, str):  # Ensure it’s a string
-        return jsonify({"error": "Invalid JWT identity format"}), 400
-
     return jsonify(get_stations())
-
 
 @app.route('/api/weather', methods=['GET'])
 @jwt_required()
 def weather():
-    """Protected API endpoint to get latest weather data."""
-    user_id = get_jwt_identity()
-    print(f"User {user_id} accessed weather data")
+    """Protected API endpoint to get latest weather data from `current`, `hourly`, and `daily` tables."""
+    return jsonify(get_weather())
 
-    weather_data = get_weather()
-    return jsonify(weather_data)
-
-
-### RUN FLASK APP ###
+### Run Flask App ###
 if __name__ == '__main__':
     print("Starting Flask app on http://127.0.0.1:5000")
     app.run(host='0.0.0.0', port=5000, debug=True)

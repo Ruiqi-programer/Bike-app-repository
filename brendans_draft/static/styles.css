@@ -1,32 +1,33 @@
 /* General styling */
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: 0;
+    padding: 20px;
     text-align: center;
-    background-color: #f9f9f9;
+    background-color: #f4f4f4;
 }
 
 /* Header */
 h1 {
     font-size: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 /* Centered container */
 .container {
     max-width: 400px;
     margin: 20px auto;
-    padding: 20px;
+    padding: 15px;
     background: white;
-    border-radius: 10px;
+    border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Input fields */
 input {
-    width: 90%;
+    width: 100%;
     padding: 10px;
-    margin: 10px 0;
+    margin: 8px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -47,31 +48,54 @@ button:hover {
 }
 
 /* Logout button */
-#logout-button {
+#logout {
     background: #dc3545;
 }
 
-#logout-button:hover {
+#logout:hover {
     background: #b52b3a;
 }
 
 /* Weather section */
-#weather {
+#weather-section {
+    display: none;
     margin: 20px auto;
     padding: 15px;
     max-width: 500px;
     background: white;
-    border-radius: 10px;
+    border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Weather forecast sections */
+#hourly-forecast, #daily-forecast {
+    text-align: left;
+    max-width: 500px;
+    margin: 10px auto;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#hourly-forecast h3, #daily-forecast h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#hourly-forecast p, #daily-forecast p {
+    font-size: 14px;
+    margin: 5px 0;
 }
 
 /* Map container */
 #map {
+    display: none;
     height: 500px;
     width: 100%;
     max-width: 1000px;
     margin: 20px auto;
-    border-radius: 10px;
+    border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -82,6 +106,10 @@ button:hover {
     }
 
     .container {
+        max-width: 90%;
+    }
+
+    #hourly-forecast, #daily-forecast {
         max-width: 90%;
     }
 }

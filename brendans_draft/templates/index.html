@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dublin Bike Stations</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script> <!-- Link JavaScript file -->
+
+    <!-- Link External Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <!-- JavaScript File (Keep This) -->
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 <body>
     <h1>Dublin Bike Stations</h1>
@@ -22,7 +25,7 @@
         <p id="login-error" style="color: red;"></p>
     </div>
 
-    <!-- Logout Button  -->
+    <!-- Logout Button -->
     <div id="logout-section" style="display: none;">
         <button id="logout">Logout</button>
     </div>
@@ -35,11 +38,19 @@
         <p><strong>Humidity:</strong> <span id="humidity">Loading...</span>%</p>
         <p><strong>Wind Speed:</strong> <span id="wind_speed">Loading...</span> km/h</p>
         <p><strong>Cloud Cover:</strong> <span id="clouds">Loading...</span>%</p>
+
+        <div id="hourly-forecast">
+            <h3>Next 5 Hours</h3>
+            <p>Loading...</p>
+        </div>
+
+        <div id="daily-forecast">
+            <h3>3-Day Forecast</h3>
+            <p>Loading...</p>
+        </div>
     </div>
 
-    <!-- Bike Station Map -->
-    <div id="map" style="height: 600px; width: 100%; display: none;"></div>
-
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- Google Maps Container -->
+    <div id="map" style="width: 100%; height: 500px; display: none;"></div>
 </body>
 </html>
