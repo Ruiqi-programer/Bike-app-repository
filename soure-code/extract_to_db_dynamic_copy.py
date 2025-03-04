@@ -6,7 +6,6 @@ import os
 import dbinfo
 import json
 from sqlalchemy import create_engine,text
-import pymysql
 
 def station_id_table(station_id, in_engine):
     table_name = f"availability_{station_id}"

@@ -1,0 +1,37 @@
+<section id="reviews" class="reviews">
+  <div class="section-header">
+    <h2>CLIENTS REVIEWS</h2>
+    <p>What our clients say about us</p>
+  </div>
+
+  <div class="reviews-container">
+    <button id="prevBtn" class="nav-btn">❮</button>
+    <div class="reviews-wrapper">
+      <div class="reviews-content">
+        {% for review in reviews %}
+        <div class="single-testimonial-box">
+          <div class="testimonial-description">
+            <div class="testimonial-info">
+              <div class="testimonial-img">
+                <img
+                  src="{{ url_for('static', filename=review.image) }}"
+                  alt="client"
+                />
+              </div>
+              <div class="testimonial-person">
+                <h2>{{ review.name }}</h2>
+                <h4>{{ review.location }}</h4>
+                <div class="testimonial-person-star">★★★★★</div>
+              </div>
+            </div>
+            <div class="testimonial-comment">
+              <p>{{ review.comment }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <button id="nextBtn" class="nav-btn">❯</button>
+  </div>
+</section>
