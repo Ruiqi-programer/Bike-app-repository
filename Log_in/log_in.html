@@ -183,6 +183,32 @@
         background-color: #004a3f;
       }
       
+      /* Sign up section */
+      .signup-section {
+        text-align: center;
+        margin-top: 2rem;
+        padding: 1rem;
+      }
+      
+      .signup-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--text-color);
+        margin-bottom: 1rem;
+      }
+      
+      .signup-text {
+        font-size: 16px;
+        color: var(--text-color);
+        margin-bottom: 0.5rem;
+      }
+      
+      .signup-link {
+        color: var(--primary-color);
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      
       /* Utility classes */
       .screen-reader-only {
         position: absolute;
@@ -233,7 +259,7 @@
           <p class="login-subtitle">Sign in to your account, for the best experience</p>
         </div>
         
-        <form class="login-form" method="POST">
+        <form class="login-form" method="POST" action="login_system.php">
           <input type="hidden" name="state" value="hKFo2SB4d0drYTJ0UjV0OWVwT1ZUakx5U216Qy1GNFJhZXdBa6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIE4tdkNwaXEwYkFKaHpGaG8ydlJfYllqdC1obllhaFIxo2NpZNkgZzRQZGF4dlYwSWZQcGJWeU80bEFMb3hSc0F1bkRBQXo">
           
           <div class="form-group">
@@ -256,6 +282,14 @@
           
           <button type="submit" name="action" value="default" class="btn">Sign In</button>
         </form>
+      </div>
+      
+      <!-- New signup section -->
+      <div class="signup-section">
+        <h2 class="signup-title">Don't have an account yet?</h2>
+        <p class="signup-text">
+          <a href="/Log_in/create_account.html" class="signup-link">Sign up</a> today for faster checkout, easy order tracking & exclusive rewards
+        </p>
       </div>
     </div>
     

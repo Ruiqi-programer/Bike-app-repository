@@ -1,0 +1,16 @@
+[2025-04-01 03:31:06] Password reset request for email: ruiqi.guo1@ucdconnect.ie
+[2025-04-01 03:31:06] User found: RUIQI GUO
+[2025-04-01 03:31:06] Attempting to send email to: ruiqi.guo1@ucdconnect.ie
+[2025-04-01 03:31:08] Email sending failed. Error: Array
+(
+    [type] => 2
+    [message] => mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set()
+    [file] => C:\Users\guoruiqi\Bike-app-repository\Log_in\rest.php
+    [line] => 77
+)
+
+[2025-04-01 03:31:08] Failed to send password reset email
+[01-Apr-2025 03:59:12 UTC] Message could not be sent. Mailer Error: Extension missing: openssl
+[01-Apr-2025 03:59:14 UTC] Message could not be sent. Mailer Error: Extension missing: openssl
+[01-Apr-2025 04:08:35 UTC] Message could not be sent. Mailer Error: Extension missing: openssl
+[01-Apr-2025 08:33:34 UTC] Message could not be sent. Mailer Error: Extension missing: openssl

@@ -1,0 +1,156 @@
+[2025-04-01 02:34:50] Login attempt started
+[2025-04-01 02:34:50] POST Data: Array
+(
+    [state] => hKFo2SB4d0drYTJ0UjV0OWVwT1ZUakx5U216Qy1GNFJhZXdBa6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIE4tdkNwaXEwYkFKaHpGaG8ydlJfYllqdC1obllhaFIxo2NpZNkgZzRQZGF4dlYwSWZQcGJWeU80bEFMb3hSc0F1bkRBQXo
+    [username] => ruiqi.guo1@ucdconnect.ie
+    [password] => Grq990823
+    [action] => default
+)
+
+[2025-04-01 02:34:50] Database connection successful
+[2025-04-01 02:34:50] Query result: User found
+[2025-04-01 02:34:51] Login successful for: ruiqi.guo1@ucdconnect.ie
+[2025-04-01 02:34:51] Attempting to redirect to dashboard
+[2025-04-01 02:34:51] Trying path: /Log_in/dashboard.php
+[2025-04-01 02:34:51] Trying path: dashboard.php
+[2025-04-01 02:34:51] Path exists: dashboard.php
+[2025-04-01 02:34:51] Trying path: C:\Users\guoruiqi\Bike-app-repository/Log_in/dashboard.php
+[2025-04-01 02:34:51] Path exists: C:\Users\guoruiqi\Bike-app-repository/Log_in/dashboard.php
+[2025-04-01 02:36:27] Login attempt started
+[2025-04-01 02:36:27] POST Data: Array
+(
+    [state] => hKFo2SB4d0drYTJ0UjV0OWVwT1ZUakx5U216Qy1GNFJhZXdBa6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIE4tdkNwaXEwYkFKaHpGaG8ydlJfYllqdC1obllhaFIxo2NpZNkgZzRQZGF4dlYwSWZQcGJWeU80bEFMb3hSc0F1bkRBQXo
+    [username] => ruiqi.guo1@ucdconnect.ie
+    [password] => Grq990823
+    [action] => default
+)
+
+[2025-04-01 02:36:27] Database connection successful
+[2025-04-01 02:36:27] Query result: User found
+[2025-04-01 02:36:27] Login successful for: ruiqi.guo1@ucdconnect.ie
+[2025-04-01 02:36:27] Attempting to redirect to dashboard
+[2025-04-01 02:36:27] Trying path: /Log_in/dashboard.php
+[2025-04-01 02:36:27] Trying path: dashboard.php
+[2025-04-01 02:36:27] Path exists: dashboard.php
+[2025-04-01 02:36:27] Trying path: C:\Users\guoruiqi\Bike-app-repository/Log_in/dashboard.php
+[2025-04-01 02:36:27] Path exists: C:\Users\guoruiqi\Bike-app-repository/Log_in/dashboard.php
+[2025-04-01 02:39:05] Login attempt started
+[2025-04-01 02:39:05] POST Data: Array
+(
+    [state] => hKFo2SB4d0drYTJ0UjV0OWVwT1ZUakx5U216Qy1GNFJhZXdBa6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIE4tdkNwaXEwYkFKaHpGaG8ydlJfYllqdC1obllhaFIxo2NpZNkgZzRQZGF4dlYwSWZQcGJWeU80bEFMb3hSc0F1bkRBQXo
+    [username] => ruiqi.guo1@ucdconnect.ie
+    [password] => grq990823
+    [action] => default
+)
+
+[2025-04-01 02:39:05] Database connection successful
+[2025-04-01 02:39:05] Query result: User found
+[2025-04-01 02:39:06] Password verification failed for: ruiqi.guo1@ucdconnect.ie
+[2025-04-01 02:39:32] Login attempt started
+[2025-04-01 02:39:32] POST Data: Array
+(
+    [state] => hKFo2SB4d0drYTJ0UjV0OWVwT1ZUakx5U216Qy1GNFJhZXdBa6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIE4tdkNwaXEwYkFKaHpGaG8ydlJfYllqdC1obllhaFIxo2NpZNkgZzRQZGF4dlYwSWZQcGJWeU80bEFMb3hSc0F1bkRBQXo
+    [username] => ruiqi.guo1@ucdconnect.ie
+    [password] => Grq990823
+    [action] => default
+)
+
+[2025-04-01 02:39:32] Database connection successful
+[2025-04-01 02:39:32] Query result: User found
+[2025-04-01 02:39:32] Login successful for: ruiqi.guo1@ucdconnect.ie
+[2025-04-01 02:39:32] Attempting to redirect to dashboard
+[2025-04-01 02:39:32] Trying path: /Log_in/dashboard.php
+[2025-04-01 02:39:32] Trying path: dashboard.php
+[2025-04-01 02:39:32] Path exists: dashboard.php
+[2025-04-01 02:39:32] Trying path: C:\Users\guoruiqi\Bike-app-repository/Log_in/dashboard.php
+[2025-04-01 02:39:32] Path exists: C:\Users\guoruiqi\Bike-app-repository/Log_in/dashboard.php
+[2025-04-01 04:11:04] Login attempt started
+[2025-04-01 04:11:04] POST Data: Array
+(
+    [state] => hKFo2SB4d0drYTJ0UjV0OWVwT1ZUakx5U216Qy1GNFJhZXdBa6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIE4tdkNwaXEwYkFKaHpGaG8ydlJfYllqdC1obllhaFIxo2NpZNkgZzRQZGF4dlYwSWZQcGJWeU80bEFMb3hSc0F1bkRBQXo
+    [username] => ruiqi.guo1@ucdconnect.ie
+    [password] => Grq990823
+    [action] => default
+)
+
+[2025-04-01 04:11:04] Database connection successful
+[2025-04-01 04:11:04] Query result: User found
+[2025-04-01 04:11:04] Login successful for: ruiqi.guo1@ucdconnect.ie
+[2025-04-01 04:11:04] Attempting to redirect to dashboard
+[2025-04-01 04:11:04] Trying path: /Log_in/dashboard.php
+[2025-04-01 04:11:04] Trying path: dashboard.php
+[2025-04-01 04:11:04] Path exists: dashboard.php
+[2025-04-01 04:11:04] Trying path: C:\Users\guoruiqi\Bike-app-repository/Log_in/dashboard.php
+[2025-04-01 04:11:04] Path exists: C:\Users\guoruiqi\Bike-app-repository/Log_in/dashboard.php
+[2025-04-01 04:38:37] Login attempt started
+[2025-04-01 04:38:37] POST Data: Array
+(
+    [state] => hKFo2SB4d0drYTJ0UjV0OWVwT1ZUakx5U216Qy1GNFJhZXdBa6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIE4tdkNwaXEwYkFKaHpGaG8ydlJfYllqdC1obllhaFIxo2NpZNkgZzRQZGF4dlYwSWZQcGJWeU80bEFMb3hSc0F1bkRBQXo
+    [username] => ruiqi.guo1@ucdconnect.ie
+    [password] => Grq990823
+    [action] => default
+)
+
+[2025-04-01 04:38:37] Database connection successful
+[2025-04-01 04:38:37] Query result: User found
+[2025-04-01 04:38:37] Login successful for: ruiqi.guo1@ucdconnect.ie
+[2025-04-01 04:38:37] Attempting to redirect to dashboard
+[2025-04-01 04:38:37] Trying path: /Log_in/dashboard.php
+[2025-04-01 04:38:37] Trying path: dashboard.php
+[2025-04-01 04:38:37] Path exists: dashboard.php
+[2025-04-01 04:38:37] Trying path: C:\Users\guoruiqi\Bike-app-repository/Log_in/dashboard.php
+[2025-04-01 04:38:37] Path exists: C:\Users\guoruiqi\Bike-app-repository/Log_in/dashboard.php
+[2025-04-01 04:59:41] Login attempt started
+[2025-04-01 04:59:41] POST Data: Array
+(
+    [state] => hKFo2SB4d0drYTJ0UjV0OWVwT1ZUakx5U216Qy1GNFJhZXdBa6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIE4tdkNwaXEwYkFKaHpGaG8ydlJfYllqdC1obllhaFIxo2NpZNkgZzRQZGF4dlYwSWZQcGJWeU80bEFMb3hSc0F1bkRBQXo
+    [username] => ruiqi.guo1@ucdconnect.ie
+    [password] => Grq990823
+    [action] => default
+)
+
+[2025-04-01 04:59:41] Database connection successful
+[2025-04-01 04:59:41] Query result: User found
+[2025-04-01 04:59:41] Login successful for: ruiqi.guo1@ucdconnect.ie
+[2025-04-01 04:59:41] Attempting to redirect to dashboard
+[2025-04-01 04:59:41] Trying path: /Log_in/dashboard.php
+[2025-04-01 04:59:41] Trying path: dashboard.php
+[2025-04-01 04:59:41] Path exists: dashboard.php
+[2025-04-01 04:59:41] Trying path: C:\Users\guoruiqi\Bike-app-repository/Log_in/dashboard.php
+[2025-04-01 04:59:41] Path exists: C:\Users\guoruiqi\Bike-app-repository/Log_in/dashboard.php
+[2025-04-01 05:12:31] Login attempt started
+[2025-04-01 05:12:31] POST Data: Array
+(
+    [state] => hKFo2SB4d0drYTJ0UjV0OWVwT1ZUakx5U216Qy1GNFJhZXdBa6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIE4tdkNwaXEwYkFKaHpGaG8ydlJfYllqdC1obllhaFIxo2NpZNkgZzRQZGF4dlYwSWZQcGJWeU80bEFMb3hSc0F1bkRBQXo
+    [username] => ruiqi.guo1@ucdconnect.ie
+    [password] => Grq990823
+    [action] => default
+)
+
+[2025-04-01 05:12:31] Database connection successful
+[2025-04-01 05:12:31] Query result: User found
+[2025-04-01 05:12:32] Login successful for: ruiqi.guo1@ucdconnect.ie
+[2025-04-01 05:12:32] Attempting to redirect to dashboard
+[2025-04-01 05:12:32] Trying path: /Log_in/dashboard.php
+[2025-04-01 05:12:32] Trying path: dashboard.php
+[2025-04-01 05:12:32] Path exists: dashboard.php
+[2025-04-01 05:12:32] Trying path: C:\Users\guoruiqi\Bike-app-repository/Log_in/dashboard.php
+[2025-04-01 05:12:32] Path exists: C:\Users\guoruiqi\Bike-app-repository/Log_in/dashboard.php
+[2025-04-01 08:33:12] Login attempt started
+[2025-04-01 08:33:12] POST Data: Array
+(
+    [state] => hKFo2SB4d0drYTJ0UjV0OWVwT1ZUakx5U216Qy1GNFJhZXdBa6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIE4tdkNwaXEwYkFKaHpGaG8ydlJfYllqdC1obllhaFIxo2NpZNkgZzRQZGF4dlYwSWZQcGJWeU80bEFMb3hSc0F1bkRBQXo
+    [username] => madhusanka@ucd.ie
+    [password] => Grq990823
+    [action] => default
+)
+
+[2025-04-01 08:33:12] Database connection successful
+[2025-04-01 08:33:12] Query result: User found
+[2025-04-01 08:33:12] Login successful for: madhusanka@ucd.ie
+[2025-04-01 08:33:12] Attempting to redirect to dashboard
+[2025-04-01 08:33:12] Trying path: /Log_in/dashboard.php
+[2025-04-01 08:33:12] Trying path: dashboard.php
+[2025-04-01 08:33:12] Path exists: dashboard.php
+[2025-04-01 08:33:12] Trying path: C:\Users\guoruiqi\Bike-app-repository/Log_in/dashboard.php
+[2025-04-01 08:33:12] Path exists: C:\Users\guoruiqi\Bike-app-repository/Log_in/dashboard.php
