@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <style>
+      /* Base styles */
+      :root {
+        --primary-color: #00594c;
+        --text-color: #333333;
+        --error-color: #D00E17;
+        --success-color: #0A8852;
+        --white: #ffffff;
+        --light-bg: #f2f9f8;
+        --font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+      }
+      
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      html {
+        font-size: 16px;
+      }
+      
+      body {
+        background-color: var(--light-bg);
+        font-family: var(--font-family);
+        line-height: 1.5;
+        color: var(--text-color);
+      }
+      
+      /* Layout */
+      .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+      
+      .back-link {
+        padding: 2rem 0 0.875rem 0.313rem;
+      }
+      
+      .back-link a {
+        text-decoration: underline;
+        color: var(--primary-color);
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+      }
+      
+      .back-link a::before {
+        content: '';
+        display: inline-block;
+        height: 8px;
+        width: 8px;
+        border-style: solid;
+        border-width: 2px 2px 0 0;
+        transform: rotate(-135deg);
+        margin-right: 6px;
+      }
+      
+      .login-box {
+        background-color: var(--white);
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+      
+      .login-header {
+        text-align: center;
+        padding: 2rem 1rem;
+      }
+      
+      .logo {
+        max-height: 60px;
+        margin: 0 auto 1rem;
+        display: block;
+      }
+      
+      .login-title {
+        font-size: 29px;
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+      }
+      
+      .login-subtitle {
+        font-size: 16px;
+        color: var(--text-color);
+        max-width: 220px;
+        margin: 0 auto;
+      }
+      
+      .login-form {
+        padding: 1rem 2rem 2rem;
+      }
+      
+      /* Flash messages */
+      .flash-message {
+        margin-bottom: 1rem;
+        padding: 10px;
+        border-radius: 4px;
+        text-align: center;
+      }
+      
+      .flash-error {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+      
+      .flash-success {
+        background-color: #d4edda;
+        color: #155724;
+      }
+      
+      /* Form elements */
+      .form-group {
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+      
+      .form-control {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border-color 0.2s;
+      }
+      
+      .form-control:focus {
+        outline: none;
+        border-color: var(--primary-color);
+      }
+      
+      .form-label {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 1rem;
+        color: #767676;
+        transition: all 0.2s;
+        pointer-events: none;
+      }
+      
+      .form-control:focus + .form-label,
+      .form-control:not(:placeholder-shown) + .form-label {
+        top: 0;
+        font-size: 12px;
+        background-color: var(--white);
+        padding: 0 5px;
+      }
+      
+      .password-group {
+        position: relative;
+      }
+      
+      .password-toggle {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #767676;
+      }
+      
+      .forgot-password {
+        text-align: right;
+        margin-bottom: 1.5rem;
+      }
+      
+      .forgot-password a {
+        color: var(--primary-color);
+        text-decoration: underline;
+        font-size: 14px;
+      }
+      
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        background-color: var(--primary-color);
+        color: var(--white);
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      
+      .btn:hover {
+        background-color: #004a3f;
+      }
+      
+      /* Sign up section */
+      .signup-section {
+        text-align: center;
+        margin-top: 2rem;
+        padding: 1rem;
+      }
+      
+      .signup-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--text-color);
+        margin-bottom: 1rem;
+      }
+      
+      .signup-text {
+        font-size: 16px;
+        color: var(--text-color);
+        margin-bottom: 0.5rem;
+      }
+      
+      .signup-link {
+        color: var(--primary-color);
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      
+      /* Error message */
+      .error-message {
+        background-color: #fde8e9;
+        border-left: 4px solid var(--error-color);
+        color: var(--error-color);
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        font-size: 14px;
+        display: none;
+      }
+      
+      .error-message.show {
+        display: block;
+      }
+      
+      /* Success message */
+      .success-message {
+        background-color: #e8f6ef;
+        border-left: 4px solid var(--success-color);
+        color: var(--success-color);
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        font-size: 14px;
+        display: none;
+      }
+      
+      .success-message.show {
+        display: block;
+      }
+      
+      /* Utility classes */
+      .screen-reader-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
+      
+      .hide {
+        display: none;
+      }
+      
+      /* Error states */
+      .error .form-control {
+        border-color: var(--error-color);
+      }
+      
+      @media screen and (max-width: 600px) {
+        .container {
+          padding: 0;
+        }
+        
+        .login-box {
+          border-radius: 0;
+        }
+        
+        .back-link {
+          padding: 1rem;
+        }
+      }
+    </style>
+    <title>Sign in - to your account, for the best experience</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="back-link">
+        <a href="#">Back</a>
+      </div>
+      
+      <div class="login-box">
+        <div class="login-header">
+          <img class="logo" src="{{ url_for('static', filename='dublin-bike-logo.png') }}" alt="Dublin Bikes">
+          <h1 class="login-title">My Account</h1>
+          <p class="login-subtitle">Sign in to your account, for the best experience</p>
+        </div>
+        
+        <div id="error-message" class="error-message"></div>
+        <div id="success-message" class="success-message"></div>
+        
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-message flash-error">
+              {{ messages[0] }}
+            </div>
+          {% endif %}
+        {% endwith %}
+        
+        <form class="login-form" method="POST" action="{{ url_for('login') }}">
+          <input type="hidden" name="state" value="hKFo2SB4d0drYTJ0UjV0OWVwT1ZUakx5U216Qy1GNFJhZXdBa6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIE4tdkNwaXEwYkFKaHpGaG8ydlJfYllqdC1obllhaFIxo2NpZNkgZzRQZGF4dlYwSWZQcGJWeU80bEFMb3hSc0F1bkRBQXo">
+          
+          <div class="form-group">
+            <input class="form-control" id="username" name="username" type="email" placeholder=" " 
+                   value="{{ email_prefilled|default('', true) }}"
+                   required autocomplete="email" autocapitalize="none" spellcheck="false" autofocus>
+            <label class="form-label" for="username">Email address</label>
+          </div>
+          
+          <div class="form-group password-group">
+            <input class="form-control" id="password" name="password" type="password" placeholder=" " required autocomplete="current-password" autocapitalize="none" spellcheck="false">
+            <label class="form-label" for="password">Password</label>
+            <button type="button" class="password-toggle" id="password-toggle" aria-label="Show password">
+              <span id="show-password-text">Show</span>
+              <span id="hide-password-text" class="hide">Hide</span>
+            </button>
+          </div>
+          
+          <div class="forgot-password">
+            <a href="{{ url_for('reset_password') }}">Forgot password?</a>
+          </div>
+          
+          <button type="submit" name="action" value="default" class="btn">Sign In</button>
+        </form>
+      </div>
+      
+      <!-- New signup section -->
+      <div class="signup-section">
+        <h2 class="signup-title">Don't have an account yet?</h2>
+        <p class="signup-text">
+          <a href="{{ url_for('create_account') }}" class="signup-link">Sign up</a> today for faster checkout, easy order tracking & exclusive rewards
+        </p>
+      </div>
+    </div>
+    
+    <script>
+      // Check the session store for error or success messages
+      document.addEventListener('DOMContentLoaded', function() {
+        // Check for error or success messages in the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const errorMessage = urlParams.get('error');
+        const successMessage = urlParams.get('success');
+        
+        if (errorMessage) {
+          const errorElement = document.getElementById('error-message');
+          errorElement.textContent = decodeURIComponent(errorMessage);
+          errorElement.classList.add('show');
+        }
+        
+        if (successMessage) {
+          const successElement = document.getElementById('success-message');
+          successElement.textContent = decodeURIComponent(successMessage);
+          successElement.classList.add('show');
+        }
+        
+        // Password visibility toggle
+        const passwordInput = document.getElementById('password');
+        const passwordToggle = document.getElementById('password-toggle');
+        const showText = document.getElementById('show-password-text');
+        const hideText = document.getElementById('hide-password-text');
+        
+        if (passwordToggle) {
+          passwordToggle.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            // Toggle text visibility
+            showText.classList.toggle('hide');
+            hideText.classList.toggle('hide');
+            
+            // Update the aria-label
+            passwordToggle.setAttribute('aria-label', 
+              type === 'password' ? 'Show password' : 'Hide password');
+          });
+        }
+        
+        // Float labels when input has content (for when autofill happens)
+        const inputs = document.querySelectorAll('.form-control');
+        inputs.forEach(input => {
+          if (input.value) {
+            input.classList.add('has-value');
+          }
+          
+          input.addEventListener('input', function() {
+            if (this.value) {
+              this.classList.add('has-value');
+            } else {
+              this.classList.remove('has-value');
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
