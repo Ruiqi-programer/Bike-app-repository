@@ -101,6 +101,24 @@
         padding: 1rem 2rem 2rem;
       }
       
+      /* Flash messages */
+      .flash-message {
+        margin-bottom: 1rem;
+        padding: 10px;
+        border-radius: 4px;
+        text-align: center;
+      }
+      
+      .flash-error {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+      
+      .flash-success {
+        background-color: #d4edda;
+        color: #155724;
+      }
+      
       /* Form elements */
       .form-group {
         margin-bottom: 1.5rem;
@@ -183,6 +201,62 @@
         background-color: #004a3f;
       }
       
+      /* Sign up section */
+      .signup-section {
+        text-align: center;
+        margin-top: 2rem;
+        padding: 1rem;
+      }
+      
+      .signup-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--text-color);
+        margin-bottom: 1rem;
+      }
+      
+      .signup-text {
+        font-size: 16px;
+        color: var(--text-color);
+        margin-bottom: 0.5rem;
+      }
+      
+      .signup-link {
+        color: var(--primary-color);
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      
+      /* Error message */
+      .error-message {
+        background-color: #fde8e9;
+        border-left: 4px solid var(--error-color);
+        color: var(--error-color);
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        font-size: 14px;
+        display: none;
+      }
+      
+      .error-message.show {
+        display: block;
+      }
+      
+      /* Success message */
+      .success-message {
+        background-color: #e8f6ef;
+        border-left: 4px solid var(--success-color);
+        color: var(--success-color);
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        font-size: 14px;
+        display: none;
+      }
+      
+      .success-message.show {
+        display: block;
+      }
+      
       /* Utility classes */
       .screen-reader-only {
         position: absolute;
@@ -228,16 +302,29 @@
       
       <div class="login-box">
         <div class="login-header">
-          <img class="logo" src="/Log_in/dublin-bike-logo.png" alt="Dublin Bikes">
+          <img class="logo" src="{{ url_for('static', filename='dublin-bike-logo.png') }}" alt="Dublin Bikes">
           <h1 class="login-title">My Account</h1>
           <p class="login-subtitle">Sign in to your account, for the best experience</p>
         </div>
         
-        <form class="login-form" method="POST">
+        <div id="error-message" class="error-message"></div>
+        <div id="success-message" class="success-message"></div>
+        
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-message flash-error">
+              {{ messages[0] }}
+            </div>
+          {% endif %}
+        {% endwith %}
+        
+        <form class="login-form" method="POST" action="{{ url_for('login') }}">
           <input type="hidden" name="state" value="hKFo2SB4d0drYTJ0UjV0OWVwT1ZUakx5U216Qy1GNFJhZXdBa6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIE4tdkNwaXEwYkFKaHpGaG8ydlJfYllqdC1obllhaFIxo2NpZNkgZzRQZGF4dlYwSWZQcGJWeU80bEFMb3hSc0F1bkRBQXo">
           
           <div class="form-group">
-            <input class="form-control" id="username" name="username" type="email" placeholder=" " required autocomplete="email" autocapitalize="none" spellcheck="false" autofocus>
+            <input class="form-control" id="username" name="username" type="email" placeholder=" " 
+                   value="{{ email_prefilled|default('', true) }}"
+                   required autocomplete="email" autocapitalize="none" spellcheck="false" autofocus>
             <label class="form-label" for="username">Email address</label>
           </div>
           
@@ -251,17 +338,43 @@
           </div>
           
           <div class="forgot-password">
-            <a href="/Log_in/reset_password.html">Forgot password?</a>
+            <a href="{{ url_for('reset_password') }}">Forgot password?</a>
           </div>
           
           <button type="submit" name="action" value="default" class="btn">Sign In</button>
         </form>
       </div>
+      
+      <!-- New signup section -->
+      <div class="signup-section">
+        <h2 class="signup-title">Don't have an account yet?</h2>
+        <p class="signup-text">
+          <a href="{{ url_for('create_account') }}" class="signup-link">Sign up</a> today for faster checkout, easy order tracking & exclusive rewards
+        </p>
+      </div>
     </div>
     
     <script>
-      // Password visibility toggle
+      // Check the session store for error or success messages
       document.addEventListener('DOMContentLoaded', function() {
+        // Check for error or success messages in the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const errorMessage = urlParams.get('error');
+        const successMessage = urlParams.get('success');
+        
+        if (errorMessage) {
+          const errorElement = document.getElementById('error-message');
+          errorElement.textContent = decodeURIComponent(errorMessage);
+          errorElement.classList.add('show');
+        }
+        
+        if (successMessage) {
+          const successElement = document.getElementById('success-message');
+          successElement.textContent = decodeURIComponent(successMessage);
+          successElement.classList.add('show');
+        }
+        
+        // Password visibility toggle
         const passwordInput = document.getElementById('password');
         const passwordToggle = document.getElementById('password-toggle');
         const showText = document.getElementById('show-password-text');

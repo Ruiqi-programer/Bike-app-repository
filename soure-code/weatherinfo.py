@@ -33,7 +33,6 @@ def write_to_file(text):
     # filename=f"weather_data/weather_{now}.json"
     # with open(filename, "w",encoding="utf-8") as f:
     #     f.write(text)
-    # print(f"数据存储到 {filename}")
 
 
 def main():
@@ -45,7 +44,6 @@ def main():
             if r.status_code == 200:
                 write_to_file(r.text)
                 
-                #格式化json文件，使其更可读
                 data = json.loads(r.text)
                 with open("test2.json", "w", encoding="utf-8") as f:
                     json.dump(data, f, indent=4)

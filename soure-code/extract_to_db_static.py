@@ -56,7 +56,7 @@ def stations_to_db(text_data,in_engine):
             
     )
     with in_engine.connect() as conn:
-        with conn.begin():  # 显式开启事务
+        with conn.begin(): 
             for station in stations:
                 print(type(station))
 
