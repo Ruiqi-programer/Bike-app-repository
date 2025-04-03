@@ -1,56 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dublin Bike Stations</title>
+{% extends 'base.html' %}
 
-    <!-- Link External Stylesheet -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% block title %}Map | DublinBikes{% endblock %}
 
-    <!-- JavaScript File (Keep This) -->
-    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
-</head>
-<body>
-    <h1>Dublin Bike Stations</h1>
+{% block content %}
+  <header>
+    <button id="weather-btn" title="View Weather">
+        <i class="fa-solid fa-cloud-sun"></i>
+      </button>
+      
+  </header>
 
-    <!-- Login Form -->
-    <div id="login-section">
-        <h2>Login</h2>
-        <form id="login-form">
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-        <p id="login-error" style="color: red;"></p>
+  <div id="map-filters" class="filter-panel">
+    <input type="text" id="station-search" placeholder="Search station name..." />
+  
+    <div class="checkbox-group">
+      <label><input type="checkbox" id="filter-bikes"> Has Bikes</label>
+      <label><input type="checkbox" id="filter-stands"> Has Stands</label>
+      <label><input type="checkbox" id="filter-not-empty"> Not Empty</label>
+      <label><input type="checkbox" id="filter-not-full"> Not Full</label>
     </div>
+  </div>
+  
+  <div id="map"></div>
 
-    <!-- Logout Button -->
-    <div id="logout-section" style="display: none;">
-        <button id="logout">Logout</button>
-    </div>
-
-    <!-- Weather Data -->
-    <div id="weather-section" style="display: none;">
-        <h2>Current Weather</h2>
-        <p><strong>Temperature:</strong> <span id="temp">Loading...</span>°C</p>
-        <p><strong>Feels Like:</strong> <span id="feels_like">Loading...</span>°C</p>
-        <p><strong>Humidity:</strong> <span id="humidity">Loading...</span>%</p>
-        <p><strong>Wind Speed:</strong> <span id="wind_speed">Loading...</span> km/h</p>
-        <p><strong>Cloud Cover:</strong> <span id="clouds">Loading...</span>%</p>
-
-        <div id="hourly-forecast">
-            <h3>Next 5 Hours</h3>
-            <p>Loading...</p>
+  <!-- Weather Modal -->
+  <div id="weather-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+      
+        <section id="current-weather">
+          <h2>Current Weather</h2>
+          <div id="current-weather-info"></div>
+        </section>
+      
+        <div id="weather-layout">
+          <section id="hourly-forecast">
+            <canvas id="hourly-temp-chart" height="300"></canvas>
+          </section>
+      
+          <section id="weather-forecast">
+            <div id="daily-forecast-grid" class="forecast-grid">
+              <!-- forecast cards injected here -->
+            </div>
+            <div id="hourly-timeline" class="hourly-timeline"></div>
+          </section>
         </div>
+      </div>      
+{% endblock %}
 
-        <div id="daily-forecast">
-            <h3>3-Day Forecast</h3>
-            <p>Loading...</p>
-        </div>
-    </div>
-
-    <!-- Google Maps Container -->
-    <div id="map" style="width: 100%; height: 500px; display: none;"></div>
-</body>
-</html>
+{% block scripts %}
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnx_FmRZPRQYeqfTrLghRVsb6YwWFBEuU&callback=initMap" async defer></script>
+{% endblock %}

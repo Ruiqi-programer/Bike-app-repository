@@ -1,0 +1,26 @@
+<header>
+    <div class="nav">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <div class="nav-main-header">
+      <h2 class="logo">
+        <a href="{{ url_for('index') }}"><span>Dublin</span>Bike</a>
+      </h2>
+      <nav class="nav-links">
+        <a href="{{ url_for('index') }}">HOME</a>
+        <a href="#">MAP</a>
+        <a href="#">BUSINESS</a>
+        <a href="{{ url_for('company') }}">COMPANY</a>
+        <a href="">ORDERS</a>
+        <a href="{{ url_for('name') }}">CONTACT</a>
+      </nav>
+      <div class="header-right">
+        <input type="text" class="search-bar" placeholder="Search..." />
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <div class="btn-signin">
+          <a href="#">Join</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+  
