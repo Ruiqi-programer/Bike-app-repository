@@ -1,7 +1,7 @@
 import time
 import logging
 from db import create_database, create_tables
-from weather import get_weather  # Import weather function
+from weather import update_weather  # Import weather function
 from bike_data import insert_bike_data  # Import bike function
 
 # Configure logging
@@ -33,7 +33,7 @@ while time.time() - start_time < duration:
         current_time = time.time()
         if current_time - last_weather_update >= 3600:  # Ensure hourly weather update
             logging.info(" Fetching weather data...")
-            get_weather()  # Update weather data
+            update_weather()  # Update weather data
             last_weather_update = current_time  # Update last weather update timestamp
             logging.info(" Weather data updated successfully.")
 

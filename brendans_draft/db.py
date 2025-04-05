@@ -6,6 +6,7 @@ from sqlalchemy.exc import OperationalError
 base_connection_string = f"mysql+mysqldb://{DB_CONFIG['user']}:{DB_CONFIG['password']}@{DB_CONFIG['host']}:{DB_CONFIG['port']}"
 base_engine = create_engine(base_connection_string, echo=True)
 
+# Create database if it doesn't exist
 def create_database():
     """Check if the database exists and create it if necessary."""
     db_name = DB_CONFIG['database']
@@ -21,13 +22,15 @@ def create_database():
         print(f" Error connecting to MySQL: {e}")
         exit(1)
 
-# Create database if it doesn't exist
-create_database()
+
+
+
 
 # Connect using the actual database
 connection_string = f"{base_connection_string}/{DB_CONFIG['database']}"
 engine = create_engine(connection_string, echo=True)
 
+# create tables
 def create_tables():
     """Create required database tables for bikes and weather."""
     with engine.connect() as connection:
@@ -157,5 +160,3 @@ def create_tables():
 
     print(" Database tables checked/created successfully!")
 
-# Ensure tables are created
-create_tables()

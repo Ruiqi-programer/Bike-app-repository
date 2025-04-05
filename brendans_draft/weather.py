@@ -5,6 +5,7 @@ import json
 from datetime import datetime
 from config import DB_CONFIG
 from dotenv import load_dotenv
+from db import engine  # Import database engine
 
 # Load environment variables
 load_dotenv()
@@ -17,9 +18,8 @@ print(" Loaded API Key:", WEATHER_API_KEY)
 
 # Insert helpers
 def insert_current(data, conn):
-    cursor = conn.cursor()
-    cursor.execute("DELETE FROM current")
-    cursor.execute("""
+    conn.execute("DELETE * FROM current")
+    conn.execute("""
         INSERT INTO current (lat, lon, timezone, timezone_offset, dt, sunrise, sunset, temp, feels_like, pressure, humidity, dew_point, 
             uvi, clouds, visibility, wind_speed, wind_deg, wind_gust, weather_id, weather_main, weather_desc, weather_icon)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
@@ -35,12 +35,9 @@ def insert_current(data, conn):
         data["current"]["weather"][0]["id"], data["current"]["weather"][0]["main"],
         data["current"]["weather"][0]["description"], data["current"]["weather"][0]["icon"]
     ))
-    conn.commit()
-    cursor.close()
 
 def insert_hourly(data, conn):
-    cursor = conn.cursor()
-    cursor.execute("DELETE FROM hourly")
+    conn.execute("DELETE * FROM hourly")
     hourly_data = []
     for h in data["hourly"][:24]:
         hourly_data.append((
@@ -50,17 +47,14 @@ def insert_hourly(data, conn):
             h.get("wind_gust"), h["weather"][0]["id"], h["weather"][0]["main"],
             h["weather"][0]["description"], h["weather"][0]["icon"], h["pop"]
         ))
-    cursor.executemany("""
+    conn.executemany("""
         INSERT INTO hourly (lat, lon, timezone, timezone_offset, dt, temp, feels_like, pressure, humidity, dew_point,
             uvi, clouds, visibility, wind_speed, wind_deg, wind_gust, weather_id, weather_main, weather_desc, weather_icon, pop)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """, hourly_data)
-    conn.commit()
-    cursor.close()
 
 def insert_daily(data, conn):
-    cursor = conn.cursor()
-    cursor.execute("DELETE FROM daily")
+    conn.execute("DELETE * FROM daily")
     daily_data = []
     for d in data["daily"][:8]:
         daily_data.append((
@@ -76,7 +70,7 @@ def insert_daily(data, conn):
             d.get("rain", 0.0), d["weather"][0]["id"], d["weather"][0]["main"],
             d["weather"][0]["description"], d["weather"][0]["icon"]
         ))
-    cursor.executemany("""
+    conn.executemany("""
         INSERT INTO daily (lat, lon, timezone, timezone_offset, dt, sunrise, sunset, moonrise, moonset, moon_phase,
             summary, temp_day, temp_min, temp_max, temp_night, temp_eve, temp_morn, feels_like_day, feels_like_night,
             feels_like_eve, feels_like_morn, pressure, humidity, dew_point, wind_speed, wind_deg, wind_gust, clouds,
@@ -84,8 +78,6 @@ def insert_daily(data, conn):
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s, %s, %s)
     """, daily_data)
-    conn.commit()
-    cursor.close()
 
 def fetch_weather():
     print(" Fetching from OpenWeather API...")
@@ -103,12 +95,13 @@ def update_weather():
     if not data:
         return
 
-    conn = mysql.connector.connect(**DB_CONFIG)
-    insert_current(data, conn)
-    insert_hourly(data, conn)
-    insert_daily(data, conn)
-    conn.close()
-    print("Weather data saved successfully!")
+    with engine.connect() as conn:
+        transaction = conn.begin()
+        insert_current(data, conn)
+        insert_hourly(data, conn)
+        insert_daily(data, conn)
+        transaction.commit()
+        print("Weather data saved successfully!")
 
 if __name__ == "__main__":
     update_weather()
