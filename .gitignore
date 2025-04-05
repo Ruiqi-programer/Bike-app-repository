@@ -1,1 +1,4 @@
-__pycache__/
+pycache/
+*.log
+.env
+*.db

@@ -1,8 +1,8 @@
 import time
 import logging
-from db import create_database, create_tables
-from weather import update_weather  # Import weather function
-from bike_data import insert_bike_data  # Import bike function
+from app.models.db import create_database, create_tables
+from app.models.weather import update_weather
+from app.models.bike_data import insert_bike_data
 
 # Configure logging
 logging.basicConfig(
