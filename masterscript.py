@@ -4,6 +4,7 @@ from app.models.db import create_database, create_tables
 from app.models.weather import update_weather
 from app.models.bike_data import insert_bike_data
 
+
 # Configure logging
 logging.basicConfig(
     filename="masterscript.log",

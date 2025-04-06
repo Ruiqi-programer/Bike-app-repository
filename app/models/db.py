@@ -1,15 +1,15 @@
 from sqlalchemy import create_engine, text
-from config import DB_CONFIG
+from config import Config
 from sqlalchemy.exc import OperationalError
 
 # Create engine without specifying the database
-base_connection_string = f"mysql+mysqldb://{DB_CONFIG['user']}:{DB_CONFIG['password']}@{DB_CONFIG['host']}:{DB_CONFIG['port']}"
+base_connection_string = f"mysql+mysqldb://{Config.DB_CONFIG['user']}:{Config.DB_CONFIG['password']}@{Config.DB_CONFIG['host']}:{Config.DB_CONFIG['port']}"
 base_engine = create_engine(base_connection_string, echo=True)
 
 # Create database if it doesn't exist
 def create_database():
     """Check if the database exists and create it if necessary."""
-    db_name = DB_CONFIG['database']
+    db_name = Config.DB_CONFIG['database']
 
     try:
         with base_engine.connect() as connection:
@@ -27,7 +27,7 @@ def create_database():
 
 
 # Connect using the actual database
-connection_string = f"{base_connection_string}/{DB_CONFIG['database']}"
+connection_string = f"{base_connection_string}/{Config.DB_CONFIG['database']}"
 engine = create_engine(connection_string, echo=True)
 
 # create tables

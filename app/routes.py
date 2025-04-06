@@ -1,13 +1,15 @@
 from flask import Blueprint, jsonify, render_template
 from sqlalchemy import text
 from app.models.db import engine
+from config import Config
 import os
 
 main = Blueprint('main', __name__)
 
 @main.route("/")
 def index():
-    return render_template("index.html", google_maps_api_key=os.getenv("GOOGLE_MAPS_API_KEY"))
+    return render_template("index.html",google_maps_api_key=Config.GOOGLE_MAPS_API_KEY)
+
 
 @main.route("/api/weather", methods=["GET"])
 def weather():

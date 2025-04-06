@@ -3,17 +3,8 @@ import os
 from datetime import datetime
 from sqlalchemy import text
 from config import Config
-from dotenv import load_dotenv
 from app.models.db import engine
 
-# Load environment variables
-load_dotenv()
-WEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
-LAT = os.getenv("WEATHER_LAT", "53.350140")
-LON = os.getenv("WEATHER_LON", "-6.266155")
-WEATHER_API_URL = f"https://api.openweathermap.org/data/3.0/onecall?lat={LAT}&lon={LON}&appid={WEATHER_API_KEY}&units=metric"
-
-print(" Loaded API Key:", WEATHER_API_KEY)
 
 # Insert helpers
 def insert_current(data, conn):
@@ -75,7 +66,7 @@ def insert_hourly(data, conn):
             "weather_icon": h["weather"][0]["icon"],
             "pop": h["pop"]
         })
-    conn.executemany(text("""
+    conn.execute(text("""
         INSERT INTO hourly (lat, lon, timezone, timezone_offset, dt, temp, feels_like, pressure, humidity, dew_point,
             uvi, clouds, visibility, wind_speed, wind_deg, wind_gust, weather_id, weather_main, weather_desc, weather_icon, pop)
         VALUES (:lat, :lon, :timezone, :timezone_offset, :dt, :temp, :feels_like, :pressure, :humidity, :dew_point,
@@ -123,7 +114,7 @@ def insert_daily(data, conn):
             "weather_desc": d["weather"][0]["description"],
             "weather_icon": d["weather"][0]["icon"]
         })
-    conn.executemany(text("""
+    conn.execute(text("""
         INSERT INTO daily (lat, lon, timezone, timezone_offset, dt, sunrise, sunset, moonrise, moonset, moon_phase,
             summary, temp_day, temp_min, temp_max, temp_night, temp_eve, temp_morn, feels_like_day, feels_like_night,
             feels_like_eve, feels_like_morn, pressure, humidity, dew_point, wind_speed, wind_deg, wind_gust, clouds,
@@ -136,7 +127,7 @@ def insert_daily(data, conn):
 
 def fetch_weather():
     print(" Fetching from OpenWeather API...")
-    response = requests.get(WEATHER_API_URL)
+    response = requests.get(Config.WEATHER_API_URL)
     print(" Response status:", response.status_code)
     if response.status_code == 200:
         return response.json()
