@@ -339,7 +339,7 @@
     </div>
 
     <div class="join-input-group">
-      <form action="#" method="POST">
+      <form action="{{ url_for('users.create_account') }}" method="POST">
         <input
           type="email"
           class="join-input-form"

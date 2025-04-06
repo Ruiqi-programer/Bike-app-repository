@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex, nofollow">
-    
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+
     <style>
       /* Base styles */
       :root {
@@ -13,31 +13,32 @@
         --secondary-color: #007e6b;
         --text-color: #333333;
         --light-text: #6c757d;
-        --error-color: #D00E17;
-        --success-color: #0A8852;
+        --error-color: #d00e17;
+        --success-color: #0a8852;
         --white: #ffffff;
         --light-bg: #f2f9f8;
         --border-color: #dee2e6;
-        --font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+        --font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial,
+          sans-serif;
       }
-      
+
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
-      
+
       html {
         font-size: 16px;
       }
-      
+
       body {
         background-color: var(--light-bg);
         font-family: var(--font-family);
         line-height: 1.5;
         color: var(--text-color);
       }
-      
+
       /* Header */
       .header {
         background-color: var(--primary-color);
@@ -45,7 +46,7 @@
         padding: 1rem 0;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
-      
+
       .header-container {
         max-width: 1200px;
         margin: 0 auto;
@@ -54,31 +55,31 @@
         justify-content: space-between;
         align-items: center;
       }
-      
+
       .logo-container {
         display: flex;
         align-items: center;
       }
-      
+
       .logo {
         height: 40px;
         margin-right: 1rem;
       }
-      
+
       .app-name {
         font-size: 1.5rem;
         font-weight: bold;
       }
-      
+
       .user-menu {
         display: flex;
         align-items: center;
       }
-      
+
       .user-name {
         margin-right: 1rem;
       }
-      
+
       .logout-btn {
         background-color: transparent;
         border: 1px solid var(--white);
@@ -88,70 +89,70 @@
         cursor: pointer;
         transition: all 0.2s;
       }
-      
+
       .logout-btn:hover {
         background-color: var(--white);
         color: var(--primary-color);
       }
-      
+
       /* Main content */
       .main-content {
         max-width: 1200px;
         margin: 2rem auto;
         padding: 0 1rem;
       }
-      
+
       .dashboard-title {
         font-size: 2rem;
         margin-bottom: 2rem;
         color: var(--primary-color);
       }
-      
+
       /* Cards */
       .card-container {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 1.5rem;
       }
-      
+
       .card {
         background-color: var(--white);
         border-radius: 8px;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         overflow: hidden;
       }
-      
+
       .card-header {
         background-color: var(--primary-color);
         color: var(--white);
         padding: 1rem;
         font-weight: bold;
       }
-      
+
       .card-body {
         padding: 1.5rem;
       }
-      
+
       /* Profile section */
       .profile-info {
         margin-bottom: 1.5rem;
       }
-      
+
       .profile-item {
         display: flex;
         margin-bottom: 1rem;
       }
-      
+
       .profile-label {
         width: 120px;
         font-weight: bold;
         color: var(--light-text);
       }
-      
+
       .profile-value {
         flex: 1;
       }
-      
+
       .edit-btn {
         background-color: transparent;
         border: none;
@@ -160,24 +161,24 @@
         text-decoration: underline;
         margin-left: 0.5rem;
       }
-      
+
       /* Forms */
       .edit-form {
         display: none;
         margin-top: 0.5rem;
       }
-      
+
       .form-group {
         margin-bottom: 1rem;
       }
-      
+
       .form-control {
         width: 100%;
         padding: 0.5rem;
         border: 1px solid var(--border-color);
         border-radius: 4px;
       }
-      
+
       .btn {
         display: inline-block;
         padding: 0.5rem 1rem;
@@ -188,37 +189,37 @@
         cursor: pointer;
         font-size: 0.875rem;
       }
-      
+
       .btn:hover {
         background-color: var(--secondary-color);
       }
-      
+
       .btn-cancel {
         background-color: #6c757d;
         margin-left: 0.5rem;
       }
-      
+
       .btn-cancel:hover {
         background-color: #5a6268;
       }
-      
+
       /* Flash messages */
       .flash-message {
         margin-bottom: 1.5rem;
         padding: 1rem;
         border-radius: 4px;
       }
-      
+
       .flash-error {
         background-color: #f8d7da;
         color: #721c24;
       }
-      
+
       .flash-success {
         background-color: #d4edda;
         color: #155724;
       }
-      
+
       /* Responsive */
       @media screen and (max-width: 768px) {
         .card-container {
@@ -232,30 +233,38 @@
     <header class="header">
       <div class="header-container">
         <div class="logo-container">
-          <img class="logo" src="{{ url_for('static', filename='images/dublin-bike-logo.png') }}" alt="Dublin Bikes">
+          <img
+            class="logo"
+            src="{{ url_for('static', filename='images/dublin-bike-logo.png') }}"
+            alt="Dublin Bikes"
+          />
           <span class="app-name">Dublin Bikes</span>
         </div>
         <div class="user-menu">
           <span class="user-name">Welcome, {{ user_fullname }}</span>
-          <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+          <a href="{{ url_for('users.logout') }}" class="logout-btn">Logout</a>
         </div>
       </div>
     </header>
-    
+
     <main class="main-content">
       <h1 class="dashboard-title">My Dashboard</h1>
-      
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          <div class="flash-message flash-success">
-            {{ messages[0] }}
-          </div>
-        {% endif %}
-      {% endwith %}
-      
-      <div id="error-message" class="flash-message flash-error" style="display: none;"></div>
-      <div id="success-message" class="flash-message flash-success" style="display: none;"></div>
-      
+
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <div class="flash-message flash-success">{{ messages[0] }}</div>
+      {% endif %} {% endwith %}
+
+      <div
+        id="error-message"
+        class="flash-message flash-error"
+        style="display: none"
+      ></div>
+      <div
+        id="success-message"
+        class="flash-message flash-success"
+        style="display: none"
+      ></div>
+
       <div class="card-container">
         <!-- Profile Card -->
         <div class="card">
@@ -265,51 +274,132 @@
               <div class="profile-item">
                 <div class="profile-label">Full Name:</div>
                 <div class="profile-value">{{ fullname }}</div>
-                <button type="button" class="edit-btn" onclick="toggleEditForm('fullname-form')">Edit</button>
+                <button
+                  type="button"
+                  class="edit-btn"
+                  onclick="toggleEditForm('fullname-form')"
+                >
+                  Edit
+                </button>
               </div>
-              <form id="fullname-form" class="edit-form" method="POST" action="{{ url_for('update_profile') }}">
-                <input type="hidden" name="field" value="fullname">
+              <form
+                id="fullname-form"
+                class="edit-form"
+                method="POST"
+                action="{{ url_for('users.update_profile') }}"
+              >
+                <input type="hidden" name="field" value="fullname" />
                 <div class="form-group">
-                  <input type="text" class="form-control" name="new_value" value="{{ fullname }}" required>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="new_value"
+                    value="{{ fullname }}"
+                    required
+                  />
                 </div>
                 <button type="submit" class="btn">Save</button>
-                <button type="button" class="btn btn-cancel" onclick="toggleEditForm('fullname-form')">Cancel</button>
+                <button
+                  type="button"
+                  class="btn btn-cancel"
+                  onclick="toggleEditForm('fullname-form')"
+                >
+                  Cancel
+                </button>
               </form>
-              
+
               <div class="profile-item">
                 <div class="profile-label">Email:</div>
                 <div class="profile-value">{{ email }}</div>
-                <button type="button" class="edit-btn" onclick="toggleEditForm('email-form')">Edit</button>
+                <button
+                  type="button"
+                  class="edit-btn"
+                  onclick="toggleEditForm('email-form')"
+                >
+                  Edit
+                </button>
               </div>
-              <form id="email-form" class="edit-form" method="POST" action="{{ url_for('update_profile') }}">
-                <input type="hidden" name="field" value="email">
+              <form
+                id="email-form"
+                class="edit-form"
+                method="POST"
+                action="{{ url_for('users.update_profile') }}"
+              >
+                <input type="hidden" name="field" value="email" />
                 <div class="form-group">
-                  <input type="email" class="form-control" name="new_value" value="{{ email }}" required>
+                  <input
+                    type="email"
+                    class="form-control"
+                    name="new_value"
+                    value="{{ email }}"
+                    required
+                  />
                 </div>
                 <button type="submit" class="btn">Save</button>
-                <button type="button" class="btn btn-cancel" onclick="toggleEditForm('email-form')">Cancel</button>
+                <button
+                  type="button"
+                  class="btn btn-cancel"
+                  onclick="toggleEditForm('email-form')"
+                >
+                  Cancel
+                </button>
               </form>
-              
+
               <div class="profile-item">
                 <div class="profile-label">Password:</div>
                 <div class="profile-value">********</div>
-                <button type="button" class="edit-btn" onclick="toggleEditForm('password-form')">Change</button>
+                <button
+                  type="button"
+                  class="edit-btn"
+                  onclick="toggleEditForm('password-form')"
+                >
+                  Change
+                </button>
               </div>
-              <form id="password-form" class="edit-form" method="POST" action="{{ url_for('update_profile') }}">
-                <input type="hidden" name="field" value="password">
+              <form
+                id="password-form"
+                class="edit-form"
+                method="POST"
+                action="{{ url_for('users.update_profile') }}"
+              >
+                <input type="hidden" name="field" value="password" />
                 <div class="form-group">
-                  <input type="password" class="form-control" name="new_value" placeholder="New password" required>
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="new_value"
+                    placeholder="New password"
+                    required
+                  />
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" name="confirm_password" placeholder="Confirm new password" required>
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="confirm_password"
+                    placeholder="Confirm new password"
+                    required
+                  />
                 </div>
-                <button type="submit" class="btn" onclick="return validatePassword()">Save</button>
-                <button type="button" class="btn btn-cancel" onclick="toggleEditForm('password-form')">Cancel</button>
+                <button
+                  type="submit"
+                  class="btn"
+                  onclick="return validatePassword()"
+                >
+                  Save
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-cancel"
+                  onclick="toggleEditForm('password-form')"
+                >
+                  Cancel
+                </button>
               </form>
             </div>
           </div>
         </div>
-        
+
         <!-- Additional cards for bike rentals, etc. can be added here -->
         <div class="card">
           <div class="card-header">My Rentals</div>
@@ -318,69 +408,79 @@
             <p>Visit a Dublin Bikes station to start a new journey.</p>
           </div>
         </div>
-        
+
         <div class="card">
           <div class="card-header">Membership Details</div>
           <div class="card-body">
             <p>Account type: Standard</p>
             <p>Member since: {{ time }}</p>
-            <p><a href="#" style="color: var(--primary-color);">View billing history</a></p>
+            <p>
+              <a href="#" style="color: var(--primary-color)"
+                >View billing history</a
+              >
+            </p>
           </div>
         </div>
       </div>
     </main>
-    
+
     <script>
       // Check for URL parameters for error or success messages
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener("DOMContentLoaded", function () {
         const urlParams = new URLSearchParams(window.location.search);
-        const errorMessage = urlParams.get('error');
-        const successMessage = urlParams.get('success');
-        
+        const errorMessage = urlParams.get("error");
+        const successMessage = urlParams.get("success");
+
         if (errorMessage) {
-          const errorElement = document.getElementById('error-message');
+          const errorElement = document.getElementById("error-message");
           errorElement.textContent = decodeURIComponent(errorMessage);
-          errorElement.style.display = 'block';
+          errorElement.style.display = "block";
         }
-        
+
         if (successMessage) {
-          const successElement = document.getElementById('success-message');
+          const successElement = document.getElementById("success-message");
           successElement.textContent = decodeURIComponent(successMessage);
-          successElement.style.display = 'block';
+          successElement.style.display = "block";
         }
       });
-      
+
       // Toggle edit forms
       function toggleEditForm(formId) {
         const form = document.getElementById(formId);
-        if (form.style.display === 'block') {
-          form.style.display = 'none';
+        if (form.style.display === "block") {
+          form.style.display = "none";
         } else {
-          form.style.display = 'block';
+          form.style.display = "block";
         }
       }
-      
+
       // Validate password match
       function validatePassword() {
-        const passwordForm = document.getElementById('password-form');
-        const newPassword = passwordForm.querySelector('input[name="new_value"]').value;
-        const confirmPassword = passwordForm.querySelector('input[name="confirm_password"]').value;
-        
+        const passwordForm = document.getElementById("password-form");
+        const newPassword = passwordForm.querySelector(
+          'input[name="new_value"]'
+        ).value;
+        const confirmPassword = passwordForm.querySelector(
+          'input[name="confirm_password"]'
+        ).value;
+
         if (newPassword !== confirmPassword) {
-          alert('Passwords do not match');
+          alert("Passwords do not match");
           return false;
         }
-        
+
         const hasUpperCase = /[A-Z]/.test(newPassword);
         const hasLowerCase = /[a-z]/.test(newPassword);
         const hasNumbers = /\d/.test(newPassword);
         const isLongEnough = newPassword.length >= 8;
-        
+
         if (!isLongEnough || !hasUpperCase || !hasLowerCase || !hasNumbers) {
-          alert('Password must be at least 8 characters long and include uppercase letters, lowercase letters, and numbers');
+          alert(
+            "Password must be at least 8 characters long and include uppercase letters, lowercase letters, and numbers"
+          );
           return false;
         }
-        
+
         return true;
       }
     </script>

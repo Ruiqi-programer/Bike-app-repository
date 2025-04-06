@@ -43,7 +43,7 @@ content %}
   document.addEventListener("DOMContentLoaded", function () {
     showTab(
       "{{ selected.title }}",
-      "{{ url_for('main.business', ticket_type=selected.ticket_type) }}"
+      "{{ url_for('business', ticket_type=selected.ticket_type) }}"
     );
   });
 </script>

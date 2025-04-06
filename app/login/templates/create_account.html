@@ -1,51 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex, nofollow">
-    
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+
     <style>
       /* Base styles */
       :root {
         --primary-color: #00594c;
         --text-color: #333333;
-        --error-color: #D00E17;
-        --success-color: #0A8852;
+        --error-color: #d00e17;
+        --success-color: #0a8852;
         --white: #ffffff;
         --light-bg: #f2f9f8;
-        --font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+        --font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial,
+          sans-serif;
       }
-      
+
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
-      
+
       html {
         font-size: 16px;
       }
-      
+
       body {
         background-color: var(--light-bg);
         font-family: var(--font-family);
         line-height: 1.5;
         color: var(--text-color);
       }
-      
+
       /* Layout */
       .container {
         max-width: 400px;
         margin: 0 auto;
         padding: 1rem;
       }
-      
+
       .back-link {
         padding: 2rem 0 0.875rem 0.313rem;
       }
-      
+
       .back-link a {
         text-decoration: underline;
         color: var(--primary-color);
@@ -53,9 +54,9 @@
         display: flex;
         align-items: center;
       }
-      
+
       .back-link a::before {
-        content: '';
+        content: "";
         display: inline-block;
         height: 8px;
         width: 8px;
@@ -64,43 +65,43 @@
         transform: rotate(-135deg);
         margin-right: 6px;
       }
-      
+
       .signup-box {
         background-color: var(--white);
         border-radius: 8px;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         overflow: hidden;
       }
-      
+
       .signup-header {
         text-align: center;
         padding: 2rem 1rem;
       }
-      
+
       .logo {
         max-height: 60px;
         margin: 0 auto 1rem;
         display: block;
       }
-      
+
       .signup-title {
         font-size: 29px;
         font-weight: bold;
         color: var(--primary-color);
         margin-bottom: 0.5rem;
       }
-      
+
       .signup-subtitle {
         font-size: 16px;
         color: var(--text-color);
         max-width: 220px;
         margin: 0 auto;
       }
-      
+
       .signup-form {
         padding: 1rem 2rem 2rem;
       }
-      
+
       /* Flash messages */
       .flash-message {
         margin-bottom: 1rem;
@@ -109,21 +110,21 @@
         color: var(--white);
         text-align: center;
       }
-      
+
       .flash-error {
         background-color: var(--error-color);
       }
-      
+
       .flash-success {
         background-color: var(--success-color);
       }
-      
+
       /* Form elements */
       .form-group {
         margin-bottom: 1.5rem;
         position: relative;
       }
-      
+
       .form-control {
         width: 100%;
         padding: 1rem;
@@ -132,12 +133,12 @@
         font-size: 16px;
         transition: border-color 0.2s;
       }
-      
+
       .form-control:focus {
         outline: none;
         border-color: var(--primary-color);
       }
-      
+
       .form-label {
         position: absolute;
         top: 50%;
@@ -147,7 +148,7 @@
         transition: all 0.2s;
         pointer-events: none;
       }
-      
+
       .form-control:focus + .form-label,
       .form-control:not(:placeholder-shown) + .form-label {
         top: 0;
@@ -155,11 +156,11 @@
         background-color: var(--white);
         padding: 0 5px;
       }
-      
+
       .password-group {
         position: relative;
       }
-      
+
       .password-toggle {
         position: absolute;
         right: 1rem;
@@ -170,17 +171,17 @@
         cursor: pointer;
         color: #767676;
       }
-      
+
       .terms-container {
         margin-bottom: 1.5rem;
         font-size: 14px;
       }
-      
+
       .terms-container a {
         color: var(--primary-color);
         text-decoration: underline;
       }
-      
+
       .btn {
         display: block;
         width: 100%;
@@ -194,28 +195,28 @@
         cursor: pointer;
         transition: background-color 0.2s;
       }
-      
+
       .btn:hover {
         background-color: #004a3f;
       }
-      
+
       .login-link {
         text-align: center;
         margin-top: 2rem;
         padding: 1rem;
       }
-      
+
       .login-link p {
         font-size: 16px;
         color: var(--text-color);
       }
-      
+
       .login-link a {
         color: var(--primary-color);
         text-decoration: underline;
         font-weight: bold;
       }
-      
+
       /* Error message */
       .error-message {
         background-color: #fde8e9;
@@ -226,11 +227,11 @@
         font-size: 14px;
         display: none;
       }
-      
+
       .error-message.show {
         display: block;
       }
-      
+
       /* Success message */
       .success-message {
         background-color: #e8f6ef;
@@ -241,11 +242,11 @@
         font-size: 14px;
         display: none;
       }
-      
+
       .success-message.show {
         display: block;
       }
-      
+
       /* Password strength indicator */
       .password-strength {
         height: 5px;
@@ -254,29 +255,29 @@
         background: #e0e0e0;
         border-radius: 2px;
       }
-      
+
       .password-strength span {
         display: block;
         height: 100%;
         border-radius: 2px;
         transition: width 0.3s ease-in-out;
       }
-      
+
       .strength-weak {
         width: 33%;
         background-color: #ff4d4f;
       }
-      
+
       .strength-medium {
         width: 66%;
         background-color: #faad14;
       }
-      
+
       .strength-strong {
         width: 100%;
         background-color: #52c41a;
       }
-      
+
       /* Utility classes */
       .screen-reader-only {
         position: absolute;
@@ -288,25 +289,25 @@
         clip: rect(0, 0, 0, 0);
         border: 0;
       }
-      
+
       .hide {
         display: none;
       }
-      
+
       /* Error states */
       .error .form-control {
         border-color: var(--error-color);
       }
-      
+
       @media screen and (max-width: 600px) {
         .container {
           padding: 0;
         }
-        
+
         .signup-box {
           border-radius: 0;
         }
-        
+
         .back-link {
           padding: 1rem;
         }
@@ -317,33 +318,77 @@
   <body>
     <div class="container">
       <div class="back-link">
-        <a href="{{ url_for('login') }}">Back</a>
+        <a href="{{ url_for('users.login') }}">Back</a>
       </div>
-      
+
       <div class="signup-box">
         <div class="signup-header">
-          <img class="logo" src="{{ url_for('static', filename='images/dublin-bike-logo.png') }}" alt="Dublin Bikes">
+          <img
+            class="logo"
+            src="{{ url_for('static', filename='images/dublin-bike-logo.png') }}"
+            alt="Dublin Bikes"
+          />
           <h1 class="signup-title">Create Account</h1>
         </div>
-        
+
         <div id="error-message" class="error-message"></div>
         <div id="success-message" class="success-message"></div>
-        
-        <form class="signup-form" method="POST" action="{{ url_for('create_account') }}">
+
+        <form
+          class="signup-form"
+          method="POST"
+          action="{{ url_for('users.create_account') }}"
+        >
           <div class="form-group">
-            <input class="form-control" id="fullname" name="fullname" type="text" placeholder=" " required autocomplete="name" autofocus value="{{ fullname|default('', true) }}">
+            <input
+              class="form-control"
+              id="fullname"
+              name="fullname"
+              type="text"
+              placeholder=" "
+              required
+              autocomplete="name"
+              autofocus
+              value="{{ fullname|default('', true) }}"
+            />
             <label class="form-label" for="fullname">Full Name</label>
           </div>
-          
+
           <div class="form-group">
-            <input class="form-control" id="email" name="email" type="email" placeholder=" " required autocomplete="email" autocapitalize="none" spellcheck="false" value="{{ email|default('', true) }}">
+            <input
+              class="form-control"
+              id="email"
+              name="email"
+              type="email"
+              placeholder=" "
+              required
+              autocomplete="email"
+              autocapitalize="none"
+              spellcheck="false"
+              value="{{ email|default('', true) }}"
+            />
             <label class="form-label" for="email">Email address</label>
           </div>
-          
+
           <div class="form-group password-group">
-            <input class="form-control" id="password" name="password" type="password" placeholder=" " required autocomplete="new-password" autocapitalize="none" spellcheck="false">
+            <input
+              class="form-control"
+              id="password"
+              name="password"
+              type="password"
+              placeholder=" "
+              required
+              autocomplete="new-password"
+              autocapitalize="none"
+              spellcheck="false"
+            />
             <label class="form-label" for="password">Password</label>
-            <button type="button" class="password-toggle" id="password-toggle" aria-label="Show password">
+            <button
+              type="button"
+              class="password-toggle"
+              id="password-toggle"
+              aria-label="Show password"
+            >
               <span id="show-password-text">Show</span>
               <span id="hide-password-text" class="hide">Hide</span>
             </button>
@@ -351,177 +396,234 @@
               <span id="password-strength-meter"></span>
             </div>
           </div>
-          
+
           <div class="form-group password-group">
-            <input class="form-control" id="confirm-password" name="confirm-password" type="password" placeholder=" " required autocomplete="new-password" autocapitalize="none" spellcheck="false">
-            <label class="form-label" for="confirm-password">Confirm Password</label>
-            <button type="button" class="password-toggle" id="confirm-password-toggle" aria-label="Show password">
+            <input
+              class="form-control"
+              id="confirm-password"
+              name="confirm-password"
+              type="password"
+              placeholder=" "
+              required
+              autocomplete="new-password"
+              autocapitalize="none"
+              spellcheck="false"
+            />
+            <label class="form-label" for="confirm-password"
+              >Confirm Password</label
+            >
+            <button
+              type="button"
+              class="password-toggle"
+              id="confirm-password-toggle"
+              aria-label="Show password"
+            >
               <span id="show-confirm-password-text">Show</span>
               <span id="hide-confirm-password-text" class="hide">Hide</span>
             </button>
           </div>
-          
+
           <div class="terms-container">
             <label>
-              <input type="checkbox" name="terms" required {% if terms_accepted %}checked{% endif %}>
-              I agree to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a>
+              <input
+                type="checkbox"
+                name="terms"
+                required
+                {%
+                if
+                terms_accepted
+                %}checked{%
+                endif
+                %}
+              />
+              I agree to the <a href="#">Terms and Conditions</a> and
+              <a href="#">Privacy Policy</a>
             </label>
           </div>
-          
-          <button type="submit" name="action" value="default" class="btn">Create Account</button>
+
+          <button type="submit" name="action" value="default" class="btn">
+            Create Account
+          </button>
         </form>
       </div>
-      
+
       <div class="login-link">
-        <p>Already have an account? <a href="{{ url_for('login') }}">Sign In</a></p>
+        <p>
+          Already have an account?
+          <a href="{{ url_for('users.login') }}">Sign In</a>
+        </p>
       </div>
     </div>
-    
+
     <script>
       // Check the session store for error or success messages
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener("DOMContentLoaded", function () {
         // Check for error or success messages in the URL parameters
         const urlParams = new URLSearchParams(window.location.search);
-        const errorMessage = urlParams.get('error');
-        const successMessage = urlParams.get('success');
-        
+        const errorMessage = urlParams.get("error");
+        const successMessage = urlParams.get("success");
+
         if (errorMessage) {
-          const errorElement = document.getElementById('error-message');
+          const errorElement = document.getElementById("error-message");
           errorElement.textContent = decodeURIComponent(errorMessage);
-          errorElement.classList.add('show');
+          errorElement.classList.add("show");
         }
-        
+
         if (successMessage) {
-          const successElement = document.getElementById('success-message');
+          const successElement = document.getElementById("success-message");
           successElement.textContent = decodeURIComponent(successMessage);
-          successElement.classList.add('show');
+          successElement.classList.add("show");
         }
-        
+
         // Password toggle functionality
-        function setupPasswordToggle(inputId, toggleId, showTextId, hideTextId) {
+        function setupPasswordToggle(
+          inputId,
+          toggleId,
+          showTextId,
+          hideTextId
+        ) {
           const passwordInput = document.getElementById(inputId);
           const passwordToggle = document.getElementById(toggleId);
           const showText = document.getElementById(showTextId);
           const hideText = document.getElementById(hideTextId);
-          
+
           if (passwordToggle) {
-            passwordToggle.addEventListener('click', function() {
-              const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-              passwordInput.setAttribute('type', type);
-              
+            passwordToggle.addEventListener("click", function () {
+              const type =
+                passwordInput.getAttribute("type") === "password"
+                  ? "text"
+                  : "password";
+              passwordInput.setAttribute("type", type);
+
               // Toggle text visibility
-              showText.classList.toggle('hide');
-              hideText.classList.toggle('hide');
-              
+              showText.classList.toggle("hide");
+              hideText.classList.toggle("hide");
+
               // Update the aria-label
-              passwordToggle.setAttribute('aria-label', 
-                type === 'password' ? 'Show password' : 'Hide password');
+              passwordToggle.setAttribute(
+                "aria-label",
+                type === "password" ? "Show password" : "Hide password"
+              );
             });
           }
         }
-        
+
         // Setup password toggles
-        setupPasswordToggle('password', 'password-toggle', 'show-password-text', 'hide-password-text');
-        setupPasswordToggle('confirm-password', 'confirm-password-toggle', 'show-confirm-password-text', 'hide-confirm-password-text');
-        
+        setupPasswordToggle(
+          "password",
+          "password-toggle",
+          "show-password-text",
+          "hide-password-text"
+        );
+        setupPasswordToggle(
+          "confirm-password",
+          "confirm-password-toggle",
+          "show-confirm-password-text",
+          "hide-confirm-password-text"
+        );
+
         // Password strength meter
-        const passwordInput = document.getElementById('password');
-        const strengthMeter = document.getElementById('password-strength-meter');
-        
-        passwordInput.addEventListener('input', function() {
+        const passwordInput = document.getElementById("password");
+        const strengthMeter = document.getElementById(
+          "password-strength-meter"
+        );
+
+        passwordInput.addEventListener("input", function () {
           const password = this.value;
           let strength = 0;
-          
+
           // Check for length
           if (password.length >= 8) strength += 1;
-          
+
           // Check for mixed case
           if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength += 1;
-          
+
           // Check for numbers
           if (password.match(/\d/)) strength += 1;
-          
+
           // Check for special characters
           if (password.match(/[^a-zA-Z\d]/)) strength += 1;
-          
+
           // Update the strength meter
-          strengthMeter.className = '';
+          strengthMeter.className = "";
           if (password.length === 0) {
-            strengthMeter.style.width = '0';
+            strengthMeter.style.width = "0";
           } else if (strength < 2) {
-            strengthMeter.classList.add('strength-weak');
+            strengthMeter.classList.add("strength-weak");
           } else if (strength < 4) {
-            strengthMeter.classList.add('strength-medium');
+            strengthMeter.classList.add("strength-medium");
           } else {
-            strengthMeter.classList.add('strength-strong');
+            strengthMeter.classList.add("strength-strong");
           }
         });
-        
+
         // Float labels when input has content (for when autofill happens)
-        const inputs = document.querySelectorAll('.form-control');
-        inputs.forEach(input => {
+        const inputs = document.querySelectorAll(".form-control");
+        inputs.forEach((input) => {
           if (input.value) {
-            input.classList.add('has-value');
+            input.classList.add("has-value");
           }
-          
-          input.addEventListener('input', function() {
+
+          input.addEventListener("input", function () {
             if (this.value) {
-              this.classList.add('has-value');
+              this.classList.add("has-value");
             } else {
-              this.classList.remove('has-value');
+              this.classList.remove("has-value");
             }
           });
         });
-        
+
         // Client form validation
-        const form = document.querySelector('.signup-form');
-        form.addEventListener('submit', function(event) {
-          const password = document.getElementById('password').value;
-          const confirmPassword = document.getElementById('confirm-password').value;
-          const email = document.getElementById('email').value;
+        const form = document.querySelector(".signup-form");
+        form.addEventListener("submit", function (event) {
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirm-password").value;
+          const email = document.getElementById("email").value;
           const terms = document.querySelector('input[name="terms"]').checked;
           let valid = true;
-          let errorMessage = '';
-          
+          let errorMessage = "";
+
           // Verification mailbox format
           const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           if (!emailPattern.test(email)) {
             valid = false;
-            errorMessage = 'Please enter a valid email address';
+            errorMessage = "Please enter a valid email address";
           }
-          
+
           // Verify password match
           if (password !== confirmPassword) {
             valid = false;
-            errorMessage = 'The two passwords do not match';
+            errorMessage = "The two passwords do not match";
           }
-          
+
           // Verify password strength
           const hasUpperCase = /[A-Z]/.test(password);
           const hasLowerCase = /[a-z]/.test(password);
           const hasNumbers = /\d/.test(password);
           const isLongEnough = password.length >= 8;
-          
+
           if (!isLongEnough || !hasUpperCase || !hasLowerCase || !hasNumbers) {
             valid = false;
-            errorMessage = 'Passwords must be at least 8 characters long and contain uppercase letters, lowercase letters, and numbers';
+            errorMessage =
+              "Passwords must be at least 8 characters long and contain uppercase letters, lowercase letters, and numbers";
           }
-          
+
           // Acceptance of verification terms
           if (!terms) {
             valid = false;
-            errorMessage = 'You must agree to the terms and conditions';
+            errorMessage = "You must agree to the terms and conditions";
           }
-          
+
           // If the authentication fails, an error message is displayed
           if (!valid) {
             event.preventDefault();
-            const errorElement = document.getElementById('error-message');
+            const errorElement = document.getElementById("error-message");
             errorElement.textContent = errorMessage;
-            errorElement.classList.add('show');
-            
+            errorElement.classList.add("show");
+
             // Scroll to the error message
-            errorElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            errorElement.scrollIntoView({ behavior: "smooth", block: "start" });
           }
         });
       });
