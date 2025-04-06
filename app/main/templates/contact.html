@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block title %} Contact {% endblock %}{% block content %}
+<section class="contact-section">
+  <div class="contact-container">
+    <div class="contact-info">
+      <h2>GET IN TOUCH</h2>
+      <p>
+        Please contact us if you need anything. leave us your feedback
+        blablablaabl
+      </p>
+      <ul class="contact-list">
+        <li><i class="fas fa-phone"></i> +1 234 567 8901</li>
+        <li><i class="fas fa-envelope"></i> mail@example.com</li>
+        <li>
+          <i class="fas fa-map-marker-alt"></i> Eiusmod Tempor inClore Place,
+          Kingsport 56777
+        </li>
+      </ul>
+    </div>
+    <div class="contact-form">
+      {% if name %}
+      <h1>{{ name }}, we've received your feedback successfully!</h1>
+      {% else %}
+      <div class="contact-form">
+        <h2>SEND US A MESSAGE</h2>
+
+        <form method="POST">
+          {{ form.hidden_tag() }}
+          <!-- 渲染 CSRF 令牌 -->{{ form.name.label(class="form-label") }} {{
+          form.name(class="form-control") }}
+          <br />
+          {{ form.email.label(class="form-label") }} {{
+          form.email(class="form-control") }}
+          <br />{{ form.phone.label(class="form-label") }} {{
+          form.phone(class="form-control") }}
+          <br />
+          {{ form.review.label(class="form-label") }} {{
+          form.review(class="form-review") }} {{ form.submit(class="submit-btn")
+          }}
+        </form>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

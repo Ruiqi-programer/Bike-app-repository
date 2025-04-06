@@ -1,0 +1,51 @@
+{% extends "base.html" %}{% block title %} Subscription {% endblock %} {% block
+content %}
+
+<div class="subscription-tabs">
+  {% for option in subscription_options %}
+  <a href="{{ url_for('main.business', ticket_type=option.ticket_type) }}">
+    <button class="tab-button" onclick="showTab('{{ option.title }}')">
+      {{ option.title }}
+    </button>
+  </a>
+  {% endfor %}
+</div>
+
+<div class="subscription-content">
+  {% for option in subscription_options %}
+  <div class="subscription-card" id="{{ option.title }}" style="display: none">
+    <h2>{{ option.title }}</h2>
+    <p>{{ option.description }}</p>
+    <div><strong>€{{ option.price }}</strong></div>
+    <a href="{{ url_for('main.business', ticket_type=option.ticket_type) }}">
+      <button class="choose-button">CHOOSE THIS SUBSCRIPTION OPTION</button>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+
+<script>
+  function showTab(title, url) {
+    const cards = document.querySelectorAll(".subscription-card");
+    cards.forEach((card) => (card.style.display = "none"));
+
+    const activeCard = document.getElementById(title);
+    if (activeCard) {
+      activeCard.style.display = "block";
+    }
+
+    // 更新地址栏（不会跳转）
+    if (history.pushState) {
+      history.pushState(null, null, url);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    showTab(
+      "{{ selected.title }}",
+      "{{ url_for('main.business', ticket_type=selected.ticket_type) }}"
+    );
+  });
+</script>
+
+{% endblock %}

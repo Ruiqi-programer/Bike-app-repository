@@ -1,0 +1,127 @@
+.contact-section {
+  padding: 60px 30px;
+  background-color: #fff;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.contact-info,
+.contact-form {
+  flex: 1 1 400px;
+}
+
+.contact-info h2,
+.contact-form h2 {
+  color: #34c759;
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.contact-info p {
+  color: #888;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  align-items: left;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 16px;
+  color: #888;
+  gap: 15px;
+  padding-left: 0;
+}
+
+.contact-list li {
+  display: flex;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  color: #888;
+  font-size: 16px;
+}
+
+.contact-list i {
+  font-size: 20px;
+  color: #34c759;
+  background: #d75c4b10;
+  padding: 10px;
+  border-radius: 50%;
+  margin-right: 15px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.contact-form .form-label .form-review {
+  margin-bottom: 4px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  font-size: 14px;
+  resize: none;
+}
+
+.form-review {
+  margin-top: auto;
+  resize: vertical;
+}
+.submit-btn {
+  width: 140px;
+  padding: 10px;
+  background: transparent;
+  border: 2px solid #34c759;
+  color: #34c759;
+  font-weight: bold;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #34c759;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+  }
+
+  .contact-form button {
+    width: 100%;
+  }
+}

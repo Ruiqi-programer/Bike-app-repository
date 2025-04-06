@@ -158,5 +158,24 @@ def create_tables():
             )
         """))
 
+ # Create `users` table 
+        connection.execute(text("""
+            CREATE TABLE IF NOT EXISTS users (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                fullname VARCHAR(255) NOT NULL,
+                email VARCHAR(255) NOT NULL UNIQUE,
+                password VARCHAR(255) NOT NULL,
+                terms_accepted TINYINT(1) NOT NULL DEFAULT 0,
+                created_at DATETIME NOT NULL,
+                last_login DATETIME,
+                status ENUM('active', 'inactive', 'suspended') DEFAULT 'active',
+                verification_token VARCHAR(255),
+                is_verified TINYINT(1) DEFAULT 0,
+                reset_token VARCHAR(255),
+                reset_token_expiry DATETIME
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+        """))
+
+
     print(" Database tables checked/created successfully!")
 

@@ -4,14 +4,14 @@ from app.models.db import engine
 from config import Config
 import os
 
-main = Blueprint('main', __name__)
+stations = Blueprint('stations', __name__, template_folder='templates', static_folder='static')
 
-@main.route("/")
-def index():
-    return render_template("index.html",google_maps_api_key=Config.GOOGLE_MAPS_API_KEY)
+@stations.route("/map")
+def map():
+    return render_template("stations.html",google_maps_api_key=Config.GOOGLE_MAPS_API_KEY)
 
 
-@main.route("/api/weather", methods=["GET"])
+@stations.route("/api/weather", methods=["GET"])
 def weather():
     try:
         with engine.connect() as connection:
@@ -50,8 +50,8 @@ def weather():
         print("❌ Weather DB error:", e)
         return jsonify({"error": "Could not fetch weather"}), 500
 
-@main.route("/api/stations", methods=["GET"])
-def stations():
+@stations.route("/api/stations", methods=["GET"])
+def api_stations():
     try:
         with engine.connect() as connection:
             result = connection.execute(text("""

@@ -1,0 +1,357 @@
+{% extends 'base.html' %} {% block content %}
+<!--cover -->
+<section id="home" class="welcome-hero">
+  <div class="container">
+    <div class="welcome-hero-txt">
+      <h2>Explore Dublin with Freedom on Two Wheels!</h2>
+      <p>
+        Dublin Bikes makes city travel easier and greener. Whether you're
+        commuting, heading to class, or simply exploring, our convenient bike
+        rental service lets you enjoy Dublin at your own pace.
+      </p>
+    </div>
+    <div class="welcome-hero-serch-box">
+      <h2>Find a Station Near You</h2>
+      <div class="welcome-hero-form">
+        <div class="single-welcome-hero-form">
+          <h3>Station</h3>
+          <form action="index.html">
+            <input type="text" placeholder="Ex: Abbey street" />
+          </form>
+          <div class="welcome-hero-form-icon">
+            <i class="flaticon-list-with-dots"></i>
+          </div>
+        </div>
+        <div class="single-welcome-hero-form">
+          <h3>Time</h3>
+          <form action="index.html">
+            <input type="text" placeholder="Ex: 9AM" />
+          </form>
+          <div class="welcome-hero-form-icon">
+            <i class="flaticon-gps-fixed-indicator"></i>
+          </div>
+        </div>
+      </div>
+      <div class="welcome-hero-serch">
+        <button class="welcome-hero-btn" onclick="window.location.href='#'">
+          check avability <i data-feather="search"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/.welcome-hero-->
+<!--welcome-hero end -->
+
+<!--works start -->
+<section id="works" class="works">
+  <div class="container">
+    <div class="section-header">
+      <h2>Subscription Options</h2>
+      <p>
+        Whether you are a regular cyclist or an occasional user, choose a
+        subscription option that works for you.
+      </p>
+    </div>
+    <!--/.section-header-->
+    <div class="works-content">
+      <div class="row">
+        <div class="single-subscription">
+          <div class="single-subscription-card">
+            <div class="single-subscription-icon">
+              <i class="flaticon-lightbulb-idea"></i>
+            </div>
+            <h2>
+              <a href="{{ url_for('main.business', ticket_type='oneday') }}"
+                ><span> ONE</span> day ticket</a
+              >
+            </h2>
+            <p>
+              A 1 Day Ticket will give you access to all the benefits of the
+              dublinbikes service. Ideal for day-trippers, tourists and visitors
+              as a way of getting around and exploring the city.
+            </p>
+            <a href="{{ url_for('main.business', ticket_type='oneday') }}">
+              <button class="single-subscription-btn">Read More</button>
+            </a>
+          </div>
+        </div>
+        <div class="single-subscription">
+          <div class="single-subscription-card">
+            <div class="single-subscription-icon">
+              <i class="flaticon-networking"></i>
+            </div>
+            <h2>
+              <a href="{{ url_for('main.business', ticket_type='threedays') }}"
+                ><span> THREE</span> days ticket</a
+              >
+            </h2>
+            <p>
+              A 3 Day Ticket will give you access to all the benefits of the
+              dublinbikes service. Ideal for tourists and visitors as a way of
+              getting around and exploring the city.
+            </p>
+            <a href="{{ url_for('main.business', ticket_type='threedays') }}">
+              <button class="single-subscription-btn">Read More</button>
+            </a>
+          </div>
+        </div>
+        <div class="single-subscription">
+          <div class="single-subscription-card">
+            <div class="single-subscription-icon">
+              <i class="flaticon-location-on-road"></i>
+            </div>
+            <h2>
+              <a href="{{ url_for('main.business', ticket_type='annual') }}"
+                ><span>Annual</span> Subscription</a
+              >
+            </h2>
+            <p>
+              With an Annual Subscription you can rent a bike 365 days a year
+              for an annual fee of €35.
+            </p>
+            <a href="{{ url_for('main.business', ticket_type='annual') }}">
+              <button class="single-subscription-btn">Read More</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="{{ url_for('main.business', ticket_type='discount') }}">
+    <button class="work-btn">Read More</button>
+  </a>
+  <!--/.container-->
+</section>
+<!--/.works-->
+<!--works end -->
+
+<!--about company start -->
+<section id="about" class="about">
+  <div class="container">
+    <div class="section-header">
+      <h2>about dublin bike</h2>
+      <p>
+        We are a fast-growing start-up with a footprint In Dublin, London, and
+        Utrecht. We are currently expanding to other cities internatonally!
+      </p>
+      <p>
+        Launched in 2019 we operate MOBY MOVE, the Dublin bike share scheme, and
+        have now expanded to other locations nationally. MOBY Delivery Fleets is
+        our international B2B business, providing managed fleets to the world’s
+        leading food delivery companies.
+      </p>
+    </div>
+    <!--/.section-header-->
+
+    <a href="#">
+      <button class="about-btn">Read More</button>
+    </a>
+  </div>
+  <!--/.container-->
+</section>
+<!--/.company-->
+<!--company end -->
+
+<!-- statistics strat -->
+<section id="statistics" class="statistics">
+  <div class="statistics-container">
+    <div class="statistics-counter">
+      <div class="single-ststistics-box">
+        <div class="statistics-content">
+          <div class="counter">90</div>
+          <span>K+</span>
+        </div>
+        <h3>Bikes</h3>
+      </div>
+
+      <div class="single-ststistics-box">
+        <div class="statistics-content">
+          <div class="counter">40</div>
+          <span>k+</span>
+        </div>
+        <h3>listing categories</h3>
+      </div>
+
+      <div class="single-ststistics-box">
+        <div class="statistics-content">
+          <div class="counter">65</div>
+          <span>k+</span>
+        </div>
+        <h3>visitors</h3>
+      </div>
+
+      <div class="single-ststistics-box">
+        <div class="statistics-content">
+          <div class="counter">50</div>
+          <span>k+</span>
+        </div>
+        <h3>happy clients</h3>
+      </div>
+    </div>
+    <!--/.statistics-counter-->
+  </div>
+  <!--/.container-->
+</section>
+<!--/.counter-->
+<!-- statistics end -->
+
+<!-- blog start -->
+<section id="blog" class="blog">
+  <div class="blog-container">
+    <div class="section-header">
+      <h2>news and articles</h2>
+      <p>Always up to date with our latest News and Articles</p>
+    </div>
+    <!--/.section-header-->
+    <div class="blog-content">
+      <div class="row">
+        <div class="single-blog-item">
+          <div class="single-blog-item-img">
+            <img
+              src="{{ url_for('static', filename='images/blog/b1.jpg') }}"
+              alt="blog image"
+            />
+          </div>
+          <div class="single-blog-item-txt">
+            <h2>
+              <a href="#"
+                >Dublin’s Cycling Revolution: The Rise of Bike Rentals
+              </a>
+            </h2>
+            <h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
+            <p>
+              Dublin has embraced cycling like never before! With an increasing
+              number of bike rental stations across the city, more residents and
+              visitors are choosing bicycles as their preferred mode of
+              transport. Discover how Dublin is becoming a cycling-friendly city
+              and why bike rentals are a game-changer.
+            </p>
+          </div>
+        </div>
+
+        <div class="single-blog-item">
+          <div class="single-blog-item-img">
+            <img
+              src="{{ url_for('static', filename='images/blog/b2.jpg') }}"
+              alt="blog image"
+            />
+          </div>
+          <div class="single-blog-item-txt">
+            <h2>
+              <a href="#"
+                >Eco-Friendly Commuting: How Bike Rentals Help Reduce Carbon
+                Footprint
+              </a>
+            </h2>
+            <h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
+            <p>
+              Biking isn’t just convenient—it’s also great for the environment!
+              Learn how choosing bike rentals over cars and public transport can
+              contribute to a cleaner and greener Dublin.
+            </p>
+          </div>
+        </div>
+
+        <div class="single-blog-item">
+          <div class="single-blog-item-img">
+            <img
+              src="{{ url_for('static', filename='images/blog/b3.jpg') }}"
+              alt="blog image"
+            />
+          </div>
+          <div class="single-blog-item-txt">
+            <h2>
+              <a href="#"
+                >Student Special: How Dublin Bikes Make Campus Life Easier
+              </a>
+            </h2>
+            <h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
+            <p>
+              Are you a student in Dublin? Discover why bike rentals are the
+              perfect solution for getting to lectures, running errands, and
+              exploring the city—all on a student-friendly budget!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/.container-->
+
+  <a href="#">
+    <button class="blog-btn">Read More</button>
+  </a>
+</section>
+<!--/.blog-->
+<!--blog end -->
+
+<!-- review start -->
+<section id="reviews" class="reviews">
+  <div class="section-header">
+    <h2>CLIENTS REVIEWS</h2>
+    <p>What our clients say about us</p>
+  </div>
+
+  <div class="reviews-container">
+    <button id="prevBtn" class="nav-btn">❮</button>
+    <div class="reviews-wrapper">
+      <div class="reviews-content">
+        {% for review in reviews %}
+        <div class="single-testimonial-box">
+          <div class="testimonial-description">
+            <div class="testimonial-info">
+              <div class="testimonial-img">
+                <img
+                  src="{{ url_for('static', filename=review.image) }}"
+                  alt="client"
+                />
+              </div>
+              <div class="testimonial-person">
+                <h2>{{ review.name }}</h2>
+                <h4>{{ review.location }}</h4>
+                <div class="testimonial-person-star">★★★★★</div>
+              </div>
+            </div>
+            <div class="testimonial-comment">
+              <p>{{ review.comment }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <button id="nextBtn" class="nav-btn">❯</button>
+  </div>
+</section>
+<!-- review ends -->
+
+<!-- join -->
+<!--subscription start -->
+<section id="join" class="join">
+  <div class="join-container">
+    <div class="join-title">
+      <h2>Ride Green, Ride Smart!</h2>
+      <p>
+        Join thousands of Dubliners in embracing a cleaner, healthier way to
+        travel. Get started today!
+      </p>
+    </div>
+
+    <div class="join-input-group">
+      <form action="#" method="POST">
+        <input
+          type="email"
+          class="join-input-form"
+          placeholder="Enter your email here"
+          required
+        />
+        <button class="join-btn" type="submit">creat account</button>
+      </form>
+    </div>
+  </div>
+</section>
+<!--/subscription-->
+<!--subscription end -->
+
+{% endblock %}

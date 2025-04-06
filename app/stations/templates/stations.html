@@ -1,5 +1,5 @@
-{% extends 'base.html' %} {% block title %}DublinBikes | Map {% endblock %} {%
-block content %}
+{% extends 'base.html' %} {% block title %} Map {% endblock %} {% block content
+%}
 <header>
   <button id="weather-btn" title="View Weather">
     <i class="fa-solid fa-cloud-sun"></i>
@@ -53,14 +53,12 @@ block content %}
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <!-- 使用 ESM 的主入口 -->
-  <script type="module" src="/static/js/app.js"></script>
+  <script
+    type="module"
+    src="{{ url_for('static', filename='js/app.js') }}"
+  ></script>
 
   <!-- Google Maps 仍旧使用 callback 机制 -->
-  <!-- <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnx_FmRZPRQYeqfTrLghRVsb6YwWFBEuU&callback=initMap"
-    async
-    defer
-  ></script> -->
   <script
     src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap&v=weekly&libraries=marker"
     async
