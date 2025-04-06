@@ -22,6 +22,8 @@ export function loadMapAndStations() {
     center: { lat: 53.349805, lng: -6.26031 },
     zoom: 13,
     disableDefaultUI: true,
+    mapId: "8adf177586ed1224",
+    gestureHandling: "greedy",
   });
 
   fetchStations();
@@ -99,13 +101,13 @@ function fetchStations() {
             ? "#f39c12"
             : "#2ecc71";
 
-        const marker = new google.maps.Marker({
+        const marker = new google.maps.marker.AdvancedMarkerElement({
           position: {
             lat: parseFloat(station.latitude),
             lng: parseFloat(station.longitude),
           },
           map,
-          icon: createMarkerIcon(color, station.available_bikes),
+          content: createMarkerIcon(color, station.available_bikes),
           title: station.name,
         });
 
@@ -121,13 +123,13 @@ function fetchStations() {
           `,
         });
 
-        marker.addListener("click", () => {
+        marker.addListener("gmp-click", () => {
           // 关闭之前打开的 InfoWindow
           if (currentInfoWindow) {
             currentInfoWindow.close();
           }
           // 打开当前 InfoWindow
-          map.panTo(marker.getPosition());
+          map.panTo(marker.position);
           smoothZoom(map, 17);
           infoWindow.open(map, marker);
 
@@ -174,19 +176,20 @@ function clearMarkers() {
 }
 
 function createMarkerIcon(color, count) {
-  const svg = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="42" viewBox="0 0 40 50">
-        <path d="M20 0C9 0 0 9 0 20c0 11 20 30 20 30s20-19 20-30c0-11-9-20-20-20z"
-          fill="${color}" stroke="black" stroke-width="2"/>
-        <text x="20" y="28" font-size="15" font-weight="bold" text-anchor="middle" fill="black">
-          ${count}
-        </text>
-      </svg>`;
-  return {
-    url: "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg),
-    scaledSize: new google.maps.Size(32, 42),
-    anchor: new google.maps.Point(16, 42),
-  };
+  const el = document.createElement("div");
+  el.className = "custom-marker";
+  el.style.background = color;
+  el.style.border = "2px solid black";
+  el.style.borderRadius = "50%";
+  el.style.width = "32px";
+  el.style.height = "32px";
+  el.style.display = "flex";
+  el.style.alignItems = "center";
+  el.style.justifyContent = "center";
+  el.style.fontWeight = "bold";
+  el.style.color = "black";
+  el.innerText = count;
+  return el;
 }
 
 function smoothZoom(map, targetZoom) {

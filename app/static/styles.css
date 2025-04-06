@@ -140,6 +140,11 @@ button:hover {
   box-shadow: none;
 }
 
+.custom-marker:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  box-shadow: 0 0 5px #999;
+}
 
 .loading-spinner {
   width: 60px;
