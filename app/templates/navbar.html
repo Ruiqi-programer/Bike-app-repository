@@ -2,23 +2,22 @@
   <div class="nav">
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='styles.css') }}"
+      href="{{ url_for('static', filename='style.css') }}"
     />
-    <div class="nav-main-header">
+    <div class="main-header">
       <h2 class="logo">
         <a href="{{ url_for('main.index') }}"><span>Dublin</span>Bike</a>
       </h2>
-      <nav class="nav-links">
-        <a href="{{ url_for('main.index') }}">HOME</a>
-        <a href="{{ url_for('stations.map') }}">MAP</a>
-        <a href="{{ url_for('main.business', ticket_type='oneday') }}"
-          >BUSINESS</a
-        >
-        <a href="#">CONTACT</a>
-      </nav>
+
       <div class="header-right">
-        <input type="text" class="search-bar" placeholder="Search..." />
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <nav class="nav-links">
+          <a href="{{ url_for('main.index') }}">HOME</a>
+          <a href="{{ url_for('stations.map') }}">MAP</a>
+          <a href="{{ url_for('main.business', ticket_type='oneday') }}"
+            >BUSINESS</a
+          >
+          <a href="{{ url_for('main.contact') }}">CONTACT</a>
+        </nav>
         <div class="btn-signin">
           <a href="{{ url_for('users.login') }}">Join</a>
         </div>

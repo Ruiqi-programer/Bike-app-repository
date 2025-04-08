@@ -1,6 +1,18 @@
-{% extends 'base.html' %} {% block title %} Contact {% endblock %}{% block content %}
+{% extends 'base.html' %} {% block title %} Contact {% endblock %}{% block
+styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/style_contact.css') }}"
+/>
+{% endblock %}{% block content %}
 <section class="contact-section">
   <div class="contact-container">
+    <!-- Display flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div class="flash-message flash-{{ category }}">{{ message }}</div>
+    {% endfor %} {% endif %} {% endwith %}
+
     <div class="contact-info">
       <h2>GET IN TOUCH</h2>
       <p>
@@ -9,7 +21,7 @@
       </p>
       <ul class="contact-list">
         <li><i class="fas fa-phone"></i> +1 234 567 8901</li>
-        <li><i class="fas fa-envelope"></i> mail@example.com</li>
+        <li><i class="fas fa-envelope"></i> dublinbike@hotmail</li>
         <li>
           <i class="fas fa-map-marker-alt"></i> Eiusmod Tempor inClore Place,
           Kingsport 56777
@@ -25,17 +37,31 @@
 
         <form method="POST">
           {{ form.hidden_tag() }}
-          <!-- 渲染 CSRF 令牌 -->{{ form.name.label(class="form-label") }} {{
-          form.name(class="form-control") }}
+          <!-- Name -->
+          <div class="form-group">
+            {{ form.name.label(class="form-label") }} {{
+            form.name(class="form-control") }}
+          </div>
           <br />
-          {{ form.email.label(class="form-label") }} {{
-          form.email(class="form-control") }}
-          <br />{{ form.phone.label(class="form-label") }} {{
-          form.phone(class="form-control") }}
+          <!-- Email -->
+          <div class="form-group">
+            {{ form.email.label(class="form-label") }} {{
+            form.email(class="form-control") }}
+          </div>
           <br />
-          {{ form.review.label(class="form-label") }} {{
-          form.review(class="form-review") }} {{ form.submit(class="submit-btn")
-          }}
+          <!-- Phone -->
+          <div class="form-group">
+            {{ form.phone.label(class="form-label") }} {{
+            form.phone(class="form-control") }}
+          </div>
+          <br />
+          <!-- Review -->
+          <div class="form-group">
+            {{ form.review.label(class="form-label") }} {{
+            form.review(class="form-review") }}
+          </div>
+          <!-- Submit -->
+          {{ form.submit(class="submit-btn") }}
         </form>
       </div>
       {% endif %}

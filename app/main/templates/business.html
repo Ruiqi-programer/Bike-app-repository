@@ -1,5 +1,9 @@
-{% extends "base.html" %}{% block title %} Subscription {% endblock %} {% block
-content %}
+{% extends "base.html" %}{% block title %} | Subscription {% endblock %}{% block
+styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/style_business.css') }}"
+/>{% endblock %} {% block content %}
 
 <div class="subscription-tabs">
   {% for option in subscription_options %}
@@ -43,7 +47,7 @@ content %}
   document.addEventListener("DOMContentLoaded", function () {
     showTab(
       "{{ selected.title }}",
-      "{{ url_for('business', ticket_type=selected.ticket_type) }}"
+      "{{ url_for('main.business', ticket_type=selected.ticket_type) }}"
     );
   });
 </script>

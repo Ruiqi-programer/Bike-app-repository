@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template,abort
+from flask import Blueprint, render_template,abort,jsonify, request, flash, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField,SubmitField
 from wtforms.validators import DataRequired
@@ -6,6 +6,8 @@ from wtforms.widgets import TextArea
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from datetime import datetime
+from sqlalchemy import text
+from app.models.db import engine
 
 # 创建主页蓝图
 main = Blueprint('main', __name__, template_folder='templates', static_folder='static')
@@ -77,53 +79,60 @@ def business(ticket_type):
         abort(404)
 
 
+# create a Form class
+class ReviewForm(FlaskForm):
+    name=StringField("Name",validators=[DataRequired()])
+    email=StringField("Email",validators=[DataRequired()])
+    phone=StringField("Telephone",validators=[DataRequired()])
+    review=StringField("review",validators=[DataRequired()],widget=TextArea())
+    submit=SubmitField("Submit")
 
-# # add database
-# main.config['SQLALCHEMY_DATABASE_URI']=f'mysql+pymysql://{username}:{password}@{host}/{db_name}' 
-# # initialize the database
-# db=SQLAlchemy(main)
-# migrate=Migrate(main,db)
-
-# #create model (tables)
-# class Users(db.Model):
-#     id= db.Column(db.Integer,primary_key=True)
-#     name= db.Column(db.String(200),nullable=False)
-#     email= db.Column(db.String(120),nullable=False,unique=True)
-#     phone= db.Column(db.String(120),nullable=False,unique=True)
-#     review=db.Column(db.Text, nullable=True)
-#     date_added= db.Column(db.DateTime,default=datetime.utcnow)
+#create contact and review page
+@main.route('/contact',methods=['GET','POST'])
+def contact():
+    name = None
+    form = ReviewForm()
+    if form.validate_on_submit():
+        try:
+            with engine.connect() as conn:
+                with conn.begin():
+                    # Check if email or phone already exists
+                    existing_user = conn.execute(
+                        text("SELECT id FROM contact_reviews WHERE email = :email OR phone = :phone"),
+                        {"email": form.email.data, "phone": form.phone.data}
+                    ).fetchone()
+                    
+                    if existing_user:
+                        flash("A submission with this email or phone number already exists.", "error")
+                    else:
+                        # Insert new contact review
+                        conn.execute(
+                            text("""
+                                INSERT INTO contact_reviews (name, email, phone, review, date_added)
+                                VALUES (:name, :email, :phone, :review, :date_added)
+                            """),
+                            {
+                                "name": form.name.data,
+                                "email": form.email.data,
+                                "phone": form.phone.data,
+                                "review": form.review.data,
+                                "date_added": datetime.utcnow()
+                            }
+                        )
+                        name = form.name.data
+                        # Clear the form
+                        form.name.data = ''
+                        form.email.data = ''
+                        form.phone.data = ''
+                        form.review.data = ''
+                        flash("We've received your message successfully!", "success")
+        except Exception as e:
+            flash(f"Error submitting your message: {e}", "error")
     
-#     #create a string
-#     def __repr__(self):
-#         return '<Name %r>' % self.name
-
-# # create a Form class
-# class ReviewForm(FlaskForm):
-#     name=StringField("Name",validators=[DataRequired()])
-#     email=StringField("Email",validators=[DataRequired()])
-#     phone=StringField("Telephone",validators=[DataRequired()])
-#     review=StringField("review",validators=[DataRequired()],widget=TextArea())
-#     submit=SubmitField("Submit")
-
-
-
-# #create contact and review page
-# @main.route('/contact',methods=['GET','POST'])
-# def contact():
-#     name=None
-#     form=ReviewForm()
-#     if form.validate_on_submit():
-#         user=Users.query.filter_by(email=form.email.data).first()
-#         if user is None:
-#             user=Users(name=form.name.data,email=form.email.data,phone=form.phone.data,review=form.review.data)
-#             db.session.add(user)
-#             db.session.commit()
-#         name=form.name.data
-#         #clear the form
-#         form.name.data=''
-#         form.email.data=''
-#         form.phone.data=''
-#         form.review.data=''
-#         flash("We've received your message successfully!")
-#     our_users=Users.query.order_by(Users.date_added)
-#     return render_template("contact.html",form=form,name=name,our_users=our_users)
+    # Fetch all reviews (optional, if you want to display them)
+    with engine.connect() as conn:
+        our_users = conn.execute(
+            text("SELECT * FROM contact_reviews ORDER BY date_added DESC")
+        ).fetchall()
+    
+    return render_template("contact.html", form=form, name=name, our_users=our_users)

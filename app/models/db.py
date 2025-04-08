@@ -176,6 +176,20 @@ def create_tables():
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
         """))
 
+     # Create `contact_reviews` table for storing contact form submissions
+        connection.execute(text("""
+            CREATE TABLE IF NOT EXISTS contact_reviews (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                name VARCHAR(200) NOT NULL,
+                email VARCHAR(120) NOT NULL,
+                phone VARCHAR(120) NOT NULL,
+                review TEXT,
+                date_added DATETIME DEFAULT CURRENT_TIMESTAMP,
+                UNIQUE (email),
+                UNIQUE (phone)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+        """))
+
 
     print(" Database tables checked/created successfully!")
 

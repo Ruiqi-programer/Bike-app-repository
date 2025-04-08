@@ -1,27 +1,44 @@
-{% extends 'base.html' %} {% block title %} Map {% endblock %} {% block content
+{% extends 'base.html' %} {% block title %} | Map {% endblock %} {% block styles
 %}
-<header>
-  <button id="weather-btn" title="View Weather">
-    <i class="fa-solid fa-cloud-sun"></i>
-  </button>
-</header>
+<link
+  rel="stylesheet"
+  href="{{ url_for('static',filename='css/stations.css') }}"
+/>
+{% endblock %}{% block content %}
 
 <div id="map-filters" class="filter-panel">
-  <input type="text" id="station-search" placeholder="Search station name..." />
+  <!--left ：weather icon-->
+  <div class="filters-left">
+    <button id="weather-btn" title="View Weather">
+      <i class="fa-solid fa-cloud-sun"></i>
+    </button>
+  </div>
 
-  <div class="checkbox-group">
+  <!-- 中间：勾选框 -->
+  <div class="filters-center checkbox-group">
     <label><input type="checkbox" id="filter-bikes" /> Has Bikes</label>
     <label><input type="checkbox" id="filter-stands" /> Has Stands</label>
     <label><input type="checkbox" id="filter-not-empty" /> Not Empty</label>
     <label><input type="checkbox" id="filter-not-full" /> Not Full</label>
   </div>
+
+  <!-- 右侧：搜索框 -->
+  <div class="filters-right search-group">
+    <input
+      type="text"
+      id="station-search"
+      placeholder="Search station name..."
+    />
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </div>
 </div>
 
-<!-- 添加 loading 元素 -->
+<!-- Loading overlay -->
 <div id="loading" class="loading-overlay">
   <div class="loading-spinner"></div>
   <p>Loading stations...</p>
 </div>
+<!-- Map container -->
 <div id="map"></div>
 
 <!-- Weather Modal -->
@@ -47,23 +64,23 @@
       </section>
     </div>
   </div>
-  {% endblock %} {% block scripts %}
-  <!-- 第三方库先引入 -->
-  <script src="https://www.gstatic.com/charts/loader.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <!-- 使用 ESM 的主入口 -->
-  <script
-    type="module"
-    src="{{ url_for('static', filename='js/app.js') }}"
-  ></script>
-
-  <!-- Google Maps 仍旧使用 callback 机制 -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap&v=weekly&libraries=marker"
-    async
-    defer
-  ></script>
-
-  {% endblock %}
 </div>
+{% endblock %} {% block scripts %}
+<!-- 第三方库先引入 -->
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- 使用 ESM 的主入口 -->
+<script
+  type="module"
+  src="{{ url_for('static', filename='js/app.js') }}"
+></script>
+
+<!-- Google Maps 仍旧使用 callback 机制 -->
+<script
+  src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap&v=weekly&libraries=marker"
+  async
+  defer
+></script>
+
+{% endblock %}

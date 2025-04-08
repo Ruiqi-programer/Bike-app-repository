@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from flask_cors import CORS
+from flask_wtf.csrf import CSRFProtect
 from app.models.db import engine, create_database, create_tables
 from app.main.routes import main
 from app.stations.routes import stations
@@ -12,6 +13,9 @@ def create_app():
     # Session configuration
     app.secret_key = os.urandom(24)  # For session management
     app.config['PERMANENT_SESSION_LIFETIME'] = 1800  # 30 minutes
+
+    # Initialize CSRF protection
+    CSRFProtect(app)
 
     #create custom error pages
     #invalid URL 

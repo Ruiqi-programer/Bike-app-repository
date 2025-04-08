@@ -5,9 +5,11 @@
       <nav class="footer-nav">
         <a href="{{ url_for('main.index') }}">HOME</a>
         <a href="{{ url_for('stations.map') }}">MAP</a>
-        <a href="#">BUSINESS</a>
+        <a href="{{ url_for('main.business', ticket_type='oneday') }}"
+          >BUSINESS</a
+        >
         <a href="{{ url_for('main.faq') }}">FAQS</a>
-        <a href="#">CONTACT US</a>
+        <a href="{{ url_for('main.contact') }}">CONTACT US</a>
       </nav>
     </div>
     <hr />

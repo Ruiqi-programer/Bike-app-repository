@@ -4,31 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>DublinBikes | {% block title %}{% endblock %}</title>
+    <title>DublinBikes {% block title %}{% endblock %}</title>
 
     <link rel="icon" href="data:," />
+    <!--ICON css-->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
 
-    <!--style.css-->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static',filename='css/stations.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static',filename='css/style_faq.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static',filename='css/style_business.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static',filename='css/style_contact.css') }}"
-    />
+    <!-- Global styles -->
     <link
       rel="stylesheet"
       href="{{ url_for('static',filename='css/style.css') }}"
@@ -39,15 +24,12 @@
       href="{{ url_for('static',filename='css/responsive.css') }}"
     />
 
-    <!--ICON css-->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
     <script
       type="module"
       src="{{ url_for('static', filename='js/main.js') }}"
     ></script>
+    <!-- Page-specific styles -->
+    {% block styles %}{% endblock %}
   </head>
   <body>
     {% include 'navbar.html' %}

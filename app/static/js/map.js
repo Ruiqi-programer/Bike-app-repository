@@ -12,6 +12,9 @@ const activeFilters = {
 };
 
 export function loadMapAndStations() {
+  const loadingEl = document.getElementById("loading");
+  if (loadingEl) loadingEl.style.display = "flex";
+
   const mapElement = document.getElementById("map");
   if (!mapElement) {
     console.error("Map element not found!");
@@ -67,13 +70,18 @@ export function setupFilters() {
 
 function fetchStations() {
   const loadingEl = document.getElementById("loading");
-  if (loadingEl) loadingEl.style.display = "block";
-
+  const startTime = Date.now();
   fetch("/api/stations")
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) throw new Error("Network response was not ok");
+      return response.json();
+    })
     .then((data) => {
       clearMarkers();
-      if (!Array.isArray(data)) return;
+      if (!Array.isArray(data) || data.length === 0) {
+        console.warn("No station data received");
+        return;
+      }
 
       data.forEach((station) => {
         const nameMatch = station.name
@@ -124,11 +132,11 @@ function fetchStations() {
         });
 
         marker.addListener("gmp-click", () => {
-          // 关闭之前打开的 InfoWindow
+          // close previous InfoWindow
           if (currentInfoWindow) {
             currentInfoWindow.close();
           }
-          // 打开当前 InfoWindow
+          // open current InfoWindow
           map.panTo(marker.position);
           smoothZoom(map, 17);
           infoWindow.open(map, marker);
@@ -166,7 +174,12 @@ function fetchStations() {
     })
     .catch((err) => console.error("❌ Failed to load stations", err))
     .finally(() => {
-      if (loadingEl) loadingEl.style.display = "none";
+      const elapsed = Date.now() - startTime;
+      const delay = Math.max(0, 500 - elapsed); //  at least 500ms
+
+      setTimeout(() => {
+        if (loadingEl) loadingEl.style.display = "none";
+      }, delay);
     });
 }
 
