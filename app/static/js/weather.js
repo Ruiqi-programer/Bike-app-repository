@@ -17,7 +17,7 @@ export function fetchWeather() {
 export function setupWeatherModal() {
   const weatherBtn = document.getElementById("weather-btn");
   const weatherModal = document.getElementById("weather-modal");
-  const closeModal = document.querySelector(".close");
+  const closeModal = weatherModal?.querySelector(".close");
 
   if (!weatherBtn || !weatherModal || !closeModal) return;
 
@@ -88,6 +88,7 @@ function showDailyForecast(daily) {
 
 function drawHourlyChart() {
   const ctx = document.getElementById("hourly-temp-chart")?.getContext("2d");
+
   if (!ctx || !hourlyDataCache.length) return;
 
   const labels = hourlyDataCache.map((h) =>

@@ -1,10 +1,15 @@
-from flask import Blueprint, jsonify, render_template
+from flask import Blueprint, jsonify, request,render_template
 from sqlalchemy import text
 from app.models.db import engine
 from config import Config
 import os
+import pandas as pd
+from app.models.model_utils import predict
+from datetime import datetime
+
 
 stations = Blueprint('stations', __name__, template_folder='templates', static_folder='static')
+
 
 @stations.route("/map")
 def map():
@@ -74,3 +79,41 @@ def api_stations():
     except Exception as e:
         print("❌ Station DB error:", e)
         return jsonify({"error": "Could not fetch stations"}), 500
+    
+
+@stations.route("/predict", methods=["GET"])
+def predict_route():
+    try:
+        date = request.args.get("date")
+        time = request.args.get("time")
+        station_id = request.args.get("station_id")
+
+        if not all([date, time, station_id]):
+            return jsonify({"error": "Missing date, time, or station_id"}), 400
+
+        result = predict(station_id, date, time)
+        if isinstance(result, dict) and "error" in result:
+            return jsonify(result), 500
+        return jsonify({"predicted_available_bikes": result})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@stations.route("/predict_range", methods=["GET"])
+def predict_range():
+    try:
+        date = request.args.get("date")
+        time = request.args.get("time")
+        station_id = request.args.get("station_id")
+
+        if not all([date, time, station_id]):
+            return jsonify({"error": "Missing date, time, or station_id"}), 400
+
+        result = predict(station_id, date, time)
+        if isinstance(result, dict) and "error" in result:
+            return jsonify(result), 500
+        return jsonify({"predicted_available_bikes": result})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500

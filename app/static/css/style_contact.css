@@ -11,6 +11,8 @@
   margin: 0 auto;
   gap: 20px;
   justify-content: space-between;
+  align-items: center;
+  min-height: 70vh;
   padding: 0 40px;
 }
 .contact-info {
@@ -97,6 +99,33 @@
 .form-review {
   margin-top: auto;
   resize: vertical;
+}
+
+.contact-form textarea.form-review {
+  height: 160px;
+  resize: vertical;
+}
+.contact-form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.contact-form .form-group label {
+  margin-bottom: 6px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.contact-form .form-group .form-control,
+.contact-form .form-group .form-review {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 .submit-btn {
   width: 140px;

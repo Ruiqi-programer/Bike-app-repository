@@ -84,7 +84,7 @@ class ReviewForm(FlaskForm):
     name=StringField("Name",validators=[DataRequired()])
     email=StringField("Email",validators=[DataRequired()])
     phone=StringField("Telephone",validators=[DataRequired()])
-    review=StringField("review",validators=[DataRequired()],widget=TextArea())
+    review=StringField("Review",validators=[DataRequired()],widget=TextArea())
     submit=SubmitField("Submit")
 
 #create contact and review page

@@ -7,14 +7,17 @@
 {% endblock %}{% block content %}
 
 <div id="map-filters" class="filter-panel">
-  <!--left ：weather icon-->
+  <!--left ：Weather and Prediction buttons-->
   <div class="filters-left">
     <button id="weather-btn" title="View Weather">
       <i class="fa-solid fa-cloud-sun"></i>
     </button>
+    <button id="prediction-btn-modal" title="Predict Bike Availability">
+      <i class="fa-solid fa-bicycle"></i>
+    </button>
   </div>
 
-  <!-- 中间：勾选框 -->
+  <!-- Center: Checkboxes -->
   <div class="filters-center checkbox-group">
     <label><input type="checkbox" id="filter-bikes" /> Has Bikes</label>
     <label><input type="checkbox" id="filter-stands" /> Has Stands</label>
@@ -22,7 +25,7 @@
     <label><input type="checkbox" id="filter-not-full" /> Not Full</label>
   </div>
 
-  <!-- 右侧：搜索框 -->
+  <!-- Right: Search bar -->
   <div class="filters-right search-group">
     <input
       type="text"
@@ -40,6 +43,32 @@
 </div>
 <!-- Map container -->
 <div id="map"></div>
+
+<!-- Prediction Modal -->
+<div id="prediction-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closePredictionModal()">&times;</span>
+    <div id="prediction-form">
+      <h1>Bike Availability Prediction</h1>
+      <label for="predict-date">Select Date:</label>
+      <input type="date" id="predict-date" required />
+      <label for="predict-time">Select Time:</label>
+      <input type="time" id="predict-time" required />
+      <label for="station_id">Select Station:</label>
+      <input type="number" id="station_id" required />
+      <button id="predict-btn">Predict</button>
+      <div id="result"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Prediction Sidebar -->
+<div id="prediction-sidebar">
+  <span class="close-btn" onclick="closePredictionSidebar()">&times;</span>
+  <h2>Predicted Bike Availability</h2>
+  <p id="prediction-station-name"></p>
+  <canvas id="prediction-chart"></canvas>
+</div>
 
 <!-- Weather Modal -->
 <div id="weather-modal" class="modal">
@@ -76,9 +105,9 @@
   src="{{ url_for('static', filename='js/app.js') }}"
 ></script>
 
-<!-- Google Maps 仍旧使用 callback 机制 -->
+<!-- Google Maps  -->
 <script
-  src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap&v=weekly&libraries=marker"
+  src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&v=weekly&libraries=marker"
   async
   defer
 ></script>

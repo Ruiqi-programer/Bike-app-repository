@@ -2,6 +2,8 @@
 let map;
 let markers = [];
 let currentInfoWindow = null;
+let predictionChart = null;
+let fetches = [];
 
 const activeFilters = {
   search: "",
@@ -11,7 +13,7 @@ const activeFilters = {
   notFull: false,
 };
 
-export function loadMapAndStations() {
+export async function loadMapAndStations() {
   const loadingEl = document.getElementById("loading");
   if (loadingEl) loadingEl.style.display = "flex";
 
@@ -23,7 +25,7 @@ export function loadMapAndStations() {
 
   map = new google.maps.Map(mapElement, {
     center: { lat: 53.349805, lng: -6.26031 },
-    zoom: 13,
+    zoom: 14,
     disableDefaultUI: true,
     mapId: "8adf177586ed1224",
     gestureHandling: "greedy",
@@ -125,8 +127,13 @@ function fetchStations() {
                 <h3>${station.name}</h3>
                 <p>🚲 Bikes Available: <b>${station.available_bikes}</b></p>
                 <p>🅿️ Stands Available: <b>${station.available_bike_stands}</b></p>
-                 <p>Total Stands: ${station.total_bike_stands}</p>
+                <p>Total Stands: ${station.total_bike_stands}</p>
                 <div id="chart_div_${station.station_id}" class="station-chart"></div>
+                <button id="view-prediction-btn"
+                data-station-id="${station.station_id}"
+                data-station-name="${station.name}">
+                🔮 View Prediction
+                </button>
               </div>
           `,
         });
@@ -137,14 +144,14 @@ function fetchStations() {
             currentInfoWindow.close();
           }
           // open current InfoWindow
+          // smoothZoom(map, 16);
           map.panTo(marker.position);
-          smoothZoom(map, 17);
-          infoWindow.open(map, marker);
 
+          infoWindow.open(map, marker);
           // 保存当前窗口引用
           currentInfoWindow = infoWindow;
 
-          google.charts.setOnLoadCallback(() => {
+          infoWindow.addListener("domready", () => {
             const chartElement = document.getElementById(
               `chart_div_${station.station_id}`
             );
@@ -165,6 +172,18 @@ function fetchStations() {
               width: 300,
               height: 200,
               chartArea: { width: "70%", height: "70%" },
+            });
+          });
+
+          setTimeout(() => {
+            const predictionBtn = document.getElementById(
+              "view-prediction-btn"
+            );
+
+            predictionBtn.addEventListener("click", () => {
+              const sid = predictionBtn.dataset.stationId;
+              const name = predictionBtn.dataset.stationName;
+              window.showPredictionChart(sid, name);
             });
           });
         });
@@ -216,3 +235,157 @@ function smoothZoom(map, targetZoom) {
     if (zoom === targetZoom) clearInterval(zoomInterval);
   }, 100);
 }
+
+export function predict() {
+  const stationId = document.getElementById("station_id").value;
+  const date = document.getElementById("predict-date").value;
+  const time = document.getElementById("predict-time").value;
+
+  if (!stationId || !date || !time) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  fetch(`/predict?station_id=${stationId}&date=${date}&time=${time}`)
+    .then((res) => res.json())
+    .then((data) => {
+      const resultDiv = document.getElementById("result");
+      if (data.predicted_available_bikes !== undefined) {
+        resultDiv.innerHTML = `<p>🚲 Predicted Bikes: <strong>${data.predicted_available_bikes}</strong></p>`;
+      } else {
+        resultDiv.innerHTML = `<p style="color:red;">Error: ${data.error}</p>`;
+      }
+    })
+    .catch((err) => {
+      console.error("Prediction error:", err);
+      document.getElementById(
+        "result"
+      ).innerHTML = `<p style="color:red;">Error fetching prediction.</p>`;
+    });
+}
+
+window.showPredictionChart = function (stationId, stationName) {
+  // Open the sidebar
+  const sidebar = document.getElementById("prediction-sidebar");
+  sidebar.classList.add("open");
+
+  // Update the station name in the sidebar
+  document.getElementById(
+    "prediction-station-name"
+  ).innerText = `Station: ${stationName}`;
+  const ctx = document.getElementById("prediction-chart")?.getContext("2d");
+  if (!ctx) {
+    console.error("Chart canvas not found");
+    return;
+  }
+  // Fetch predictions for the next 24 hours
+  const now = new Date();
+  const predictions = [];
+  const labels = [];
+
+  // Generate predictions for each hour in the next 24 hours
+  for (let i = 0; i < 24; i++) {
+    const futureTime = new Date(now.getTime() + i * 60 * 60 * 1000);
+    const date = futureTime.toISOString().split("T")[0];
+    const timeString = futureTime.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false, // set to true if you want AM/PM
+    });
+    labels.push(`${futureTime.getHours()}:00`);
+
+    const fetchPromise = fetch(
+      `/predict_range?station_id=${stationId}&date=${date}&time=${timeString}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.predicted_available_bikes !== undefined) {
+          return data.predicted_available_bikes;
+        } else {
+          console.error("Prediction error:", data.error);
+          return 0;
+        }
+      })
+      .catch((err) => {
+        console.error("Prediction fetch error:", err);
+        return 0;
+      });
+
+    fetches.push(fetchPromise);
+  }
+
+  Promise.all(fetches).then((predictions) => {
+    updatePredictionChart(labels, predictions);
+  });
+};
+
+function updatePredictionChart(labels, predictions) {
+  const ctx = document.getElementById("prediction-chart").getContext("2d");
+
+  // Destroy existing chart if it exists
+  if (predictionChart) {
+    predictionChart.destroy();
+  }
+
+  predictionChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "Predicted Bikes",
+          data: predictions,
+          borderColor: "rgba(75, 192, 192, 1)",
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          fill: true,
+          tension: 0.4,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          title: { display: true, text: "Time (Hour)" },
+        },
+        y: {
+          title: { display: true, text: "Predicted Bikes" },
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+}
+
+window.closePredictionSidebar = function () {
+  const sidebar = document.getElementById("prediction-sidebar");
+  sidebar.classList.remove("open");
+  if (predictionChart) {
+    predictionChart.destroy();
+    predictionChart = null;
+  }
+};
+
+export function setupPredictionModal() {
+  const predictModalBtn = document.getElementById("prediction-btn-modal");
+  const predictionModal = document.getElementById("prediction-modal");
+  const closeModal = predictionModal.querySelector(".close");
+
+  if (!predictModalBtn || !predictionModal || !closeModal) return;
+
+  predictModalBtn.addEventListener("click", () => {
+    predictionModal.style.display = "block";
+  });
+
+  closeModal.addEventListener("click", () => {
+    predictionModal.style.display = "none";
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === predictionModal) predictionModal.style.display = "none";
+  });
+}
+
+window.closePredictionModal = function () {
+  document.getElementById("prediction-modal").style.display = "none";
+};
