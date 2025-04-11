@@ -22,7 +22,7 @@ export function setupWeatherModal() {
   if (!weatherBtn || !weatherModal || !closeModal) return;
 
   weatherBtn.addEventListener("click", () => {
-    weatherModal.style.display = "block";
+    weatherModal.style.display = "flex";
     setTimeout(drawHourlyChart, 100);
   });
 
@@ -122,7 +122,7 @@ function drawHourlyChart() {
         legend: { display: false },
         title: {
           display: true,
-          text: "12-Hour Temperature Trend",
+          // text: "12-Hour Temperature Trend",
           font: { size: 18 },
         },
       },
@@ -131,6 +131,11 @@ function drawHourlyChart() {
         y: {
           beginAtZero: false,
           title: { display: true, text: "Temperature (°C)" },
+        },
+      },
+      layout: {
+        padding: {
+          bottom: 50, // Add padding to ensure labels are fully visible
         },
       },
     },

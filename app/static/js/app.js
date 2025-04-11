@@ -1,5 +1,5 @@
 // app.js
-import { loadMapAndStations, setupFilters, predict,setupPredictionModal } from "./map.js";
+import { loadStationsForSelect,loadMapAndStations, setupFilters, predict,setupPredictionModal } from "./map.js";
 import { fetchWeather, setupWeatherModal } from "./weather.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchWeather();
   setupWeatherModal();
   setupPredictionModal();
+  loadStationsForSelect();
 
   const predictBtn = document.querySelector("#predict-btn");
   if (predictBtn) {

@@ -127,12 +127,12 @@ function fetchStations() {
                 <h3>${station.name}</h3>
                 <p>🚲 Bikes Available: <b>${station.available_bikes}</b></p>
                 <p>🅿️ Stands Available: <b>${station.available_bike_stands}</b></p>
-                <p>Total Stands: ${station.total_bike_stands}</p>
+                <p>Total Stands: <b>${station.total_bike_stands}</b></p>
                 <div id="chart_div_${station.station_id}" class="station-chart"></div>
                 <button id="view-prediction-btn"
                 data-station-id="${station.station_id}"
                 data-station-name="${station.name}">
-                🔮 View Prediction
+                INFO BOARD
                 </button>
               </div>
           `,
@@ -148,7 +148,7 @@ function fetchStations() {
           map.panTo(marker.position);
 
           infoWindow.open(map, marker);
-          // 保存当前窗口引用
+
           currentInfoWindow = infoWindow;
 
           infoWindow.addListener("domready", () => {
@@ -251,7 +251,7 @@ export function predict() {
     .then((data) => {
       const resultDiv = document.getElementById("result");
       if (data.predicted_available_bikes !== undefined) {
-        resultDiv.innerHTML = `<p>🚲 Predicted Bikes: <strong>${data.predicted_available_bikes}</strong></p>`;
+        resultDiv.innerHTML = `<p>🚲 Predicted Avaliable Bikes: <strong>${data.predicted_available_bikes}</strong></p>`;
       } else {
         resultDiv.innerHTML = `<p style="color:red;">Error: ${data.error}</p>`;
       }
@@ -261,6 +261,27 @@ export function predict() {
       document.getElementById(
         "result"
       ).innerHTML = `<p style="color:red;">Error fetching prediction.</p>`;
+    });
+}
+
+export function loadStationsForSelect() {
+  fetch("/api/stations")
+    .then((res) => res.json())
+    .then((stations) => {
+      const select = document.getElementById("station_id");
+      if (!select) return;
+
+      select.innerHTML = `<option value="">-- Select a station --</option>`;
+
+      stations.forEach((station) => {
+        const option = document.createElement("option");
+        option.value = station.station_id;
+        option.textContent = `${station.name} (ID: ${station.station_id})`;
+        select.appendChild(option);
+      });
+    })
+    .catch((err) => {
+      console.error("Failed to load stations for select:", err);
     });
 }
 
@@ -374,7 +395,7 @@ export function setupPredictionModal() {
   if (!predictModalBtn || !predictionModal || !closeModal) return;
 
   predictModalBtn.addEventListener("click", () => {
-    predictionModal.style.display = "block";
+    predictionModal.style.display = "flex";
   });
 
   closeModal.addEventListener("click", () => {
@@ -385,7 +406,3 @@ export function setupPredictionModal() {
     if (e.target === predictionModal) predictionModal.style.display = "none";
   });
 }
-
-window.closePredictionModal = function () {
-  document.getElementById("prediction-modal").style.display = "none";
-};

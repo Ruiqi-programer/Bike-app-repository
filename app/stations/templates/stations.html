@@ -41,13 +41,14 @@
   <div class="loading-spinner"></div>
   <p>Loading stations...</p>
 </div>
+
 <!-- Map container -->
 <div id="map"></div>
 
 <!-- Prediction Modal -->
 <div id="prediction-modal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closePredictionModal()">&times;</span>
+  <div class="prediction-content">
+    <span class="close">&times;</span>
     <div id="prediction-form">
       <h1>Bike Availability Prediction</h1>
       <label for="predict-date">Select Date:</label>
@@ -55,7 +56,10 @@
       <label for="predict-time">Select Time:</label>
       <input type="time" id="predict-time" required />
       <label for="station_id">Select Station:</label>
-      <input type="number" id="station_id" required />
+      <select id="station_id" required>
+        <option value="">-- Select a station --</option>
+        <!-- Stations will be populated dynamically -->
+      </select>
       <button id="predict-btn">Predict</button>
       <div id="result"></div>
     </div>
@@ -72,7 +76,7 @@
 
 <!-- Weather Modal -->
 <div id="weather-modal" class="modal">
-  <div class="modal-content">
+  <div class="weather-content">
     <span class="close">&times;</span>
 
     <section id="current-weather">
@@ -82,13 +86,16 @@
 
     <div id="weather-layout">
       <section id="hourly-forecast">
-        <canvas id="hourly-temp-chart" height="300"></canvas>
+        <h3>Hourly Forecast</h3>
+        <canvas id="hourly-temp-chart" height="500"></canvas>
       </section>
 
       <section id="weather-forecast">
+        <h3>8-day Forecast</h3>
         <div id="daily-forecast-grid" class="forecast-grid">
           <!-- forecast cards injected here -->
         </div>
+        <h3>Hourly Wind Speed</h3>
         <div id="hourly-timeline" class="hourly-timeline"></div>
       </section>
     </div>
