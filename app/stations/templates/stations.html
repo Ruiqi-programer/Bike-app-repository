@@ -67,11 +67,25 @@
 </div>
 
 <!-- Prediction Sidebar -->
-<div id="prediction-sidebar">
-  <span class="close-btn" onclick="closePredictionSidebar()">&times;</span>
-  <h2>Predicted Bike Availability</h2>
-  <p id="prediction-station-name"></p>
-  <canvas id="prediction-chart"></canvas>
+<div id="station-sidebar">
+  <div class="sidebar-header">
+    <span class="close-btn" onclick="closePredictionSidebar()">&times;</span>
+    <h2>Station Info Board</h2>
+    <p id="prediction-station-name"></p>
+  </div>
+  <div class="sidebar-content">
+    <div class="prediction">
+      <h3>Predicted Bike Availability</h3>
+      <canvas id="prediction-chart"></canvas>
+    </div>
+    <div class="historical-bike">
+      <h3>Historical Info</h3>
+      <canvas id="historical-bike-chart"></canvas>
+    </div>
+    <div class="historical-weather">
+      <canvas id="historical-weather-chart"></canvas>
+    </div>
+  </div>
 </div>
 
 <!-- Weather Modal -->

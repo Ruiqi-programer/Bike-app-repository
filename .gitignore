@@ -6,3 +6,4 @@ final_merged_data.csv
 app/models/bike_availability_model.pkl
 *.pkl
 *.csv
+predict_test.py

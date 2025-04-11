@@ -305,12 +305,12 @@ select {
 }
 
 /* Sidebar styles */
-#prediction-sidebar {
+#station-sidebar {
   position: fixed;
   top: 0;
   right: -420px; /* Move further off-screen to account for shadow */
   width: 400px;
-  height: 100%;
+  height: 100vh;
   background: white;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
   transition: right 0.3s ease-in-out;
@@ -318,12 +318,13 @@ select {
   padding: 20px;
   overflow-y: auto;
   visibility: hidden; /* Hide completely when not open */
+  text-align: center;
 }
-#prediction-sidebar.open {
+#station-sidebar.open {
   right: 0; /* Show sidebar */
   visibility: visible; /* Show when open */
 }
-#prediction-sidebar .close-btn {
+#station-sidebar .close-btn {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -333,6 +334,15 @@ select {
 #prediction-chart {
   width: 100%;
   height: 400px;
+}
+
+#station-sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+#station-sidebar::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
 }
 
 /* Weather Modal */
