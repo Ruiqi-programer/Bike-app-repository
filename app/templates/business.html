@@ -7,7 +7,7 @@ styles %}
 
 <div class="subscription-tabs">
   {% for option in subscription_options %}
-  <a href="{{ url_for('main.business', ticket_type=option.ticket_type) }}">
+  <a href="{{ url_for('business', ticket_type=option.ticket_type) }}">
     <button class="tab-button" onclick="showTab('{{ option.title }}')">
       {{ option.title }}
     </button>
@@ -21,7 +21,7 @@ styles %}
     <h2>{{ option.title }}</h2>
     <p>{{ option.description }}</p>
     <div><strong>€{{ option.price }}</strong></div>
-    <a href="{{ url_for('main.business', ticket_type=option.ticket_type) }}">
+    <a href="{{ url_for('business', ticket_type=option.ticket_type) }}">
       <button class="choose-button">CHOOSE THIS SUBSCRIPTION OPTION</button>
     </a>
   </div>
@@ -47,7 +47,7 @@ styles %}
   document.addEventListener("DOMContentLoaded", function () {
     showTab(
       "{{ selected.title }}",
-      "{{ url_for('main.business', ticket_type=selected.ticket_type) }}"
+      "{{ url_for('business', ticket_type=selected.ticket_type) }}"
     );
   });
 </script>

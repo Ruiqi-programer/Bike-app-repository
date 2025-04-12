@@ -67,7 +67,7 @@
               <i class="flaticon-lightbulb-idea"></i>
             </div>
             <h2>
-              <a href="{{ url_for('main.business', ticket_type='oneday') }}"
+              <a href="{{ url_for('business', ticket_type='oneday') }}"
                 ><span> ONE</span> day ticket</a
               >
             </h2>
@@ -76,7 +76,7 @@
               dublinbikes service. Ideal for day-trippers, tourists and visitors
               as a way of getting around and exploring the city.
             </p>
-            <a href="{{ url_for('main.business', ticket_type='oneday') }}">
+            <a href="{{ url_for('business', ticket_type='oneday') }}">
               <button class="single-subscription-btn">Read More</button>
             </a>
           </div>
@@ -87,7 +87,7 @@
               <i class="flaticon-networking"></i>
             </div>
             <h2>
-              <a href="{{ url_for('main.business', ticket_type='threedays') }}"
+              <a href="{{ url_for('business', ticket_type='threedays') }}"
                 ><span> THREE</span> days ticket</a
               >
             </h2>
@@ -96,7 +96,7 @@
               dublinbikes service. Ideal for tourists and visitors as a way of
               getting around and exploring the city.
             </p>
-            <a href="{{ url_for('main.business', ticket_type='threedays') }}">
+            <a href="{{ url_for('business', ticket_type='threedays') }}">
               <button class="single-subscription-btn">Read More</button>
             </a>
           </div>
@@ -107,7 +107,7 @@
               <i class="flaticon-location-on-road"></i>
             </div>
             <h2>
-              <a href="{{ url_for('main.business', ticket_type='annual') }}"
+              <a href="{{ url_for('business', ticket_type='annual') }}"
                 ><span>Annual</span> Subscription</a
               >
             </h2>
@@ -115,7 +115,7 @@
               With an Annual Subscription you can rent a bike 365 days a year
               for an annual fee of €35.
             </p>
-            <a href="{{ url_for('main.business', ticket_type='annual') }}">
+            <a href="{{ url_for('business', ticket_type='annual') }}">
               <button class="single-subscription-btn">Read More</button>
             </a>
           </div>
@@ -123,7 +123,7 @@
       </div>
     </div>
   </div>
-  <a href="{{ url_for('main.business', ticket_type='discount') }}">
+  <a href="{{ url_for('business', ticket_type='discount') }}">
     <button class="work-btn">Read More</button>
   </a>
   <!--/.container-->
@@ -344,7 +344,7 @@
     </div>
 
     <div class="join-input-group">
-      <form action="{{ url_for('users.create_account') }}" method="POST">
+      <form action="{{ url_for('create_account') }}" method="POST">
         <input
           type="email"
           class="join-input-form"

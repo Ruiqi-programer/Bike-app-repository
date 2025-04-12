@@ -1,4 +1,3 @@
-# app/models/model_utils.py
 
 import os
 import joblib

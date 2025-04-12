@@ -59,12 +59,12 @@
 }
 /* Search box styles */
 .search-group {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  position: relative;
+  display: inline-block;
 }
 #station-search {
   padding: 6px 10px;
+  padding-left: 35px;
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 14px;
@@ -72,12 +72,12 @@
 }
 /* Search icon */
 .search-group i {
-  font-size: 16px;
-  color: gray;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  height: 36px;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  pointer-events: none;
 }
 
 #weather-btn,

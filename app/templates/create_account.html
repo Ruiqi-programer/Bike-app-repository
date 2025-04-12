@@ -66,14 +66,14 @@
         margin-right: 6px;
       }
 
-      .login-box {
+      .signup-box {
         background-color: var(--white);
         border-radius: 8px;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         overflow: hidden;
       }
 
-      .login-header {
+      .signup-header {
         text-align: center;
         padding: 2rem 1rem;
       }
@@ -84,21 +84,21 @@
         display: block;
       }
 
-      .login-title {
+      .signup-title {
         font-size: 29px;
         font-weight: bold;
         color: var(--primary-color);
         margin-bottom: 0.5rem;
       }
 
-      .login-subtitle {
+      .signup-subtitle {
         font-size: 16px;
         color: var(--text-color);
         max-width: 220px;
         margin: 0 auto;
       }
 
-      .login-form {
+      .signup-form {
         padding: 1rem 2rem 2rem;
       }
 
@@ -107,17 +107,16 @@
         margin-bottom: 1rem;
         padding: 10px;
         border-radius: 4px;
+        color: var(--white);
         text-align: center;
       }
 
       .flash-error {
-        background-color: #f8d7da;
-        color: #721c24;
+        background-color: var(--error-color);
       }
 
       .flash-success {
-        background-color: #d4edda;
-        color: #155724;
+        background-color: var(--success-color);
       }
 
       /* Form elements */
@@ -173,15 +172,14 @@
         color: #767676;
       }
 
-      .forgot-password {
-        text-align: right;
+      .terms-container {
         margin-bottom: 1.5rem;
+        font-size: 14px;
       }
 
-      .forgot-password a {
+      .terms-container a {
         color: var(--primary-color);
         text-decoration: underline;
-        font-size: 14px;
       }
 
       .btn {
@@ -202,30 +200,21 @@
         background-color: #367c39;
       }
 
-      /* Sign up section */
-      .signup-section {
+      .login-link {
         text-align: center;
         margin-top: 2rem;
         padding: 1rem;
       }
 
-      .signup-title {
-        font-size: 20px;
-        font-weight: bold;
-        color: var(--text-color);
-        margin-bottom: 1rem;
-      }
-
-      .signup-text {
+      .login-link p {
         font-size: 16px;
         color: var(--text-color);
-        margin-bottom: 0.5rem;
       }
 
-      .signup-link {
+      .login-link a {
         color: var(--primary-color);
-        font-weight: bold;
         text-decoration: underline;
+        font-weight: bold;
       }
 
       /* Error message */
@@ -258,6 +247,37 @@
         display: block;
       }
 
+      /* Password strength indicator */
+      .password-strength {
+        height: 5px;
+        margin-top: 5px;
+        width: 100%;
+        background: #e0e0e0;
+        border-radius: 2px;
+      }
+
+      .password-strength span {
+        display: block;
+        height: 100%;
+        border-radius: 2px;
+        transition: width 0.3s ease-in-out;
+      }
+
+      .strength-weak {
+        width: 33%;
+        background-color: #ff4d4f;
+      }
+
+      .strength-medium {
+        width: 66%;
+        background-color: #faad14;
+      }
+
+      .strength-strong {
+        width: 100%;
+        background-color: #52c41a;
+      }
+
       /* Utility classes */
       .screen-reader-only {
         position: absolute;
@@ -284,7 +304,7 @@
           padding: 0;
         }
 
-        .login-box {
+        .signup-box {
           border-radius: 0;
         }
 
@@ -293,60 +313,61 @@
         }
       }
     </style>
-    <title>Sign in - to your account, for the best experience</title>
+    <title>Create Account - Join us for the best experience</title>
   </head>
   <body>
     <div class="container">
       <div class="back-link">
-        <a href="#">Back</a>
+        <a href="{{ url_for('login') }}">Back</a>
       </div>
 
-      <div class="login-box">
-        <div class="login-header">
+      <div class="signup-box">
+        <div class="signup-header">
           <img
             class="logo"
             src="{{ url_for('static', filename='images/dublin-bike-logo.png') }}"
             alt="Dublin Bikes"
           />
-          <h1 class="login-title">My Account</h1>
-          <p class="login-subtitle">
-            Sign in to your account, for the best experience
-          </p>
+          <h1 class="signup-title">Create Account</h1>
         </div>
 
         <div id="error-message" class="error-message"></div>
         <div id="success-message" class="success-message"></div>
 
-        {% with messages = get_flashed_messages() %} {% if messages %}
-        <div class="flash-message flash-error">{{ messages[0] }}</div>
-        {% endif %} {% endwith %}
-
         <form
-          class="login-form"
+          class="signup-form"
           method="POST"
-          action="{{ url_for('users.login') }}"
+          action="{{ url_for('create_account') }}"
         >
-          <input
-            type="hidden"
-            name="state"
-            value="hKFo2SB4d0drYTJ0UjV0OWVwT1ZUakx5U216Qy1GNFJhZXdBa6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIE4tdkNwaXEwYkFKaHpGaG8ydlJfYllqdC1obllhaFIxo2NpZNkgZzRQZGF4dlYwSWZQcGJWeU80bEFMb3hSc0F1bkRBQXo"
-          />
+          <div class="form-group">
+            <input
+              class="form-control"
+              id="fullname"
+              name="fullname"
+              type="text"
+              placeholder=" "
+              required
+              autocomplete="name"
+              autofocus
+              value="{{ fullname|default('', true) }}"
+            />
+            <label class="form-label" for="fullname">Full Name</label>
+          </div>
 
           <div class="form-group">
             <input
               class="form-control"
-              id="username"
-              name="username"
+              id="email"
+              name="email"
               type="email"
               placeholder=" "
-              value="{{ email_prefilled|default('', true) }}"
               required
               autocomplete="email"
               autocapitalize="none"
               spellcheck="false"
-              autofocus
+              value="{{ email|default('', true) }}"
             />
-            <label class="form-label" for="username">Email address</label>
+            <label class="form-label" for="email">Email address</label>
           </div>
 
           <div class="form-group password-group">
@@ -357,7 +378,7 @@
               type="password"
               placeholder=" "
               required
-              autocomplete="current-password"
+              autocomplete="new-password"
               autocapitalize="none"
               spellcheck="false"
             />
@@ -371,26 +392,65 @@
               <span id="show-password-text">Show</span>
               <span id="hide-password-text" class="hide">Hide</span>
             </button>
+            <div class="password-strength">
+              <span id="password-strength-meter"></span>
+            </div>
           </div>
 
-          <div class="forgot-password">
-            <a href="{{ url_for('users.reset_password') }}">Forgot password?</a>
+          <div class="form-group password-group">
+            <input
+              class="form-control"
+              id="confirm-password"
+              name="confirm-password"
+              type="password"
+              placeholder=" "
+              required
+              autocomplete="new-password"
+              autocapitalize="none"
+              spellcheck="false"
+            />
+            <label class="form-label" for="confirm-password"
+              >Confirm Password</label
+            >
+            <button
+              type="button"
+              class="password-toggle"
+              id="confirm-password-toggle"
+              aria-label="Show password"
+            >
+              <span id="show-confirm-password-text">Show</span>
+              <span id="hide-confirm-password-text" class="hide">Hide</span>
+            </button>
+          </div>
+
+          <div class="terms-container">
+            <label>
+              <input
+                type="checkbox"
+                name="terms"
+                required
+                {%
+                if
+                terms_accepted
+                %}checked{%
+                endif
+                %}
+              />
+              I agree to the <a href="#">Terms and Conditions</a> and
+              <a href="#">Privacy Policy</a>
+            </label>
           </div>
 
           <button type="submit" name="action" value="default" class="btn">
-            Sign In
+            Create Account
           </button>
         </form>
       </div>
 
-      <!-- New signup section -->
-      <div class="signup-section">
-        <h2 class="signup-title">Don't have an account yet?</h2>
-        <p class="signup-text">
-          <a href="{{ url_for('users.create_account') }}" class="signup-link"
-            >Sign up</a
-          >
-          today for faster checkout, easy order tracking & exclusive rewards
+      <div class="login-link">
+        <p>
+          Already have an account?
+          <a href="{{ url_for('login') }}">Sign In</a>
         </p>
       </div>
     </div>
@@ -415,31 +475,87 @@
           successElement.classList.add("show");
         }
 
-        // Password visibility toggle
-        const passwordInput = document.getElementById("password");
-        const passwordToggle = document.getElementById("password-toggle");
-        const showText = document.getElementById("show-password-text");
-        const hideText = document.getElementById("hide-password-text");
+        // Password toggle functionality
+        function setupPasswordToggle(
+          inputId,
+          toggleId,
+          showTextId,
+          hideTextId
+        ) {
+          const passwordInput = document.getElementById(inputId);
+          const passwordToggle = document.getElementById(toggleId);
+          const showText = document.getElementById(showTextId);
+          const hideText = document.getElementById(hideTextId);
 
-        if (passwordToggle) {
-          passwordToggle.addEventListener("click", function () {
-            const type =
-              passwordInput.getAttribute("type") === "password"
-                ? "text"
-                : "password";
-            passwordInput.setAttribute("type", type);
+          if (passwordToggle) {
+            passwordToggle.addEventListener("click", function () {
+              const type =
+                passwordInput.getAttribute("type") === "password"
+                  ? "text"
+                  : "password";
+              passwordInput.setAttribute("type", type);
 
-            // Toggle text visibility
-            showText.classList.toggle("hide");
-            hideText.classList.toggle("hide");
+              // Toggle text visibility
+              showText.classList.toggle("hide");
+              hideText.classList.toggle("hide");
 
-            // Update the aria-label
-            passwordToggle.setAttribute(
-              "aria-label",
-              type === "password" ? "Show password" : "Hide password"
-            );
-          });
+              // Update the aria-label
+              passwordToggle.setAttribute(
+                "aria-label",
+                type === "password" ? "Show password" : "Hide password"
+              );
+            });
+          }
         }
+
+        // Setup password toggles
+        setupPasswordToggle(
+          "password",
+          "password-toggle",
+          "show-password-text",
+          "hide-password-text"
+        );
+        setupPasswordToggle(
+          "confirm-password",
+          "confirm-password-toggle",
+          "show-confirm-password-text",
+          "hide-confirm-password-text"
+        );
+
+        // Password strength meter
+        const passwordInput = document.getElementById("password");
+        const strengthMeter = document.getElementById(
+          "password-strength-meter"
+        );
+
+        passwordInput.addEventListener("input", function () {
+          const password = this.value;
+          let strength = 0;
+
+          // Check for length
+          if (password.length >= 8) strength += 1;
+
+          // Check for mixed case
+          if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength += 1;
+
+          // Check for numbers
+          if (password.match(/\d/)) strength += 1;
+
+          // Check for special characters
+          if (password.match(/[^a-zA-Z\d]/)) strength += 1;
+
+          // Update the strength meter
+          strengthMeter.className = "";
+          if (password.length === 0) {
+            strengthMeter.style.width = "0";
+          } else if (strength < 2) {
+            strengthMeter.classList.add("strength-weak");
+          } else if (strength < 4) {
+            strengthMeter.classList.add("strength-medium");
+          } else {
+            strengthMeter.classList.add("strength-strong");
+          }
+        });
 
         // Float labels when input has content (for when autofill happens)
         const inputs = document.querySelectorAll(".form-control");
@@ -455,6 +571,60 @@
               this.classList.remove("has-value");
             }
           });
+        });
+
+        // Client form validation
+        const form = document.querySelector(".signup-form");
+        form.addEventListener("submit", function (event) {
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirm-password").value;
+          const email = document.getElementById("email").value;
+          const terms = document.querySelector('input[name="terms"]').checked;
+          let valid = true;
+          let errorMessage = "";
+
+          // Verification mailbox format
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailPattern.test(email)) {
+            valid = false;
+            errorMessage = "Please enter a valid email address";
+          }
+
+          // Verify password match
+          if (password !== confirmPassword) {
+            valid = false;
+            errorMessage = "The two passwords do not match";
+          }
+
+          // Verify password strength
+          const hasUpperCase = /[A-Z]/.test(password);
+          const hasLowerCase = /[a-z]/.test(password);
+          const hasNumbers = /\d/.test(password);
+          const isLongEnough = password.length >= 8;
+
+          if (!isLongEnough || !hasUpperCase || !hasLowerCase || !hasNumbers) {
+            valid = false;
+            errorMessage =
+              "Passwords must be at least 8 characters long and contain uppercase letters, lowercase letters, and numbers";
+          }
+
+          // Acceptance of verification terms
+          if (!terms) {
+            valid = false;
+            errorMessage = "You must agree to the terms and conditions";
+          }
+
+          // If the authentication fails, an error message is displayed
+          if (!valid) {
+            event.preventDefault();
+            const errorElement = document.getElementById("error-message");
+            errorElement.textContent = errorMessage;
+            errorElement.classList.add("show");
+
+            // Scroll to the error message
+            errorElement.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
         });
       });
     </script>
