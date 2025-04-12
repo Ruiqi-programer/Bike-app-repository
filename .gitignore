@@ -6,7 +6,11 @@ final_merged_data.csv
 app/models/bike_availability_model.pkl
 *.pkl
 *.csv
+!*/merged_bike_data.csv
+!*/merged_current_weather.csv
+!*/merged_hourly_weather.csv
 predict_test.py
 mergedata.py
 bike_data/
 weather_data/
+*.log
