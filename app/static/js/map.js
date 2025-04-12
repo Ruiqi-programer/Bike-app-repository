@@ -184,8 +184,8 @@ function fetchStations() {
               const sid = predictionBtn.dataset.stationId;
               const name = predictionBtn.dataset.stationName;
               window.showPredictionChart(sid, name);
-              window.drawHistoricalBikeChartFromJson(sid);
-              drawHistoricalWeatherChart();
+              window.drawHistoricalBikeChart(sid);
+              window.drawHistoricalWeatherChart();
             });
           });
         });
@@ -410,50 +410,42 @@ export function setupPredictionModal() {
 }
 
 /* historical bike data */
-window.drawHistoricalBikeChartFromJson = async function (stationId) {
+window.drawHistoricalBikeChart = async function (stationId) {
   const ctx = document
     .getElementById("historical-bike-chart")
     ?.getContext("2d");
   if (!ctx) return;
 
-  const filePrefix = "/static/data/bike_data/bike_data_2025-02-23_";
-  const fileNames = [];
+  const csvUrl = "/static/data/merged_bike_data.csv";
+  const response = await fetch(csvUrl);
+  const csvText = await response.text();
 
-  for (let h = 0; h <= 23; h++) {
-    for (let m = 0; m < 60; m += 5) {
-      const hh = h.toString().padStart(2, "0");
-      const mm = m.toString().padStart(2, "0");
-      const fileName = `${filePrefix}${hh}-${mm}-00.json`;
-      fileNames.push(fileName);
-    }
-  }
+  const rows = csvText.trim().split("\n");
+  const headers = rows[0].split(",");
 
-  const allData = [];
+  const data = rows
+    .slice(1)
+    .map((row) => {
+      const values = row.split(",");
+      const entry = {};
+      headers.forEach((h, i) => {
+        entry[h] = values[i];
+      });
+      return entry;
+    })
+    .filter((d) => parseInt(d.number) === parseInt(stationId))
+    .map((d) => ({
+      time: new Date(parseInt(d.last_update)),
+      bikes: parseInt(d.available_bikes),
+      stands: parseInt(d.available_bike_stands),
+    }))
+    .sort((a, b) => a.time - b.time);
 
-  for (const file of fileNames) {
-    try {
-      const res = await fetch(file);
-      const snapshot = await res.json();
-      const found = snapshot.find((s) => s.number == stationId);
-      if (found) {
-        allData.push({
-          time: new Date(found.last_update),
-          bikes: found.available_bikes,
-          stands: found.available_bike_stands,
-        });
-      }
-    } catch (err) {
-      console.warn("❌ Skipped:", file);
-    }
-  }
-
-  allData.sort((a, b) => a.time - b.time);
-
-  const labels = allData.map((d) =>
+  const labels = data.map((d) =>
     d.time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
   );
-  const bikes = allData.map((d) => d.bikes);
-  const stands = allData.map((d) => d.stands);
+  const bikes = data.map((d) => d.bikes);
+  const stands = data.map((d) => d.stands);
 
   if (window.historicalBikeChart) {
     window.historicalBikeChart.destroy();
@@ -470,6 +462,7 @@ window.drawHistoricalBikeChartFromJson = async function (stationId) {
           borderColor: "#2ecc71",
           backgroundColor: "rgba(46, 204, 113, 0.2)",
           tension: 0.3,
+          pointRadius: 0,
         },
         {
           label: "Available Stands",
@@ -477,6 +470,7 @@ window.drawHistoricalBikeChartFromJson = async function (stationId) {
           borderColor: "#3498db",
           backgroundColor: "rgba(52, 152, 219, 0.2)",
           tension: 0.3,
+          pointRadius: 0,
         },
       ],
     },
@@ -485,7 +479,7 @@ window.drawHistoricalBikeChartFromJson = async function (stationId) {
       plugins: {
         title: {
           display: true,
-          text: "Historical Bike Availability (1 Day)",
+          text: "Historical Bike Availability",
           font: { size: 16 },
         },
       },
@@ -511,92 +505,98 @@ window.drawHistoricalWeatherChart = async function () {
     .getElementById("historical-weather-chart")
     .getContext("2d");
 
-  const filePrefix = "/static/data/weather_data/weather_20250302_";
-  const fileNames = [];
+  const csvUrl = "/static/data/merged_current_weather.csv";
+  const res = await fetch(csvUrl);
+  const csvText = await res.text();
 
-  // 假设你有 24 份文件，从 000000 到 230000
-  for (let h = 0; h < 24; h++) {
-    const hh = h.toString().padStart(2, "0");
-    fileNames.push(`${filePrefix}${hh}0000.json`);
-  }
+  const rows = csvText.trim().split("\n");
+  const headers = rows[0].split(",");
 
-  const entries = [];
+  const data = rows.slice(1).map((row) => {
+    const values = row.split(",");
+    const obj = {};
+    headers.forEach((h, i) => (obj[h] = values[i]));
+    return obj;
+  });
 
-  for (const file of fileNames) {
-    try {
-      const res = await fetch(file);
-      const json = await res.json();
-      const entry = json.hourly[0];
-      if (entry) entries.push(entry);
-    } catch (err) {
-      console.warn("⚠️ Skipped:", file);
-    }
-  }
-
-  // 构建 labels & datasets
-  const labels = entries.map((e) =>
-    new Date(e.dt * 1000).toLocaleTimeString([], {
+  // 提取字段
+  const labels = data.map((d) =>
+    new Date(d.timestamp).toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit",
     })
   );
-  const temps = entries.map((e) => e.temp);
-  const windSpeeds = entries.map((e) => `${e.wind_speed.toFixed(1)}m/s`);
-  const descriptions = entries.map((e) => e.weather[0].description);
+  const temps = data.map((d) => parseFloat(d.temp));
+  const humidity = data.map((d) => parseFloat(d.humidity));
+  const windSpeed = data.map((d) => parseFloat(d.wind_speed));
+  const descriptions = data.map((d) => d.weather_main);
 
   new Chart(ctx, {
-    type: "line",
+    type: "line", // 可改为 'bar'
     data: {
       labels,
       datasets: [
         {
           label: "Temperature (°C)",
           data: temps,
-          borderColor: "#e74c3c",
-          backgroundColor: "rgba(231, 76, 60, 0.2)",
+          borderColor: "#e67e22",
+          backgroundColor: "rgba(230, 126, 34, 0.2)",
           tension: 0.3,
-          pointRadius: 4,
+          pointRadius: 3,
+          yAxisID: "y",
+        },
+        {
+          label: "Humidity (%)",
+          data: humidity,
+          borderColor: "#3498db",
+          backgroundColor: "rgba(52, 152, 219, 0.2)",
+          tension: 0.3,
+          pointRadius: 3,
+          yAxisID: "y1",
         },
       ],
     },
     options: {
       responsive: true,
+      interaction: { mode: "index", intersect: false },
+      stacked: false,
       plugins: {
-        tooltip: {
-          callbacks: {
-            title: (ctx) => labels[ctx[0].dataIndex],
-            label: (ctx) => [
-              `🌡 Temp: ${temps[ctx.dataIndex]}°C`,
-              `🌬 Wind: ${windSpeeds[ctx.dataIndex]}`,
-              `☁️ Weather: ${descriptions[ctx.dataIndex]}`,
-            ],
-          },
-        },
-        legend: { display: false },
         title: {
           display: true,
-          text: "Historical weather (1 Day)",
+          text: "Historical Weather",
           font: { size: 16 },
+        },
+        tooltip: {
+          callbacks: {
+            label: () => null,
+            title: (ctx) => labels[ctx[0].dataIndex],
+            afterLabel: (ctx) => {
+              const i = ctx.dataIndex;
+              if (ctx.datasetIndex !== 0) return "";
+              return [
+                `🌡 Temp: ${temps[i]}°C`,
+                `💧 Humidity: ${humidity[i]}%`,
+                `🌬 Wind: ${windSpeed[i]} m/s`,
+                `☁️ Weather: ${descriptions[i]}`,
+              ];
+            },
+          },
         },
       },
       scales: {
-        x: {
-          ticks: {
-            callback: (val, index) => [
-              labels[index],
-              descriptions[index],
-              windSpeeds[index],
-            ],
-            maxRotation: 0,
-            minRotation: 0,
-            maxTicksLimit: 12,
-          },
-        },
+        x: { title: { display: true, text: "Time" } },
         y: {
-          title: {
-            display: true,
-            text: "Temperature (°C)",
-          },
+          type: "linear",
+          display: true,
+          position: "left",
+          title: { display: true, text: "Temperature (°C)" },
+        },
+        y1: {
+          type: "linear",
+          display: true,
+          position: "right",
+          grid: { drawOnChartArea: false },
+          title: { display: true, text: "Humidity (%)" },
         },
       },
     },

@@ -7,3 +7,6 @@ app/models/bike_availability_model.pkl
 *.pkl
 *.csv
 predict_test.py
+mergedata.py
+bike_data/
+weather_data/
