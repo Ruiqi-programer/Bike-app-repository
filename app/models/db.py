@@ -3,7 +3,8 @@ from config import Config
 from sqlalchemy.exc import OperationalError
 
 # Create engine without specifying the database
-base_connection_string = f"mysql+mysqldb://{Config.DB_CONFIG['user']}:{Config.DB_CONFIG['password']}@{Config.DB_CONFIG['host']}:{Config.DB_CONFIG['port']}"
+base_connection_string = f"mysql+pymysql://{Config.DB_CONFIG['user']}:{Config.DB_CONFIG['password']}@{Config.DB_CONFIG['host']}:{Config.DB_CONFIG['port']}"
+
 base_engine = create_engine(base_connection_string, echo=True)
 
 # Create database if it doesn't exist
