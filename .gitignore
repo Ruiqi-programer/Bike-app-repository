@@ -3,8 +3,6 @@ pycache/
 .env
 *.db
 final_merged_data.csv
-app/models/bike_availability_model.pkl
-*.pkl
 predict_test.py
 mergedata.py
 bike_data/

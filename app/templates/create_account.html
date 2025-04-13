@@ -36,6 +36,7 @@
           method="POST"
           action="{{ url_for('create_account') }}"
         >
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
           <div class="form-group">
             <input
               class="form-control"

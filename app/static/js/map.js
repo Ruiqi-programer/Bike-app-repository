@@ -513,6 +513,34 @@ export function setupPredictionModal() {
 
   predictModalBtn.addEventListener("click", () => {
     predictionModal.style.display = "flex";
+
+    const now = new Date();
+
+    const dateInput = document.getElementById("predict-date");
+    const timeInput = document.getElementById("predict-time");
+
+    // 设置最小日期为今天
+    dateInput.min = now.toISOString().split("T")[0];
+    dateInput.value = now.toISOString().split("T")[0];
+
+    // 设置最小时间为当前时间（仅当天有效）
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    timeInput.min = `${hours}:${minutes}`;
+    timeInput.value = `${hours}:${minutes}`;
+
+    // 如果用户改日期，时间应恢复为00:00（除非是今天）
+    dateInput.addEventListener("change", () => {
+      const selectedDate = dateInput.value;
+      const today = now.toISOString().split("T")[0];
+      if (selectedDate !== today) {
+        timeInput.min = "00:00";
+        timeInput.value = "08:00"; // 你可设定一个默认值
+      } else {
+        timeInput.min = `${hours}:${minutes}`;
+        timeInput.value = `${hours}:${minutes}`;
+      }
+    });
   });
 
   closeModal.addEventListener("click", () => {

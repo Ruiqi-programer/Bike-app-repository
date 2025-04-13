@@ -12,6 +12,7 @@
     />
     <title>Dashboard - Dublin Bikes</title>
   </head>
+
   <body>
     <header class="header">
       <div class="header-container">
@@ -25,7 +26,7 @@
         </div>
         <div class="user-menu">
           <span class="user-name">Welcome, {{ user_fullname }}</span>
-          <a href="{{ url_for('users.logout') }}" class="logout-btn">Logout</a>
+          <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
         </div>
       </div>
     </header>
@@ -69,7 +70,7 @@
                 id="fullname-form"
                 class="edit-form"
                 method="POST"
-                action="{{ url_for('users.update_profile') }}"
+                action="{{ url_for('update_profile') }}"
               >
                 <input type="hidden" name="field" value="fullname" />
                 <div class="form-group">
@@ -106,7 +107,7 @@
                 id="email-form"
                 class="edit-form"
                 method="POST"
-                action="{{ url_for('users.update_profile') }}"
+                action="{{ url_for('update_profile') }}"
               >
                 <input type="hidden" name="field" value="email" />
                 <div class="form-group">
@@ -143,7 +144,7 @@
                 id="password-form"
                 class="edit-form"
                 method="POST"
-                action="{{ url_for('users.update_profile') }}"
+                action="{{ url_for('update_profile') }}"
               >
                 <input type="hidden" name="field" value="password" />
                 <div class="form-group">

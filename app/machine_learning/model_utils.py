@@ -2,7 +2,6 @@
 import os
 import joblib
 from sqlalchemy import text
-from app.models.db import engine
 from config import Config
 import requests
 from datetime import datetime
