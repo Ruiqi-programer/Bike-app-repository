@@ -15,18 +15,18 @@
   min-height: 70vh;
   padding: 0 40px;
 }
-.contact-info {
+.contact-info-detail {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.contact-info,
+.contact-info-detail,
 .contact-form {
   flex: 1 1 400px;
 }
 
-.contact-info h2,
+.contact-info-detail h2,
 .contact-form h2 {
   color: #34c759;
   font-size: 28px;
@@ -35,7 +35,7 @@
   text-transform: uppercase;
 }
 
-.contact-info p {
+.contact-info-detail p {
   color: #888;
   line-height: 1.6;
   margin-bottom: 30px;

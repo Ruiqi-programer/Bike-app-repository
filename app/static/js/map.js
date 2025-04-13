@@ -3,8 +3,8 @@ let map;
 let markers = [];
 let currentInfoWindow = null;
 let predictionChart = null;
-let fetches = [];
 let filteredStations = [];
+let stationDataMap = {};
 
 const activeFilters = {
   search: "",
@@ -340,7 +340,17 @@ export function predict() {
     .then((data) => {
       const resultDiv = document.getElementById("result");
       if (data.predicted_available_bikes !== undefined) {
-        resultDiv.innerHTML = `<p>🚲 Predicted Avaliable Bikes: <strong>${data.predicted_available_bikes}</strong></p>`;
+        const predictedBikes = data.predicted_available_bikes;
+        const totalStands = stationDataMap[stationId];
+        const predictedStands =
+          typeof totalStands === "number"
+            ? totalStands - predictedBikes
+            : "N/A";
+        resultDiv.innerHTML = `<div class="prediction-line">🚲 Predicted Bikes: <strong>${predictedBikes}</strong></div>
+  <div class="prediction-line">🅿️ Predicted Free Stands: <strong>${predictedStands}</strong></div>
+  <div class="prediction-line">🔢 Total Stands: <strong>${
+    totalStands ?? "N/A"
+  }</strong></div>`;
       } else {
         resultDiv.innerHTML = `<p style="color:red;">Error: ${data.error}</p>`;
       }
@@ -367,6 +377,8 @@ export function loadStationsForSelect() {
         option.value = station.station_id;
         option.textContent = `${station.name} (ID: ${station.station_id})`;
         select.appendChild(option);
+
+        stationDataMap[station.station_id] = station.total_bike_stands;
       });
     })
     .catch((err) => {
@@ -391,7 +403,9 @@ window.showPredictionChart = function (stationId, stationName) {
   // Fetch predictions for the next 24 hours
   const now = new Date();
   const predictions = [];
+  const freeStands = [];
   const labels = [];
+  let fetches = [];
 
   // Generate predictions for each hour in the next 24 hours
   for (let i = 0; i < 24; i++) {
@@ -410,10 +424,13 @@ window.showPredictionChart = function (stationId, stationName) {
       .then((res) => res.json())
       .then((data) => {
         if (data.predicted_available_bikes !== undefined) {
-          return data.predicted_available_bikes;
+          const bikes = data.predicted_available_bikes ?? 0;
+          const totalStands = stationDataMap[stationId] ?? 0;
+          const stands = totalStands - bikes;
+          return { bikes, stands };
         } else {
-          console.error("Prediction error:", data.error);
-          return 0;
+          console.error("Fetch error:", err);
+          return { bikes: 0, stands: 0 };
         }
       })
       .catch((err) => {
@@ -425,11 +442,14 @@ window.showPredictionChart = function (stationId, stationName) {
   }
 
   Promise.all(fetches).then((predictions) => {
-    updatePredictionChart(labels, predictions);
+    const predictedBikes = predictions.map((r) => r.bikes);
+    const predictedStands = predictions.map((r) => r.stands);
+
+    updatePredictionChart(labels, predictedBikes, predictedStands);
   });
 };
 
-function updatePredictionChart(labels, predictions) {
+function updatePredictionChart(labels, predictions, freeStands) {
   const ctx = document.getElementById("prediction-chart").getContext("2d");
 
   // Destroy existing chart if it exists
@@ -447,7 +467,15 @@ function updatePredictionChart(labels, predictions) {
           data: predictions,
           borderColor: "rgba(75, 192, 192, 1)",
           backgroundColor: "rgba(75, 192, 192, 0.2)",
-          fill: true,
+          fill: false,
+          tension: 0.4,
+        },
+        {
+          label: "Predicted Free Stands",
+          data: freeStands,
+          borderColor: "#f39c12",
+          backgroundColor: "rgba(243, 156, 18, 0.2)",
+          fill: false,
           tension: 0.4,
         },
       ],
@@ -459,7 +487,7 @@ function updatePredictionChart(labels, predictions) {
           title: { display: true, text: "Time (Hour)" },
         },
         y: {
-          title: { display: true, text: "Predicted Bikes" },
+          title: { display: true, text: "Count" },
           beginAtZero: true,
         },
       },

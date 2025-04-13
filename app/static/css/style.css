@@ -17,7 +17,7 @@ html {
   overflow-x: hidden;
 }
 a {
-text-decoration: none;
+  text-decoration: none;
 }
 /*-------------------------------------
 		Header 
@@ -203,14 +203,16 @@ hr {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   text-decoration: none;
   font-size: 18px;
   transition: background 0.3s;
 }
-
+.back-to-top.show {
+  display: flex;
+}
 .back-to-top:hover {
   background-color: #367c39;
 }

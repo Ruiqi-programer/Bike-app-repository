@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link
       rel="stylesheet"
@@ -15,7 +16,7 @@
   <body>
     <div class="container">
       <div class="back-link">
-        <a href="#">Back</a>
+        <a href="#" onclick="history.back(); return false;">Back</a>
       </div>
 
       <div class="login-box">

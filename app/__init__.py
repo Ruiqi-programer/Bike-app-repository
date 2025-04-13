@@ -18,6 +18,7 @@ from app.models.db import engine
 from config import Config
 
 
+
 def create_app():
     app = Flask(__name__)
 
@@ -46,10 +47,11 @@ def create_app():
     @app.route('/')
     def index():
         reviews = [
-            {"name": "Tom Leakar", "location": "London, UK", "image": "images/clients/c1.png", "comment": "Great service! Highly recommend."},
-            {"name": "Monirul Islam", "location": "London, UK", "image": "images/clients/c2.png", "comment": "Excellent customer support!"},
-            {"name": "Shohrab Hossain", "location": "London, UK", "image": "images/clients/c3.png", "comment": "Fast and reliable, would use again!"},
-            {"name": "Jane Doe", "location": "New York, USA", "image": "images/clients/c4.png", "comment": "Outstanding experience!"}
+            {"name": "Tom Leakar", "location": "Abbey Street, Dublin", "image": "images/clients/c1.png", "comment": "Loved exploring Dublin on two wheels—easy to use and so much fun!"},
+            {"name": "Shuangning Wei", "location": "Ralto, Dublin", "image": "images/clients/c2.png", "comment": "Quick, reliable, and cheaper than any other way to get around the city."},
+            {"name": "Shohrab Hossain", "location": "3Arena, Dublin", "image": "images/clients/c3.png", "comment": "I ride daily knowing I’m reducing my carbon footprint with every trip"},
+            {"name": "Ruiqi Guo", "location": "Dandrum,Dublin", "image": "images/clients/c4.png", "comment": "Perfect for getting to class on time without the stress of buses!"},
+            {"name": "Lily Bond", "location": "Fourcourts, Dublin", "image": "images/clients/c5.png", "comment": "A great weekend option for riding with the kids—safe and simple."}
         ]
         return render_template('index.html',reviews=reviews)
 

@@ -189,7 +189,7 @@ select {
   padding: 30px 40px;
   border-radius: 12px;
   width: auto;
-  max-width: 500px;
+  max-width: 700px;
   height: auto;
   max-height: 90vh;
   /* overflow-y: auto; */
@@ -257,6 +257,11 @@ select {
   text-align: center;
   color: #333;
   margin-top: 5px;
+}
+#result .prediction-line {
+  margin: 2px 0;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
 /*map */
@@ -424,6 +429,12 @@ select {
   overflow-y: auto;
   visibility: hidden; /* Hide completely when not open */
   text-align: center;
+}
+.sidebar-header {
+  margin-bottom: 20px;
+}
+.sidebar-content h3 {
+  margin-bottom: 10px;
 }
 #station-sidebar.open {
   right: 0; /* Show sidebar */
