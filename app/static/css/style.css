@@ -16,7 +16,9 @@ html {
   padding: 0;
   overflow-x: hidden;
 }
-
+a {
+text-decoration: none;
+}
 /*-------------------------------------
 		Header 
 --------------------------------------*/
@@ -67,6 +69,7 @@ header {
 
 .nav-links a:hover {
   color: black;
+  font-weight: bold;
 }
 
 /* 按钮 */
@@ -130,6 +133,7 @@ footer {
 
 .footer-nav a:hover {
   color: black;
+  font-weight: bold;
 }
 
 hr {

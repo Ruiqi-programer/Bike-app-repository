@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  color: white;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 3rem;
+  animation: float 2s ease-in-out infinite alternate;
+}
+
+.arrow {
+  margin-top: 40px;
+  font-size: 6rem;
+  color: yellow;
+  transform: rotate(-45deg);
+  animation: wiggle 0.8s infinite;
+}
+
+.caption {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  color: #999;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-45deg) scale(1);
+  }
+  50% {
+    transform: rotate(-45deg) scale(1.1);
+  }
+}
+
+.banana {
+  font-size: 3rem;
+  position: absolute;
+  bottom: 20px;
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

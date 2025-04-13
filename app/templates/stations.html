@@ -6,33 +6,52 @@
 />
 {% endblock %}{% block content %}
 
-<div id="map-filters" class="filter-panel">
-  <!--left ：Weather and Prediction buttons-->
-  <div class="filters-left">
-    <button id="weather-btn" title="View Weather">
-      <i class="fa-solid fa-cloud-sun"></i>
-    </button>
-    <button id="prediction-btn-modal" title="Predict Bike Availability">
-      <i class="fa-solid fa-bicycle"></i>
-    </button>
-  </div>
+<div id="map-filters">
+  <div class="filters-group-container">
+    <!-- 左组按钮 -->
+    <div class="filters-group left">
+      <button id="weather-btn">
+        <i class="fa-solid fa-cloud-sun"></i> View Weather
+      </button>
+      <button id="prediction-btn-modal">
+        <i class="fa-solid fa-bicycle"></i> View Prediction
+      </button>
+    </div>
 
-  <!-- Center: Checkboxes -->
-  <div class="filters-center checkbox-group">
-    <label><input type="checkbox" id="filter-bikes" /> Has Bikes</label>
-    <label><input type="checkbox" id="filter-stands" /> Has Stands</label>
-    <label><input type="checkbox" id="filter-not-empty" /> Not Empty</label>
-    <label><input type="checkbox" id="filter-not-full" /> Not Full</label>
-  </div>
+    <!-- 右组：Filter + 搜索框 -->
+    <div class="filters-group right">
+      <div class="filter-group">
+        <button id="filter-toggle-btn">
+          <i class="fa-solid fa-sliders"></i> Filters
+        </button>
+        <div id="filter-dropdown" class="filter-dropdown hidden">
+          <label
+            ><input type="checkbox" id="filter-bikes" /><span>Has Bikes</span>
+          </label>
+          <label
+            ><input type="checkbox" id="filter-stands" />
+            <span>Has Stands</span></label
+          >
+          <label
+            ><input type="checkbox" id="filter-not-empty" />
+            <span>Empty Stations</span></label
+          >
+          <label
+            ><input type="checkbox" id="filter-not-full" />
+            <span>Full Stations</span></label
+          >
+        </div>
+      </div>
 
-  <!-- Right: Search bar -->
-  <div class="filters-right search-group">
-    <input
-      type="text"
-      id="station-search"
-      placeholder="Search station name..."
-    />
-    <i class="fa-solid fa-magnifying-glass"></i>
+      <div class="search-group">
+        <input
+          type="text"
+          id="station-search"
+          placeholder="Search station name..."
+        />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -43,7 +62,9 @@
 </div>
 
 <!-- Map container -->
-<div id="map"></div>
+<div class="map-container">
+  <div id="map"></div>
+</div>
 
 <!-- Prediction Modal -->
 <div id="prediction-modal" class="modal">

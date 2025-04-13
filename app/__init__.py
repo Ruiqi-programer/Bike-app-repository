@@ -38,6 +38,10 @@ def create_app():
     def page_not_found(e):
         return render_template("500.html"),500
     
+    @app.route('/to_be_continued')
+    def tobecontinue():
+        return render_template("tobecontinue.html")
+
     #first page
     @app.route('/')
     def index():
@@ -191,13 +195,14 @@ def create_app():
                 "description": """With an Annual Subscription you can rent a bike 365 days a year
                 for an annual fee of €35. The first 30 minutes of each journey is
                 free, after this rental charges apply. """,
-                "price": "100",
+                "price": "35",
                 "ticket_type":"annual"
             },
             {
                 "title": "PROMOTION",
-                "description": "student discount",
-                "price": "10% Discount",
+                "description": """Exclusive offer for students - enjoy the same benefits of an annual subscription at
+                a discounted rate! Valid student ID required at registration.""",
+                "price": "31.50",
                 "ticket_type":"discount"
             }
         ]

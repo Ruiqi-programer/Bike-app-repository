@@ -4,6 +4,7 @@ let markers = [];
 let currentInfoWindow = null;
 let predictionChart = null;
 let fetches = [];
+let filteredStations = [];
 
 const activeFilters = {
   search: "",
@@ -26,9 +27,12 @@ export async function loadMapAndStations() {
   map = new google.maps.Map(mapElement, {
     center: { lat: 53.349805, lng: -6.26031 },
     zoom: 14,
-    disableDefaultUI: true,
     mapId: "8adf177586ed1224",
     gestureHandling: "greedy",
+    mapTypeControl: true,
+    zoomControl: true,
+    streetViewControl: true,
+    fullscreenControl: true,
   });
 
   fetchStations();
@@ -68,6 +72,23 @@ export function setupFilters() {
     activeFilters.notFull = e.target.checked;
     fetchStations();
   });
+
+  search.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && filteredStations.length === 1) {
+      const { marker, infoWindow } = filteredStations[0];
+
+      if (currentInfoWindow) currentInfoWindow.close();
+
+      map.panTo(marker.position);
+
+      infoWindow.open(map, marker);
+      currentInfoWindow = infoWindow;
+
+      infoWindow.addListener("domready", () => {
+        InfoWindowEvents(filteredStations[0].station);
+      });
+    }
+  });
 }
 
 function fetchStations() {
@@ -85,21 +106,54 @@ function fetchStations() {
         return;
       }
 
+      filteredStations = [];
       data.forEach((station) => {
-        const nameMatch = station.name
+        const searchWords = activeFilters.search
+          .trim()
           .toLowerCase()
-          .includes(activeFilters.search);
+          .split(/\s+/);
+        const stationWords =
+          station.name.toLowerCase().match(/\b[a-z]+\b/g) || [];
+
+        let usedIndexes = new Set();
+        let nameMatch = true;
+
+        for (let i = 0; i < searchWords.length; i++) {
+          const searchWord = searchWords[i];
+          const isLastWord = i === searchWords.length - 1;
+
+          let matched = false;
+
+          for (let j = 0; j < stationWords.length; j++) {
+            const stationWord = stationWords[j];
+
+            // 若未被匹配，进行匹配检查
+            if (!usedIndexes.has(j)) {
+              const isFullMatch = stationWord === searchWord;
+              const isPrefixMatch = stationWord.startsWith(searchWord);
+
+              if ((isLastWord && isPrefixMatch) || isFullMatch) {
+                usedIndexes.add(j);
+                matched = true;
+                break;
+              }
+            }
+          }
+
+          if (!matched) {
+            nameMatch = false;
+            break;
+          }
+        }
         const hasBikes = station.available_bikes > 0;
         const hasStands = station.available_bike_stands > 0;
-        const isNotEmpty = hasBikes;
-        const isNotFull = hasStands;
 
         if (
           (activeFilters.search && !nameMatch) ||
           (activeFilters.hasBikes && !hasBikes) ||
           (activeFilters.hasStands && !hasStands) ||
-          (activeFilters.notEmpty && !isNotEmpty) ||
-          (activeFilters.notFull && !isNotFull)
+          (activeFilters.notEmpty && station.available_bikes !== 0) ||
+          (activeFilters.notFull && station.available_bike_stands !== 0)
         ) {
           return;
         }
@@ -119,6 +173,17 @@ function fetchStations() {
           map,
           content: createMarkerIcon(color, station.available_bikes),
           title: station.name,
+        });
+        marker.content.addEventListener("mouseenter", () => {
+          if (!marker.content.dataset.promoted) {
+            marker.map = null;
+            marker.map = map;
+            marker.content.dataset.promoted = "true";
+          }
+        });
+
+        marker.content.addEventListener("mouseleave", () => {
+          delete marker.content.dataset.promoted;
         });
 
         const infoWindow = new google.maps.InfoWindow({
@@ -152,44 +217,11 @@ function fetchStations() {
           currentInfoWindow = infoWindow;
 
           infoWindow.addListener("domready", () => {
-            const chartElement = document.getElementById(
-              `chart_div_${station.station_id}`
-            );
-            if (!chartElement) return;
-
-            const chartData = new google.visualization.DataTable();
-            chartData.addColumn("string", "Type");
-            chartData.addColumn("number", "Count");
-            chartData.addRows([
-              ["Available Bikes", station.available_bikes],
-              ["Free Stands", station.available_bike_stands],
-            ]);
-
-            const chart = new google.visualization.BarChart(chartElement);
-            chart.draw(chartData, {
-              title: "Station Overview",
-              legend: { position: "bottom" },
-              width: 300,
-              height: 200,
-              chartArea: { width: "70%", height: "70%" },
-            });
-          });
-
-          setTimeout(() => {
-            const predictionBtn = document.getElementById(
-              "view-prediction-btn"
-            );
-
-            predictionBtn.addEventListener("click", () => {
-              const sid = predictionBtn.dataset.stationId;
-              const name = predictionBtn.dataset.stationName;
-              window.showPredictionChart(sid, name);
-              window.drawHistoricalBikeChart(sid);
-              window.drawHistoricalWeatherChart();
-            });
+            InfoWindowEvents(station);
           });
         });
 
+        filteredStations.push({ station, marker, infoWindow });
         markers.push(marker);
       });
     })
@@ -204,25 +236,80 @@ function fetchStations() {
     });
 }
 
+function InfoWindowEvents(station) {
+  const chartElement = document.getElementById(
+    `chart_div_${station.station_id}`
+  );
+  if (chartElement) {
+    const chartData = new google.visualization.DataTable();
+    chartData.addColumn("string", "Type");
+    chartData.addColumn("number", "Count");
+    chartData.addRows([
+      ["Available Bikes", station.available_bikes],
+      ["Free Stands", station.available_bike_stands],
+    ]);
+    const chart = new google.visualization.BarChart(chartElement);
+    chart.draw(chartData, {
+      title: "Station Overview",
+      legend: { position: "bottom" },
+      width: 300,
+      height: 200,
+      chartArea: { width: "70%", height: "70%" },
+    });
+  }
+
+  setTimeout(() => {
+    const predictionBtn = document.getElementById("view-prediction-btn");
+
+    predictionBtn.addEventListener("click", () => {
+      const sid = predictionBtn.dataset.stationId;
+      const name = predictionBtn.dataset.stationName;
+      window.showPredictionChart(sid, name);
+      window.drawHistoricalBikeChart(sid);
+      window.drawHistoricalWeatherChart();
+    });
+  });
+}
+
 function clearMarkers() {
   markers.forEach((marker) => marker.setMap(null));
   markers = [];
 }
 
 function createMarkerIcon(color, count) {
+  // const el = document.createElement("div");
+  // el.className = "custom-marker";
+  // el.style.background = color;
+  // el.style.border = "2px solid black";
+  // el.style.borderRadius = "50%";
+  // el.style.width = "32px";
+  // el.style.height = "32px";
+  // el.style.display = "flex";
+  // el.style.alignItems = "center";
+  // el.style.justifyContent = "center";
+  // el.style.fontWeight = "bold";
+  // el.style.color = "white";
+  // el.innerText = count;
   const el = document.createElement("div");
-  el.className = "custom-marker";
-  el.style.background = color;
-  el.style.border = "2px solid black";
-  el.style.borderRadius = "50%";
-  el.style.width = "32px";
-  el.style.height = "32px";
-  el.style.display = "flex";
-  el.style.alignItems = "center";
-  el.style.justifyContent = "center";
-  el.style.fontWeight = "bold";
-  el.style.color = "black";
-  el.innerText = count;
+  el.className = "custom-teardrop-marker";
+
+  // 设置颜色
+  el.style.setProperty("--pin-color", color);
+
+  // 设置文字内容
+  const inner = document.createElement("div");
+  inner.className = "marker-count";
+  inner.textContent = count;
+  el.appendChild(inner);
+
+  el.addEventListener("mouseenter", () => {
+    el.style.zIndex = "9999";
+  });
+
+  el.addEventListener("mouseleave", () => {
+    el.style.zIndex = "1";
+  });
+
   return el;
 }
 

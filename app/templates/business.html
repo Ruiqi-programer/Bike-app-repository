@@ -21,7 +21,7 @@ styles %}
     <h2>{{ option.title }}</h2>
     <p>{{ option.description }}</p>
     <div><strong>€{{ option.price }}</strong></div>
-    <a href="{{ url_for('business', ticket_type=option.ticket_type) }}">
+    <a href="{{ url_for('login') }}">
       <button class="choose-button">CHOOSE THIS SUBSCRIPTION OPTION</button>
     </a>
   </div>

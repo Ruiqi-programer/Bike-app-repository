@@ -17,7 +17,7 @@
     </div>
     <div class="welcome-hero-serch-box">
       <h2>Find a Station Near You</h2>
-      <div class="welcome-hero-form">
+      <!-- <div class="welcome-hero-form">
         <div class="single-welcome-hero-form">
           <h3>Station</h3>
           <form action="index.html">
@@ -36,11 +36,13 @@
             <i class="flaticon-gps-fixed-indicator"></i>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="welcome-hero-serch">
-        <button class="welcome-hero-btn" onclick="window.location.href='#'">
-          check avability <i data-feather="search"></i>
-        </button>
+        <a href="{{ url_for('map') }}">
+          <button class="welcome-hero-btn">
+            Show map<i class="fa-solid fa-map"></i>
+          </button>
+        </a>
       </div>
     </div>
   </div>
@@ -64,6 +66,7 @@
         <div class="single-subscription">
           <div class="single-subscription-card">
             <div class="single-subscription-icon">
+              <span class="icon-number"> €3</span>
               <i class="flaticon-lightbulb-idea"></i>
             </div>
             <h2>
@@ -84,6 +87,7 @@
         <div class="single-subscription">
           <div class="single-subscription-card">
             <div class="single-subscription-icon">
+              <span class="icon-number"> €5</span>
               <i class="flaticon-networking"></i>
             </div>
             <h2>
@@ -104,6 +108,7 @@
         <div class="single-subscription">
           <div class="single-subscription-card">
             <div class="single-subscription-icon">
+              <span class="icon-number"> €35</span>
               <i class="flaticon-location-on-road"></i>
             </div>
             <h2>
@@ -137,19 +142,24 @@
     <div class="section-header">
       <h2>about dublin bike</h2>
       <p>
-        We are a fast-growing start-up with a footprint In Dublin, London, and
-        Utrecht. We are currently expanding to other cities internatonally!
+        <strong
+          >DublinBike is a smart and sustainable bike-sharing platform designed
+          to make moving around Dublin faster, easier, and greener.</strong
+        >
       </p>
       <p>
-        Launched in 2019 we operate MOBY MOVE, the Dublin bike share scheme, and
-        have now expanded to other locations nationally. MOBY Delivery Fleets is
-        our international B2B business, providing managed fleets to the world’s
-        leading food delivery companies.
+        Launched in 2025 as part of a student-led innovation project, the
+        platform combines real-time station data, live weather integration, and
+        AI-powered predictions to help users plan their rides with confidence.
+        With an interactive city map, clean interface, and mobile-friendly
+        design, DublinBike is built for both locals and visitors. Whether you're
+        commuting to work, heading to class, or just exploring the city,
+        DublinBike helps you ride smarter—anytime, anywhere.
       </p>
     </div>
     <!--/.section-header-->
 
-    <a href="#">
+    <a href="{{ url_for('tobecontinue') }}">
       <button class="about-btn">Read More</button>
     </a>
   </div>
@@ -164,34 +174,33 @@
     <div class="statistics-counter">
       <div class="single-ststistics-box">
         <div class="statistics-content">
-          <div class="counter">90</div>
-          <span>K+</span>
+          <div class="counter">100+</div>
+          <!-- <span>k+</span> -->
         </div>
-        <h3>Bikes</h3>
+        <h3>Stations</h3>
       </div>
 
       <div class="single-ststistics-box">
         <div class="statistics-content">
-          <div class="counter">40</div>
-          <span>k+</span>
+          <div class="counter">3M+</div>
+          <!-- <span>K+</span> -->
         </div>
-        <h3>listing categories</h3>
+        <h3>Trips Tracked</h3>
       </div>
 
       <div class="single-ststistics-box">
         <div class="statistics-content">
-          <div class="counter">65</div>
-          <span>k+</span>
+          <div class="counter">24/7</div>
+          <!-- <span>k+</span> -->
         </div>
-        <h3>visitors</h3>
+        <h3>Access</h3>
       </div>
 
       <div class="single-ststistics-box">
         <div class="statistics-content">
-          <div class="counter">50</div>
-          <span>k+</span>
+          <div class="counter">95%</div>
         </div>
-        <h3>happy clients</h3>
+        <h3>User Satisfaction</h3>
       </div>
     </div>
     <!--/.statistics-counter-->
@@ -214,17 +223,20 @@
         <div class="single-blog-item">
           <div class="single-blog-item-img">
             <img
-              src="{{ url_for('static', filename='images/blog/b1.jpg') }}"
+              src="{{ url_for('static', filename='images/blog/b1.png') }}"
               alt="blog image"
             />
           </div>
           <div class="single-blog-item-txt">
             <h2>
-              <a href="#"
+              <a href="{{ url_for('tobecontinue') }}"
                 >Dublin’s Cycling Revolution: The Rise of Bike Rentals
               </a>
             </h2>
-            <h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
+            <h4>
+              posted <span>by</span>
+              <a href="{{ url_for('tobecontinue') }}">admin</a> Jan. 2025
+            </h4>
             <p>
               Dublin has embraced cycling like never before! With an increasing
               number of bike rental stations across the city, more residents and
@@ -244,12 +256,15 @@
           </div>
           <div class="single-blog-item-txt">
             <h2>
-              <a href="#"
+              <a href="{{ url_for('tobecontinue') }}"
                 >Eco-Friendly Commuting: How Bike Rentals Help Reduce Carbon
                 Footprint
               </a>
             </h2>
-            <h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
+            <h4>
+              posted <span>by</span>
+              <a href="{{ url_for('tobecontinue') }}">admin</a> Feb. 2025
+            </h4>
             <p>
               Biking isn’t just convenient—it’s also great for the environment!
               Learn how choosing bike rentals over cars and public transport can
@@ -267,15 +282,22 @@
           </div>
           <div class="single-blog-item-txt">
             <h2>
-              <a href="#"
-                >Student Special: How Dublin Bikes Make Campus Life Easier
+              <a href="{{ url_for('tobecontinue') }}"
+                >Family Adventures on Two Wheels: Bike Rentals for Parents and
+                Kids
               </a>
             </h2>
-            <h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
+            <h4>
+              posted <span>by</span>
+              <a href="{{ url_for('tobecontinue') }}">admin</a> Mar. 2025
+            </h4>
             <p>
-              Are you a student in Dublin? Discover why bike rentals are the
-              perfect solution for getting to lectures, running errands, and
-              exploring the city—all on a student-friendly budget!
+              Explore Dublin with your loved ones in the most fun and active
+              way—by bike! Bike rentals offer a safe, easy, and eco-friendly
+              option for families to enjoy the city together. With kid-friendly
+              stations and scenic routes, every ride becomes a mini adventure.
+              Ditch the traffic and create lasting memories, one pedal at a
+              time!
             </p>
           </div>
         </div>
@@ -284,7 +306,7 @@
   </div>
   <!--/.container-->
 
-  <a href="#">
+  <a href="{{ url_for('tobecontinue') }}">
     <button class="blog-btn">Read More</button>
   </a>
 </section>
