@@ -3,6 +3,7 @@ let map;
 let markers = [];
 let currentInfoWindow = null;
 let predictionChart = null;
+let historicalWeatherChartInstance = null;
 let filteredStations = [];
 let stationDataMap = {};
 
@@ -147,13 +148,16 @@ function fetchStations() {
         }
         const hasBikes = station.available_bikes > 0;
         const hasStands = station.available_bike_stands > 0;
+        const isFullyUnavailable =
+          station.available_bikes === 0 && station.available_bike_stands === 0;
 
         if (
           (activeFilters.search && !nameMatch) ||
           (activeFilters.hasBikes && !hasBikes) ||
           (activeFilters.hasStands && !hasStands) ||
           (activeFilters.notEmpty && station.available_bikes !== 0) ||
-          (activeFilters.notFull && station.available_bike_stands !== 0)
+          (activeFilters.notFull &&
+            (station.available_bike_stands !== 0 || isFullyUnavailable))
         ) {
           return;
         }
@@ -482,6 +486,15 @@ function updatePredictionChart(labels, predictions, freeStands) {
     },
     options: {
       responsive: true,
+
+      layout: {
+        padding: {
+          left: 10, // ✅ 给 Y轴留出空间
+          right: 10,
+          top: 10,
+          bottom: 10,
+        },
+      },
       scales: {
         x: {
           title: { display: true, text: "Time (Hour)" },
@@ -619,6 +632,14 @@ window.drawHistoricalBikeChart = async function (stationId) {
     },
     options: {
       responsive: true,
+      layout: {
+        padding: {
+          left: 10, // ✅ 给 Y轴留出空间
+          right: 10,
+          top: 10,
+          bottom: 10,
+        },
+      },
       plugins: {
         title: {
           display: true,
@@ -673,7 +694,9 @@ window.drawHistoricalWeatherChart = async function () {
   const humidity = data.map((d) => parseFloat(d.humidity));
   const windSpeed = data.map((d) => parseFloat(d.wind_speed));
   const descriptions = data.map((d) => d.weather_main);
-
+  if (historicalWeatherChartInstance) {
+    historicalWeatherChartInstance.destroy();
+  }
   new Chart(ctx, {
     type: "line", // 可改为 'bar'
     data: {
@@ -701,6 +724,14 @@ window.drawHistoricalWeatherChart = async function () {
     },
     options: {
       responsive: true,
+      layout: {
+        padding: {
+          left: 10, // ✅ 给 Y轴留出空间
+          right: 10,
+          top: 10,
+          bottom: 10,
+        },
+      },
       interaction: { mode: "index", intersect: false },
       stacked: false,
       plugins: {

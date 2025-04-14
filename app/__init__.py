@@ -47,10 +47,10 @@ def create_app():
     @app.route('/')
     def index():
         reviews = [
-            {"name": "Tom Leakar", "location": "Abbey Street, Dublin", "image": "images/clients/c1.png", "comment": "Loved exploring Dublin on two wheels—easy to use and so much fun!"},
             {"name": "Shuangning Wei", "location": "Ralto, Dublin", "image": "images/clients/c2.png", "comment": "Quick, reliable, and cheaper than any other way to get around the city."},
-            {"name": "Shohrab Hossain", "location": "3Arena, Dublin", "image": "images/clients/c3.png", "comment": "I ride daily knowing I’m reducing my carbon footprint with every trip"},
             {"name": "Ruiqi Guo", "location": "Dandrum,Dublin", "image": "images/clients/c4.png", "comment": "Perfect for getting to class on time without the stress of buses!"},
+            {"name": "Shohrab Hossain", "location": "3Arena, Dublin", "image": "images/clients/c3.png", "comment": "I ride daily knowing I’m reducing my carbon footprint with every trip"},
+            {"name": "Tom Leakar", "location": "Abbey Street, Dublin", "image": "images/clients/c1.png", "comment": "Loved exploring Dublin on two wheels—easy to use and so much fun!"},
             {"name": "Lily Bond", "location": "Fourcourts, Dublin", "image": "images/clients/c5.png", "comment": "A great weekend option for riding with the kids—safe and simple."}
         ]
         return render_template('index.html',reviews=reviews)

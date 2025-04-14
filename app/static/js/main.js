@@ -20,18 +20,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Center the active review card
   function centerCurrentReview(animate = true) {
+    const cardWidth = allReviews[currentIndex].offsetWidth + 20; // always recalc
+    const wrapperWidth = reviewsWrapper.offsetWidth;
+
     allReviews.forEach((card) => {
+      card.classList.remove("active");
       card.style.opacity = "0.5";
       card.style.transform = "scale(0.9)";
     });
 
+    allReviews[currentIndex].classList.add("active");
     allReviews[currentIndex].style.opacity = "1";
     allReviews[currentIndex].style.transform = "scale(1.1)";
 
-    const shift =
-      -currentIndex * reviewWidth +
-      reviewsWrapper.offsetWidth / 2 -
-      reviewWidth / 2;
+    const shift = -currentIndex * cardWidth + wrapperWidth / 2 - cardWidth / 2;
     reviewsContent.style.transition = animate ? "transform 0.4s ease" : "none";
     reviewsContent.style.transform = `translateX(${shift}px)`;
   }

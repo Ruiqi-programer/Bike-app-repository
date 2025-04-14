@@ -639,3 +639,47 @@
   box-shadow: 0 5px 10px rgba(71, 71, 71, 0.4);
   background: #34c759;
 }
+
+/* Small screen (phones) */
+@media (max-width: 768px) {
+  .welcome-hero {
+    padding: 20px;
+    height: auto;
+  }
+
+  .welcome-hero-txt {
+    margin-top: 0;
+    max-width: 80%;
+  }
+
+  .welcome-hero-txt h2 {
+    font-size: 24px;
+  }
+
+  .single-subscription {
+    max-width: 100%;
+  }
+
+  .single-subscription-card {
+    padding: 30px 30px;
+  }
+
+  .statistics-counter {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .reviews-wrapper {
+    flex-direction: column;
+  }
+
+  .join-input-group {
+    flex-direction: column;
+    height: auto;
+    max-width: 80%;
+  }
+
+  .join-input-form {
+    border-radius: 5px 5px 0 0;
+  }
+}
