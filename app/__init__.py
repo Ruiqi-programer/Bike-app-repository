@@ -152,8 +152,9 @@ def create_app():
 
             if not all([date, time, station_id]):
                 return jsonify({"error": "Missing date, time, or station_id"}), 400
-
+   
             result = predict(station_id, date, time)
+
             if isinstance(result, dict) and "error" in result:
                 return jsonify(result), 500
             return jsonify({"predicted_available_bikes": result})
@@ -351,7 +352,7 @@ def create_app():
                             session['created_at'] = created_at.strftime('%Y-%m-%d %H:%M:%S') if created_at else datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                                 
                             logging.info(f"Login successful for: {email}")
-                            return redirect(url_for('users.dashboard'))
+                            return redirect(url_for('dashboard'))
                         else:
                             logging.warning(f"Password verification failed for: {email}")
                             return redirect(url_for('login', error='Invalid email or password. Please try again.'))

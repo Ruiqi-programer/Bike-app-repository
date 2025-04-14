@@ -1,25 +1,27 @@
 
 import os
 import joblib
-from sqlalchemy import text
 from config import Config
 import requests
 from datetime import datetime
 import pandas as pd
 
-_model = None  
+# _model = None  
 
-def load_model():
-    """
-    Load the trained machine learning model if not already loaded.
-    Returns:
-        The loaded model.
-    """
-    global _model
-    if _model is None:
-        model_path = os.path.join(os.path.dirname(__file__), "bike_availability_model.pkl")
-        _model = joblib.load(model_path)
-    return _model
+model_path = os.path.join(os.path.dirname(__file__), "bike_availability_model.pkl")
+model = joblib.load(model_path)
+
+# def load_model():
+#     """
+#     Load the trained machine learning model if not already loaded.
+#     Returns:
+#         The loaded model.
+#     """
+#     global _model
+#     if _model is None:
+#         model_path = os.path.join(os.path.dirname(__file__), "bike_availability_model.pkl")
+#         _model = joblib.load(model_path)
+#     return _model
 
 
 def fetch_weather_forecast(date_time):
@@ -69,7 +71,6 @@ def predict(station_id, date, time):
         }
 
         features_df = pd.DataFrame([features_dict])
-        model = load_model()
         prediction = model.predict(features_df)[0]
         return round(prediction)
 
