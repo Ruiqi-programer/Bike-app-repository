@@ -25,7 +25,7 @@ logging.info(" Masterscript started. Running for 12 hours...")
 
 while time.time() - start_time < duration:
     try:
-        # Update bike data in real time (every 10 seconds)
+        # 
         logging.info(" Fetching real-time bike station data...")
         insert_bike_data()  # Update bike station data
         logging.info(" Bike data updated successfully.")
