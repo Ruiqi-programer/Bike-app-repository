@@ -352,7 +352,7 @@ def create_app():
                             session['created_at'] = created_at.strftime('%Y-%m-%d %H:%M:%S') if created_at else datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                                 
                             logging.info(f"Login successful for: {email}")
-                            return redirect(url_for('dashboard'))
+                            return redirect(url_for('index'))
                         else:
                             logging.warning(f"Password verification failed for: {email}")
                             return redirect(url_for('login', error='Invalid email or password. Please try again.'))
@@ -369,7 +369,7 @@ def create_app():
     @app.route('/logout')
     def logout():
         session.clear()
-        return redirect(url_for('login', success='You have been successfully logged out.'))
+        return redirect(url_for('index', success='You have been successfully logged out.'))
 
     @app.route('/dashboard')
     @login_required

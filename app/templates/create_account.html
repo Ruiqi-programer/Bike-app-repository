@@ -1,158 +1,149 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex, nofollow" />
+{% extends "base.html" %} {% block title %} | Login {% endblock %} {% block
+styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static',filename='css/style_create_account.css') }}"
+/>
+{% endblock %} {% block content %}
+<div class="container">
+  <div class="back-link">
+    <a href="{{ url_for('login') }}">Back</a>
+  </div>
 
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static',filename='css/style_create_account.css') }}"
-    />
-    <title>Create Account - Join us for the best experience</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="back-link">
-        <a href="{{ url_for('login') }}">Back</a>
-      </div>
-
-      <div class="signup-box">
-        <div class="signup-header">
-          <img
-            class="logo"
-            src="{{ url_for('static', filename='images/dublin-bike-logo.png') }}"
-            alt="Dublin Bikes"
-          />
-          <h1 class="signup-title">Create Account</h1>
-        </div>
-
-        <div id="error-message" class="error-message"></div>
-        <div id="success-message" class="success-message"></div>
-
-        <form
-          class="signup-form"
-          method="POST"
-          action="{{ url_for('create_account') }}"
-        >
-          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-          <div class="form-group">
-            <input
-              class="form-control"
-              id="fullname"
-              name="fullname"
-              type="text"
-              placeholder=" "
-              required
-              autocomplete="name"
-              autofocus
-              value="{{ fullname|default('', true) }}"
-            />
-            <label class="form-label" for="fullname">Full Name</label>
-          </div>
-
-          <div class="form-group">
-            <input
-              class="form-control"
-              id="email"
-              name="email"
-              type="email"
-              placeholder=" "
-              required
-              autocomplete="email"
-              autocapitalize="none"
-              spellcheck="false"
-              value="{{ email|default('', true) }}"
-            />
-            <label class="form-label" for="email">Email address</label>
-          </div>
-
-          <div class="form-group password-group">
-            <input
-              class="form-control"
-              id="password"
-              name="password"
-              type="password"
-              placeholder=" "
-              required
-              autocomplete="new-password"
-              autocapitalize="none"
-              spellcheck="false"
-            />
-            <label class="form-label" for="password">Password</label>
-            <button
-              type="button"
-              class="password-toggle"
-              id="password-toggle"
-              aria-label="Show password"
-            >
-              <span id="show-password-text">Show</span>
-              <span id="hide-password-text" class="hide">Hide</span>
-            </button>
-            <div class="password-strength">
-              <span id="password-strength-meter"></span>
-            </div>
-          </div>
-
-          <div class="form-group password-group">
-            <input
-              class="form-control"
-              id="confirm-password"
-              name="confirm-password"
-              type="password"
-              placeholder=" "
-              required
-              autocomplete="new-password"
-              autocapitalize="none"
-              spellcheck="false"
-            />
-            <label class="form-label" for="confirm-password"
-              >Confirm Password</label
-            >
-            <button
-              type="button"
-              class="password-toggle"
-              id="confirm-password-toggle"
-              aria-label="Show password"
-            >
-              <span id="show-confirm-password-text">Show</span>
-              <span id="hide-confirm-password-text" class="hide">Hide</span>
-            </button>
-          </div>
-
-          <div class="terms-container">
-            <label>
-              <input
-                type="checkbox"
-                name="terms"
-                required
-                {%
-                if
-                terms_accepted
-                %}checked{%
-                endif
-                %}
-              />
-              I agree to the <a href="#">Terms and Conditions</a> and
-              <a href="#">Privacy Policy</a>
-            </label>
-          </div>
-
-          <button type="submit" name="action" value="default" class="btn">
-            Create Account
-          </button>
-        </form>
-      </div>
-
-      <div class="login-link">
-        <p>
-          Already have an account?
-          <a href="{{ url_for('login') }}">Sign In</a>
-        </p>
-      </div>
+  <div class="signup-box">
+    <div class="signup-header">
+      <!-- <img
+        class="logo"
+        src="{{ url_for('static', filename='images/dublin-bike-logo.png') }}"
+        alt="Dublin Bikes"
+      /> -->
+      <h1 class="signup-title">Create Account</h1>
     </div>
 
-    <script src="{{ url_for('static', filename='js/create_account.js') }}"></script>
-  </body>
-</html>
+    <div id="error-message" class="error-message"></div>
+    <div id="success-message" class="success-message"></div>
+
+    <form
+      class="signup-form"
+      method="POST"
+      action="{{ url_for('create_account') }}"
+    >
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+      <div class="form-group">
+        <input
+          class="form-control"
+          id="fullname"
+          name="fullname"
+          type="text"
+          placeholder=" "
+          required
+          autocomplete="name"
+          autofocus
+          value="{{ fullname|default('', true) }}"
+        />
+        <label class="form-label" for="fullname">Full Name</label>
+      </div>
+
+      <div class="form-group">
+        <input
+          class="form-control"
+          id="email"
+          name="email"
+          type="email"
+          placeholder=" "
+          required
+          autocomplete="email"
+          autocapitalize="none"
+          spellcheck="false"
+          value="{{ email|default('', true) }}"
+        />
+        <label class="form-label" for="email">Email address</label>
+      </div>
+
+      <div class="form-group password-group">
+        <input
+          class="form-control"
+          id="password"
+          name="password"
+          type="password"
+          placeholder=" "
+          required
+          autocomplete="new-password"
+          autocapitalize="none"
+          spellcheck="false"
+        />
+        <label class="form-label" for="password">Password</label>
+        <button
+          type="button"
+          class="password-toggle"
+          id="password-toggle"
+          aria-label="Show password"
+        >
+          <span id="show-password-text">Show</span>
+          <span id="hide-password-text" class="hide">Hide</span>
+        </button>
+        <div class="password-strength">
+          <span id="password-strength-meter"></span>
+        </div>
+      </div>
+
+      <div class="form-group password-group">
+        <input
+          class="form-control"
+          id="confirm-password"
+          name="confirm-password"
+          type="password"
+          placeholder=" "
+          required
+          autocomplete="new-password"
+          autocapitalize="none"
+          spellcheck="false"
+        />
+        <label class="form-label" for="confirm-password"
+          >Confirm Password</label
+        >
+        <button
+          type="button"
+          class="password-toggle"
+          id="confirm-password-toggle"
+          aria-label="Show password"
+        >
+          <span id="show-confirm-password-text">Show</span>
+          <span id="hide-confirm-password-text" class="hide">Hide</span>
+        </button>
+      </div>
+
+      <div class="terms-container">
+        <label>
+          <input
+            type="checkbox"
+            name="terms"
+            required
+            {%
+            if
+            terms_accepted
+            %}checked{%
+            endif
+            %}
+          />
+          I agree to the <a href="#">Terms and Conditions</a> and
+          <a href="#">Privacy Policy</a>
+        </label>
+      </div>
+
+      <button type="submit" name="action" value="default" class="btn">
+        Create Account
+      </button>
+    </form>
+  </div>
+
+  <div class="login-link">
+    <p>
+      Already have an account?
+      <a href="{{ url_for('login') }}">Sign In</a>
+    </p>
+  </div>
+</div>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='js/create_account.js') }}"></script>
+{% endblock %}

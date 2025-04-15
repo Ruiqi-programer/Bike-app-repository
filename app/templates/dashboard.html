@@ -1,213 +1,203 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex, nofollow" />
+{% extends "base.html" %} {% block title %} | Dashboard {% endblock %} {% block
+styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/style_dashboard.css') }}"
+/>
+{% endblock %} {% block content %}
+<!-- <div class="dashboard-header">
+  <div class="dashboard-header-container">
+    <div class="logo-container">
+      <img class="logo" src="{{ url_for('static', filename='images/dublin-bike-logo.png') }}" alt="Dublin Bikes" />
+      <span class="app-name">Dublin Bikes</span>
+    </div>
+    <div class="user-menu">
+      <span class="user-name">Welcome, {{ user_fullname }}</span>
+      <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+    </div>
+  </div>
+</div> -->
 
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static',filename='css/style_dashboard.css') }}"
-    />
-    <title>Dashboard - Dublin Bikes</title>
-  </head>
+<main class="main-content">
+  <h1 class="dashboard-title">Welcome, {{ user_fullname }}</h1>
 
-  <body>
-    <header class="header">
-      <div class="header-container">
-        <div class="logo-container">
-          <img
-            class="logo"
-            src="{{ url_for('static', filename='images/dublin-bike-logo.png') }}"
-            alt="Dublin Bikes"
-          />
-          <span class="app-name">Dublin Bikes</span>
-        </div>
-        <div class="user-menu">
-          <span class="user-name">Welcome, {{ user_fullname }}</span>
-          <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
-        </div>
-      </div>
-    </header>
+  {% with messages = get_flashed_messages() %} {% if messages %}
+  <div class="flash-message flash-success">{{ messages[0] }}</div>
+  {% endif %} {% endwith %}
 
-    <main class="main-content">
-      <h1 class="dashboard-title">My Dashboard</h1>
+  <div
+    id="error-message"
+    class="flash-message flash-error"
+    style="display: none"
+  ></div>
+  <div
+    id="success-message"
+    class="flash-message flash-success"
+    style="display: none"
+  ></div>
 
-      {% with messages = get_flashed_messages() %} {% if messages %}
-      <div class="flash-message flash-success">{{ messages[0] }}</div>
-      {% endif %} {% endwith %}
-
-      <div
-        id="error-message"
-        class="flash-message flash-error"
-        style="display: none"
-      ></div>
-      <div
-        id="success-message"
-        class="flash-message flash-success"
-        style="display: none"
-      ></div>
-
-      <div class="card-container">
-        <!-- Profile Card -->
-        <div class="card">
-          <div class="card-header">My Profile</div>
-          <div class="card-body">
-            <div class="profile-info">
-              <div class="profile-item">
-                <div class="profile-label">Full Name:</div>
-                <div class="profile-value">{{ fullname }}</div>
-                <button
-                  type="button"
-                  class="edit-btn"
-                  onclick="toggleEditForm('fullname-form')"
-                >
-                  Edit
-                </button>
-              </div>
-              <form
-                id="fullname-form"
-                class="edit-form"
-                method="POST"
-                action="{{ url_for('update_profile') }}"
-              >
-                <input type="hidden" name="field" value="fullname" />
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="new_value"
-                    value="{{ fullname }}"
-                    required
-                  />
-                </div>
-                <button type="submit" class="btn">Save</button>
-                <button
-                  type="button"
-                  class="btn btn-cancel"
-                  onclick="toggleEditForm('fullname-form')"
-                >
-                  Cancel
-                </button>
-              </form>
-
-              <div class="profile-item">
-                <div class="profile-label">Email:</div>
-                <div class="profile-value">{{ email }}</div>
-                <button
-                  type="button"
-                  class="edit-btn"
-                  onclick="toggleEditForm('email-form')"
-                >
-                  Edit
-                </button>
-              </div>
-              <form
-                id="email-form"
-                class="edit-form"
-                method="POST"
-                action="{{ url_for('update_profile') }}"
-              >
-                <input type="hidden" name="field" value="email" />
-                <div class="form-group">
-                  <input
-                    type="email"
-                    class="form-control"
-                    name="new_value"
-                    value="{{ email }}"
-                    required
-                  />
-                </div>
-                <button type="submit" class="btn">Save</button>
-                <button
-                  type="button"
-                  class="btn btn-cancel"
-                  onclick="toggleEditForm('email-form')"
-                >
-                  Cancel
-                </button>
-              </form>
-
-              <div class="profile-item">
-                <div class="profile-label">Password:</div>
-                <div class="profile-value">********</div>
-                <button
-                  type="button"
-                  class="edit-btn"
-                  onclick="toggleEditForm('password-form')"
-                >
-                  Change
-                </button>
-              </div>
-              <form
-                id="password-form"
-                class="edit-form"
-                method="POST"
-                action="{{ url_for('update_profile') }}"
-              >
-                <input type="hidden" name="field" value="password" />
-                <div class="form-group">
-                  <input
-                    type="password"
-                    class="form-control"
-                    name="new_value"
-                    placeholder="New password"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="password"
-                    class="form-control"
-                    name="confirm_password"
-                    placeholder="Confirm new password"
-                    required
-                  />
-                </div>
-                <button
-                  type="submit"
-                  class="btn"
-                  onclick="return validatePassword()"
-                >
-                  Save
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-cancel"
-                  onclick="toggleEditForm('password-form')"
-                >
-                  Cancel
-                </button>
-              </form>
+  <div class="card-container">
+    <!-- ✅ 个人信息卡片 -->
+    <div class="card">
+      <div class="card-header">My Profile</div>
+      <div class="card-body">
+        <div class="profile-info">
+          <!-- Full Name -->
+          <div class="profile-item">
+            <div class="profile-label">Full Name:</div>
+            <div class="profile-value">{{ fullname }}</div>
+            <button
+              type="button"
+              class="edit-btn"
+              onclick="toggleEditForm('fullname-form')"
+            >
+              Edit
+            </button>
+          </div>
+          <form
+            id="fullname-form"
+            class="edit-form"
+            method="POST"
+            action="{{ url_for('update_profile') }}"
+          >
+            <input type="hidden" name="field" value="fullname" />
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="new_value"
+                value="{{ fullname }}"
+                required
+              />
             </div>
-          </div>
-        </div>
+            <button type="submit" class="btn">Save</button>
+            <button
+              type="button"
+              class="btn btn-cancel"
+              onclick="toggleEditForm('fullname-form')"
+            >
+              Cancel
+            </button>
+          </form>
 
-        <!-- Additional cards for bike rentals, etc. can be added here -->
-        <div class="card">
-          <div class="card-header">My Rentals</div>
-          <div class="card-body">
-            <p>You have no active rentals at the moment.</p>
-            <p>Visit a Dublin Bikes station to start a new journey.</p>
+          <!-- Email -->
+          <div class="profile-item">
+            <div class="profile-label">Email:</div>
+            <div class="profile-value">{{ email }}</div>
+            <button
+              type="button"
+              class="edit-btn"
+              onclick="toggleEditForm('email-form')"
+            >
+              Edit
+            </button>
           </div>
-        </div>
+          <form
+            id="email-form"
+            class="edit-form"
+            method="POST"
+            action="{{ url_for('update_profile') }}"
+          >
+            <input type="hidden" name="field" value="email" />
+            <div class="form-group">
+              <input
+                type="email"
+                class="form-control"
+                name="new_value"
+                value="{{ email }}"
+                required
+              />
+            </div>
+            <button type="submit" class="btn">Save</button>
+            <button
+              type="button"
+              class="btn btn-cancel"
+              onclick="toggleEditForm('email-form')"
+            >
+              Cancel
+            </button>
+          </form>
 
-        <div class="card">
-          <div class="card-header">Membership Details</div>
-          <div class="card-body">
-            <p>Account type: Standard</p>
-            <p>Member since: {{ time }}</p>
-            <p>
-              <a href="#" style="color: var(--primary-color)"
-                >View billing history</a
-              >
-            </p>
+          <!-- Password -->
+          <div class="profile-item">
+            <div class="profile-label">Password:</div>
+            <div class="profile-value">********</div>
+            <button
+              type="button"
+              class="edit-btn"
+              onclick="toggleEditForm('password-form')"
+            >
+              Change
+            </button>
           </div>
+          <form
+            id="password-form"
+            class="edit-form"
+            method="POST"
+            action="{{ url_for('update_profile') }}"
+          >
+            <input type="hidden" name="field" value="password" />
+            <div class="form-group">
+              <input
+                type="password"
+                class="form-control"
+                name="new_value"
+                placeholder="New password"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="password"
+                class="form-control"
+                name="confirm_password"
+                placeholder="Confirm new password"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn"
+              onclick="return validatePassword()"
+            >
+              Save
+            </button>
+            <button
+              type="button"
+              class="btn btn-cancel"
+              onclick="toggleEditForm('password-form')"
+            >
+              Cancel
+            </button>
+          </form>
         </div>
       </div>
-    </main>
+    </div>
 
-    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
-  </body>
-</html>
+    <!-- Rentals -->
+    <div class="card">
+      <div class="card-header">My Rentals</div>
+      <div class="card-body">
+        <p>You have no active rentals at the moment.</p>
+        <p>Visit a Dublin Bikes station to start a new journey.</p>
+      </div>
+    </div>
+
+    <!-- Membership -->
+    <div class="card">
+      <div class="card-header">Membership Details</div>
+      <div class="card-body">
+        <p>Account type: Standard</p>
+        <p>Member since: {{ time }}</p>
+        <p>
+          <a href="#" style="color: var(--primary-color)"
+            >View billing history</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

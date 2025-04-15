@@ -21,7 +21,9 @@ styles %}
     <h2>{{ option.title }}</h2>
     <p>{{ option.description }}</p>
     <div><strong>€{{ option.price }}</strong></div>
-    <a href="{{ url_for('login') }}">
+    <a
+      href="{% if session.logged_in %}{{ url_for('tobecontinue') }}{% else %}{{ url_for('login') }}{% endif %}"
+    >
       <button class="choose-button">CHOOSE THIS SUBSCRIPTION OPTION</button>
     </a>
   </div>

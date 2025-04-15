@@ -393,18 +393,21 @@ select {
 }
 
 .station-chart {
+  all: unset;
   margin-top: 12px;
   width: 100%;
   height: 200px;
+
 }
 
 .info-window button#view-prediction-btn {
   all: unset;
   margin-top: 14px;
+  max-width: 60%;
   padding: 10px 16px;
   width: 100%;
-  background: #cecece;
-  color: #232323;
+  background: #34c759;
+  color: white;
   font-size: 16px;
   font-weight: bold;
   border: none;
@@ -414,7 +417,7 @@ select {
 }
 
 .info-window button#view-prediction-btn:hover {
-  background: #848484;
+  background: #2ea94d;
 }
 
 /* Sidebar styles */
@@ -696,10 +699,12 @@ select {
     height: 150px;
   }
 
+
   .info-window button#view-prediction-btn {
+
     font-size: 14px;
     padding: 8px 12px;
-    width: auto;
+    width:10px;
     max-width: 160px;
     margin: 10px auto 0 auto;
     display: block;
