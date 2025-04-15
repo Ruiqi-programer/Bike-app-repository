@@ -7,6 +7,7 @@ export function fetchWeather() {
     .then((data) => {
       if (!data.current) return;
       showCurrentWeather(data.current);
+      updateWeatherWidget(data.current);
       hourlyDataCache = data.hourly || [];
       showDailyForecast(data.daily || []);
       showHourlyTimeline(data.hourly || []);
@@ -33,6 +34,26 @@ export function setupWeatherModal() {
   window.addEventListener("click", (e) => {
     if (e.target === weatherModal) weatherModal.style.display = "none";
   });
+}
+
+function updateWeatherWidget(current) {
+  const widget = document.getElementById("weather-widget");
+  const icon = document.getElementById("weather-icon");
+  const temp = document.getElementById("weather-temp");
+
+  if (!widget || !icon || !temp) return;
+
+  const iconCode = current.weather_icon || "01d";
+  const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+
+  icon.src = iconUrl;
+  icon.alt = current.weather_desc || "Weather";
+  icon.onerror = () => {
+    icon.src = "https://via.placeholder.com/30?text=?"; // 防止再次破图
+  };
+
+  temp.textContent = `${Math.round(current.temp)}°C`;
+  widget.classList.remove("hidden");
 }
 
 function showCurrentWeather(current) {

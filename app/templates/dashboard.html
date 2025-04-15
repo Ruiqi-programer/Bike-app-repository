@@ -18,7 +18,7 @@ styles %}
   </div>
 </div> -->
 
-<main class="main-content">
+<div class="main-content">
   <h1 class="dashboard-title">Welcome, {{ user_fullname }}</h1>
 
   {% with messages = get_flashed_messages() %} {% if messages %}
@@ -197,7 +197,7 @@ styles %}
       </div>
     </div>
   </div>
-</main>
+</div>
 {% endblock %} {% block scripts %}
 <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 {% endblock %}

@@ -13,7 +13,7 @@ import logging
 import os
 import pandas as pd
 from app.machine_learning.model_utils import predict
-from app.models.db import engine, create_database, create_tables
+from app.models.db import engine
 from app.models.db import engine
 from config import Config
 
@@ -535,7 +535,7 @@ def create_app():
     CORS(app)
     
     # 初始化数据库
-    create_database()
-    create_tables()
+    # create_database()
+    # create_tables()
 
     return app

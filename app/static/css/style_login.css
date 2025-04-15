@@ -11,19 +11,17 @@
 
 * {
   box-sizing: border-box;
+}
+
+body,
+html {
+  background-color: var(--light-bg);
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-}
-
-html {
-  font-size: 16px;
-}
-
-body {
-  background-color: var(--light-bg);
-  font-family: var(--font-family);
-  line-height: 1.5;
-  color: var(--text-color);
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden; /* 防止左右滑动 */
 }
 
 /* Layout */
