@@ -17,17 +17,22 @@ from app.models.db import engine
 from app.models.db import engine
 from config import Config
 
-def get_total_stands(station_id):
-    with engine.connect() as conn:
-        result = conn.execute(
-            text("SELECT total_bike_stands FROM stations WHERE station_id = :sid"),
-            {"sid": station_id}
-        ).fetchone()
+# def get_total_stands(station_id):
+#     with engine.connect() as conn:
+#         result = conn.execute(
+#             text("SELECT total_bike_stands FROM stations WHERE station_id = :sid"),
+#             {"sid": station_id}
+#         ).fetchone()
 
-        if result:
-            return result[0]
-        return 0
+#         if result:
+#             return result[0]
+#         return 0
 
+station_data = {}                     
+with engine.connect() as conn:
+    result = conn.execute(text("SELECT station_id, total_bike_stands FROM stations"))
+    station_data = {row["station_id"]: row["total_bike_stands"] for row in result.mappings()}
+                        
 def create_app():
     app = Flask(__name__)
 
@@ -160,8 +165,7 @@ def create_app():
 
             if not station_id:
                 return jsonify({"error": "Missing station_id"}), 400
-
-            total_stands = get_total_stands(station_id)
+            total_stands = station_data.get(station_id)
             if total_stands == 0:
                 return jsonify({"error": "Invalid station_id or no total stands found"}), 404
 
