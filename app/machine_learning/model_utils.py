@@ -8,7 +8,7 @@ import pandas as pd
 
 # _model = None  
 
-model_path = os.path.join(os.path.dirname(__file__), "bike_availability_model_small.pkl")
+model_path = os.path.join(os.path.dirname(__file__), "bike_availability_model.pkl")
 model = joblib.load(model_path)
 
 # def load_model():
