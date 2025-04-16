@@ -791,3 +791,68 @@ select {
     background: #2da64d;
   }
 }
+
+/* Fixed weather display container style - Position down */
+.fixed-weather-container {
+  position: absolute;
+  top: 280px;
+  left: 20px;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  width: 240px;
+  max-width: 100%;
+  font-family: Arial, sans-serif;
+  transition: all 0.3s ease;
+}
+
+.fixed-weather-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-title {
+  text-align: center;
+  margin: 0 0 10px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
+  color: #333;
+}
+
+#fixed-weather-info p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.4;
+}
+
+#fixed-weather-info strong {
+  margin-right: 5px;
+}
+
+/* Mobile device adaptation */
+@media (max-width: 768px) {
+  .fixed-weather-container {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+  
+  .weather-title {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+  
+  #fixed-weather-info p {
+    font-size: 13px;
+    margin: 3px 0;
+  }
+}
