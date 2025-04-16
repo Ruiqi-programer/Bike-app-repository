@@ -8,4 +8,4 @@ mergedata.py
 bike_data/
 weather_data/
 *.log
-# *.pkl
+*.pkl
