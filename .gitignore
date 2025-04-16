@@ -9,4 +9,6 @@ bike_data/
 weather_data/
 *.log
 *.pkl
-__pycache__
+__pycache__/
+
+*.pyc
