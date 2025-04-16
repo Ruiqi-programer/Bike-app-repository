@@ -10,5 +10,4 @@ weather_data/
 *.log
 *.pkl
 __pycache__/
-
 *.pyc
