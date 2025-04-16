@@ -6,7 +6,7 @@ from wtforms import StringField,SubmitField
 from wtforms.validators import DataRequired
 from wtforms.widgets import TextArea
 from sqlalchemy import text
-from datetime import datetime
+from datetime import datetime,timedelta
 import bcrypt
 from functools import wraps
 import logging
@@ -17,7 +17,16 @@ from app.models.db import engine
 from app.models.db import engine
 from config import Config
 
+def get_total_stands(station_id):
+    with engine.connect() as conn:
+        result = conn.execute(
+            text("SELECT total_bike_stands FROM stations WHERE station_id = :sid"),
+            {"sid": station_id}
+        ).fetchone()
 
+        if result:
+            return result[0]
+        return 0
 
 def create_app():
     app = Flask(__name__)
@@ -143,21 +152,41 @@ def create_app():
             return jsonify({"error": str(e)}), 500
 
 
+    
     @app.route("/predict_range", methods=["GET"])
     def predict_range():
         try:
-            date = request.args.get("date")
-            time = request.args.get("time")
             station_id = request.args.get("station_id")
 
-            if not all([date, time, station_id]):
-                return jsonify({"error": "Missing date, time, or station_id"}), 400
-   
-            result = predict(station_id, date, time)
+            if not station_id:
+                return jsonify({"error": "Missing station_id"}), 400
 
-            if isinstance(result, dict) and "error" in result:
-                return jsonify(result), 500
-            return jsonify({"predicted_available_bikes": result})
+            total_stands = get_total_stands(station_id)
+            if total_stands == 0:
+                return jsonify({"error": "Invalid station_id or no total stands found"}), 404
+
+            now = datetime.now()
+            results = []
+
+            for i in range(24):
+                future_time = now + timedelta(hours=i)
+                date_str = future_time.strftime("%Y-%m-%d")
+                time_str = future_time.strftime("%H:%M")
+
+                predicted_bikes = predict(station_id, date_str, time_str)
+                if isinstance(predicted_bikes, dict) and "error" in predicted_bikes:
+                    bikes = 0
+                else:
+                    bikes = predicted_bikes or 0
+
+                stands = total_stands - bikes
+                results.append({
+                    "hour": f"{future_time.hour}:00",
+                    "bikes": bikes,
+                    "stands": stands
+                })
+
+            return jsonify({"predictions": results})
 
         except Exception as e:
             return jsonify({"error": str(e)}), 500

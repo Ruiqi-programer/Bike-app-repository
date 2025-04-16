@@ -392,66 +392,40 @@ export function loadStationsForSelect() {
 }
 
 window.showPredictionChart = function (stationId, stationName) {
-  // Open the sidebar
+  // 打开右侧栏
   const sidebar = document.getElementById("station-sidebar");
   sidebar.classList.add("open");
 
-  // Update the station name in the sidebar
+  // 更新站点名称
   document.getElementById(
     "prediction-station-name"
-  ).innerHTML = `Station: <b> ${stationName} </b> <br>Station ID:<b> ${stationId}</b>`;
+  ).innerHTML = `Station: <b>${stationName}</b> <br>Station ID: <b>${stationId}</b>`;
+
+  // 获取预测图表的 canvas
   const ctx = document.getElementById("prediction-chart")?.getContext("2d");
   if (!ctx) {
     console.error("Chart canvas not found");
     return;
   }
-  // Fetch predictions for the next 24 hours
-  const now = new Date();
-  const predictions = [];
-  const freeStands = [];
-  const labels = [];
-  let fetches = [];
 
-  // Generate predictions for each hour in the next 24 hours
-  for (let i = 0; i < 24; i++) {
-    const futureTime = new Date(now.getTime() + i * 60 * 60 * 1000);
-    const date = futureTime.toISOString().split("T")[0];
-    const timeString = futureTime.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false, // set to true if you want AM/PM
+  // 请求后端预测接口
+  fetch(`/predict_range?station_id=${stationId}`)
+    .then((res) => res.json())
+    .then((data) => {
+      if (!data.predictions || !Array.isArray(data.predictions)) {
+        throw new Error("Invalid prediction data");
+      }
+
+      const labels = data.predictions.map((p) => p.hour);
+      const bikes = data.predictions.map((p) => p.bikes);
+      const stands = data.predictions.map((p) => p.stands);
+
+      updatePredictionChart(labels, bikes, stands);
+    })
+    .catch((err) => {
+      console.error("Failed to fetch prediction range:", err);
+      alert("Failed to load prediction data.");
     });
-    labels.push(`${futureTime.getHours()}:00`);
-
-    const fetchPromise = fetch(
-      `/predict_range?station_id=${stationId}&date=${date}&time=${timeString}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.predicted_available_bikes !== undefined) {
-          const bikes = data.predicted_available_bikes ?? 0;
-          const totalStands = stationDataMap[stationId] ?? 0;
-          const stands = totalStands - bikes;
-          return { bikes, stands };
-        } else {
-          console.error("Fetch error:", err);
-          return { bikes: 0, stands: 0 };
-        }
-      })
-      .catch((err) => {
-        console.error("Prediction fetch error:", err);
-        return 0;
-      });
-
-    fetches.push(fetchPromise);
-  }
-
-  Promise.all(fetches).then((predictions) => {
-    const predictedBikes = predictions.map((r) => r.bikes);
-    const predictedStands = predictions.map((r) => r.stands);
-
-    updatePredictionChart(labels, predictedBikes, predictedStands);
-  });
 };
 
 function updatePredictionChart(labels, predictions, freeStands) {
