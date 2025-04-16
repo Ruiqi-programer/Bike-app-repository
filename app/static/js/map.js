@@ -259,7 +259,7 @@ function InfoWindowEvents(station) {
       width: 300,
       height: 200,
       chartArea: { width: "70%", height: "70%" },
-      colors: ["#A5D6A7", "#C5E1A5"]
+      colors: ["#A5D6A7", "#C5E1A5"],
     });
   }
 

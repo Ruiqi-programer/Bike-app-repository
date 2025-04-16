@@ -165,10 +165,15 @@ def create_app():
 
             if not station_id:
                 return jsonify({"error": "Missing station_id"}), 400
+    
+            # 类型转换
+            station_id = int(station_id)
             total_stands = station_data.get(station_id)
-            if total_stands == 0:
-                return jsonify({"error": "Invalid station_id or no total stands found"}), 404
 
+            # 空值判断
+            if total_stands is None:
+                return jsonify({"error": "Invalid station_id or no total stands found"}), 404
+            
             now = datetime.now()
             results = []
 
