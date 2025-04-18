@@ -25,7 +25,7 @@
 - **🌤️ Live Weather Forecasts**: View current, hourly, and weekly weather powered by OpenWeather API. 🌦️
 - **🔮 Station Availability Prediction**:
   - Predict availability for any specific station at a **custom time**.
-  - Generate a **12-hour future availability trend** chart.
+  - Generate a **24-hour future availability trend** chart.
 - **📈 Charts & Trends**: Visualize bike availability and temperature trends using Google Charts and Chart.js for live and historical insights. 📈
 - **🔐 User Authentication**:
   - Secure login/logout and registration with hashed passwords.
@@ -76,7 +76,7 @@ GOOGLE_MAPS_API_KEY=xxxxxxxxxxxx
 
 # DB config (optional for local dev)
 DB_CONFIG={
-  "host": "127.0.0.1",
+  "host": "localhost",
   "user": "root",
   "password": "",
   "database": "dublinbike",
@@ -88,14 +88,21 @@ DB_CONFIG={
 
 ## 💻 Usage
 
-Start your Flask application:
+To run the application, start both the **data collection script** and the **Flask web server**:
 
 ```bash
+# In one terminal, start the background data collection service
+python masterscript.py
+
+# In a separate terminal, start the Flask web application
 flask run
 ```
 
-Then navigate to `http://localhost:5000/` to use the app.
+Once both are running, open your browser and visit:
 
+👉 http://localhost:5000/
+
+This will launch the user-facing web app, while masterscript.py continuously fetches and stores live bike and weather data in the background.
 ---
 
 ## 🤝 Contributing
