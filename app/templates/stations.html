@@ -7,11 +7,10 @@
 {% endblock %}{% block content %}
 
 <div id="map-filters">
-
   <div id="fixed-weather-container-placeholder"></div>
-  
+
   <div class="filters-group-container">
-    <!-- 左组按钮 -->
+    <!-- left side button -->
     <div class="filters-group left">
       <!-- Current Weather Widget -->
       <div id="weather-widget" class="weather-widget hidden">
@@ -27,7 +26,7 @@
       </button>
     </div>
 
-    <!-- 右组：Filter + 搜索框 -->
+    <!-- right side：Filter + search box -->
     <div class="filters-group right">
       <div class="filter-group">
         <button id="filter-toggle-btn">
@@ -146,11 +145,11 @@
   </div>
 </div>
 {% endblock %} {% block scripts %}
-<!-- 第三方库先引入 -->
+<!-- third party import first -->
 <script src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- 使用 ESM 的主入口 -->
+<!-- main js -->
 <script
   type="module"
   src="{{ url_for('static', filename='js/app.js') }}"

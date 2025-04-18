@@ -40,7 +40,6 @@ styles %}
       activeCard.style.display = "block";
     }
 
-    // 更新地址栏（不会跳转）
     if (history.pushState) {
       history.pushState(null, null, url);
     }

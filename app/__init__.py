@@ -17,16 +17,6 @@ from app.models.db import engine
 from app.models.db import engine
 from config import Config
 
-# def get_total_stands(station_id):
-#     with engine.connect() as conn:
-#         result = conn.execute(
-#             text("SELECT total_bike_stands FROM stations WHERE station_id = :sid"),
-#             {"sid": station_id}
-#         ).fetchone()
-
-#         if result:
-#             return result[0]
-#         return 0
 
 station_data = {}                     
 with engine.connect() as conn:
@@ -137,7 +127,7 @@ def create_app():
             print("❌ Station DB error:", e)
             return jsonify({"error": "Could not fetch stations"}), 500
         
-
+    # prediction for specific time and station 
     @app.route("/predict", methods=["GET"])
     def predict_route():
         try:
@@ -157,7 +147,7 @@ def create_app():
             return jsonify({"error": str(e)}), 500
 
 
-    
+    # prediction trend chart
     @app.route("/predict_range", methods=["GET"])
     def predict_range():
         try:
@@ -166,11 +156,11 @@ def create_app():
             if not station_id:
                 return jsonify({"error": "Missing station_id"}), 400
     
-            # 类型转换
+        
             station_id = int(station_id)
             total_stands = station_data.get(station_id)
 
-            # 空值判断
+        
             if total_stands is None:
                 return jsonify({"error": "Invalid station_id or no total stands found"}), 404
             
@@ -200,6 +190,7 @@ def create_app():
         except Exception as e:
             return jsonify({"error": str(e)}), 500
     
+    # faq page
     @app.route('/faqs')
     def faq():
         return render_template("faq.html")
@@ -247,7 +238,7 @@ def create_app():
                 "ticket_type":"discount"
             }
         ]
-            # 根据 ticket_type 找到对应订阅信息
+            
         selected = next((opt for opt in subscription_options if opt["ticket_type"] == ticket_type), None)
 
         if selected:
@@ -302,17 +293,12 @@ def create_app():
                             form.email.data = ''
                             form.phone.data = ''
                             form.review.data = ''
-                            flash("We've received your message successfully!", "success")
+                            # flash("We've received your message successfully!", "success")
+                            
             except Exception as e:
                 flash(f"Error submitting your message: {e}", "error")
         
-        # Fetch all reviews (optional, if you want to display them)
-        with engine.connect() as conn:
-            our_users = conn.execute(
-                text("SELECT * FROM contact_reviews ORDER BY date_added DESC")
-            ).fetchall()
-        
-        return render_template("contact.html", form=form, name=name, our_users=our_users)
+        return render_template("contact.html", form=form, name=name)
 
 
     # Login required decorator
@@ -329,10 +315,7 @@ def create_app():
     logging.basicConfig(filename='login_debug.log', 
                         level=logging.INFO,
                         format='%(asctime)s - %(levelname)s - %(message)s')
-    # Routes
-    # @app.route('/')
-    # def index():
-    #     return redirect(url_for('login'))
+
 
     @app.route('/login', methods=['GET', 'POST'])
     def login():
@@ -566,14 +549,11 @@ def create_app():
         
         return render_template('reset_password.html')
 
-    # 加载配置
+    # load config
     app.config.from_object('config.Config')
     
-    # 初始化 CORS
+    # start CORS
     CORS(app)
     
-    # 初始化数据库
-    # create_database()
-    # create_tables()
 
     return app

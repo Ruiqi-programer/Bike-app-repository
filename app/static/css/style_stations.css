@@ -320,7 +320,7 @@ select {
 }
 
 .marker-count {
-  transform: rotate(45deg); /* 抵消外层旋转 */
+  transform: rotate(45deg); 
   z-index: 1;
   font-size: 14px;
   font-weight: bold;
@@ -367,9 +367,9 @@ select {
   padding: 16px;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
-  width: 90vw; /* 使用视口宽度百分比 */
-  max-width: 320px; /* 桌面时不超过这个宽 */
-  min-width: 260px; /* 防止太小 */
+  width: 90vw; 
+  max-width: 320px; 
+  min-width: 260px; 
   text-align: center;
   box-sizing: border-box;
 }

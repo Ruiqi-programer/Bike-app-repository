@@ -57,5 +57,5 @@
 
 .faq.active .faq-answer {
   padding: 1rem;
-  max-height: 500px; /* 足够容纳内容 */
+  max-height: 500px; 
 }

@@ -11,18 +11,6 @@ import pandas as pd
 model_path = os.path.join(os.path.dirname(__file__), "bike_availability_model.pkl")
 model = joblib.load(model_path)
 
-# def load_model():
-#     """
-#     Load the trained machine learning model if not already loaded.
-#     Returns:
-#         The loaded model.
-#     """
-#     global _model
-#     if _model is None:
-#         model_path = os.path.join(os.path.dirname(__file__), "bike_availability_model.pkl")
-#         _model = joblib.load(model_path)
-#     return _model
-
 
 def fetch_weather_forecast(date_time):
     try:
@@ -45,7 +33,7 @@ def fetch_weather_forecast(date_time):
         }
 
     except Exception as e:
-        print("⚠️ Weather fetch error:", e)
+        print(" Weather fetch error:", e)
         # fallback default weather
         return {"temperature": 15.0,
             "humidity": 70.0,

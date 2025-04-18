@@ -10,7 +10,7 @@ html {
   width: 100%;
   min-height: 100%;
   box-sizing: border-box;
-  overflow-x: hidden; /* 防止左右滑动 */
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -18,7 +18,7 @@ html {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  flex:1;
+  flex: 1;
 }
 a {
   text-decoration: none;
@@ -38,7 +38,7 @@ header {
   border-bottom: 1px solid #ddd;
 }
 
-/* 主导航栏 */
+/* main nav */
 .main-header {
   display: flex;
   justify-content: space-between;
@@ -46,7 +46,6 @@ header {
   /* padding: 10px 20px; */
 }
 
-/* Logo 样式 */
 .logo a {
   font-size: 24px;
   font-weight: bold;
@@ -58,7 +57,7 @@ header {
   color: #34c759;
 }
 
-/* 导航栏 */
+/* nav */
 .nav-links {
   display: flex;
   gap: 20px;
@@ -76,7 +75,7 @@ header {
   font-weight: bold;
 }
 
-/* 按钮 */
+/* button */
 .btn-signin {
   background-color: #34c759;
   border: none;
@@ -147,7 +146,7 @@ hr {
   background-color: #ddd;
 }
 
-/* 底部版权和联系方式 */
+/* footer */
 .footer-bottom {
   display: flex;
   justify-content: space-between;
@@ -169,7 +168,7 @@ hr {
   color: gray;
 }
 
-/* 社交图标 */
+/* social icons */
 .social-icons {
   display: flex;
   gap: 10px;

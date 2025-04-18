@@ -49,7 +49,7 @@ function updateWeatherWidget(current) {
   icon.src = iconUrl;
   icon.alt = current.weather_desc || "Weather";
   icon.onerror = () => {
-    icon.src = "https://via.placeholder.com/30?text=?"; // 防止再次破图
+    icon.src = "https://via.placeholder.com/30?text=?";
   };
 
   temp.textContent = `${Math.round(current.temp)}°C`;

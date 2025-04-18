@@ -128,7 +128,7 @@ function fetchStations() {
           for (let j = 0; j < stationWords.length; j++) {
             const stationWord = stationWords[j];
 
-            // 若未被匹配，进行匹配检查
+            // If not matched, perform a match check
             if (!usedIndexes.has(j)) {
               const isFullMatch = stationWord === searchWord;
               const isPrefixMatch = stationWord.startsWith(searchWord);
@@ -282,26 +282,13 @@ function clearMarkers() {
 }
 
 function createMarkerIcon(color, count) {
-  // const el = document.createElement("div");
-  // el.className = "custom-marker";
-  // el.style.background = color;
-  // el.style.border = "2px solid black";
-  // el.style.borderRadius = "50%";
-  // el.style.width = "32px";
-  // el.style.height = "32px";
-  // el.style.display = "flex";
-  // el.style.alignItems = "center";
-  // el.style.justifyContent = "center";
-  // el.style.fontWeight = "bold";
-  // el.style.color = "white";
-  // el.innerText = count;
   const el = document.createElement("div");
   el.className = "custom-teardrop-marker";
 
-  // 设置颜色
+  // set color
   el.style.setProperty("--pin-color", color);
 
-  // 设置文字内容
+  // set content
   const inner = document.createElement("div");
   inner.className = "marker-count";
   inner.textContent = count;
@@ -392,23 +379,22 @@ export function loadStationsForSelect() {
 }
 
 window.showPredictionChart = function (stationId, stationName) {
-  // 打开右侧栏
+  // sidebar
   const sidebar = document.getElementById("station-sidebar");
   sidebar.classList.add("open");
 
-  // 更新站点名称
+  // update station name
   document.getElementById(
     "prediction-station-name"
   ).innerHTML = `Station: <b>${stationName}</b> <br>Station ID: <b>${stationId}</b>`;
 
-  // 获取预测图表的 canvas
+  // get the prediction chart
   const ctx = document.getElementById("prediction-chart")?.getContext("2d");
   if (!ctx) {
     console.error("Chart canvas not found");
     return;
   }
-
-  // 请求后端预测接口
+  // conncect to backend api
   fetch(`/predict_range?station_id=${stationId}`)
     .then((res) => res.json())
     .then((data) => {
@@ -464,7 +450,7 @@ function updatePredictionChart(labels, predictions, freeStands) {
 
       layout: {
         padding: {
-          left: 10, // ✅ 给 Y轴留出空间
+          left: 10,
           right: 10,
           top: 10,
           bottom: 10,
@@ -506,24 +492,23 @@ export function setupPredictionModal() {
 
     const dateInput = document.getElementById("predict-date");
     const timeInput = document.getElementById("predict-time");
-
-    // 设置最小日期为今天
+    //Set the minimum date to today
     dateInput.min = now.toISOString().split("T")[0];
     dateInput.value = now.toISOString().split("T")[0];
 
-    // 设置最小时间为当前时间（仅当天有效）
+    //Set the minimum time to the current time (valid only for the current day)
     const hours = String(now.getHours()).padStart(2, "0");
     const minutes = String(now.getMinutes()).padStart(2, "0");
     timeInput.min = `${hours}:${minutes}`;
     timeInput.value = `${hours}:${minutes}`;
 
-    // 如果用户改日期，时间应恢复为00:00（除非是今天）
+    //If the user changes the date, the time should revert to 00:00 (unless it is today)
     dateInput.addEventListener("change", () => {
       const selectedDate = dateInput.value;
       const today = now.toISOString().split("T")[0];
       if (selectedDate !== today) {
         timeInput.min = "00:00";
-        timeInput.value = "08:00"; // 你可设定一个默认值
+        timeInput.value = "08:00";
       } else {
         timeInput.min = `${hours}:${minutes}`;
         timeInput.value = `${hours}:${minutes}`;
@@ -609,7 +594,7 @@ window.drawHistoricalBikeChart = async function (stationId) {
       responsive: true,
       layout: {
         padding: {
-          left: 10, // ✅ 给 Y轴留出空间
+          left: 10,
           right: 10,
           top: 10,
           bottom: 10,
@@ -658,7 +643,6 @@ window.drawHistoricalWeatherChart = async function () {
     return obj;
   });
 
-  // 提取字段
   const labels = data.map((d) =>
     new Date(d.timestamp).toLocaleTimeString([], {
       hour: "2-digit",
@@ -673,7 +657,7 @@ window.drawHistoricalWeatherChart = async function () {
     historicalWeatherChartInstance.destroy();
   }
   new Chart(ctx, {
-    type: "line", // 可改为 'bar'
+    type: "line",
     data: {
       labels,
       datasets: [
@@ -701,7 +685,7 @@ window.drawHistoricalWeatherChart = async function () {
       responsive: true,
       layout: {
         padding: {
-          left: 10, // ✅ 给 Y轴留出空间
+          left: 10,
           right: 10,
           top: 10,
           bottom: 10,

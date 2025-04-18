@@ -21,7 +21,7 @@ html {
   padding: 0;
   width: 100%;
   box-sizing: border-box;
-  overflow-x: hidden; /* 防止左右滑动 */
+  overflow-x: hidden; 
 }
 
 /* Layout */
